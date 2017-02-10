@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/tiles/Tile.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/display/Display.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/tiles/RockTile.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/tiles/GrassTile.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/gfx/Assets.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/state/GameState.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/state/MenuState.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/launcher.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/tiles/DirtTile.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/gfx/SpriteSheet.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/state/State.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/input/KeyManager.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/tilegame/Game.java</file>
+        </group>
+    </open-files>
+</project-private>
