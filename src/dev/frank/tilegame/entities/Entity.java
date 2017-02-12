@@ -56,6 +56,13 @@ public abstract class Entity {
         this.height = height;
     }
     
+//    public void entityTest(){
+//        Entity e = new Entity();
+//        int num = 5;
+//        e.setX(5);
+//        assertEquals(num, e.getX(), "number doesnt match")
+//    }
+//    
     
     
     public abstract void tick();

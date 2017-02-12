@@ -77,7 +77,7 @@ public class Game implements Runnable { //to run runnable
         //x += 1;
        keyManager.tick();
        if(State.getState() != null)
-           State.getState().tick();
+           State.getState().tick();//RUN TICK() in game state which has tick() from player
     }
     
     public void render() {//draw

@@ -28,7 +28,7 @@ public class GameState extends State {
 
     @Override
     public void tick() {
-        player.tick();
+        player.tick(); //has getinpu and move() in player
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
