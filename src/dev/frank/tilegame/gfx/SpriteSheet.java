@@ -20,7 +20,7 @@ public class SpriteSheet {
     }
     
     public BufferedImage crop(int x, int y, int width, int height) {
-        //to crop
+        //to crop from an image
         return sheet.getSubimage(x, y, width, height);
     }
     

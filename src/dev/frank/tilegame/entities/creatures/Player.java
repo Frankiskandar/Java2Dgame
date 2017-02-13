@@ -55,7 +55,8 @@ public class Player extends Creature{
     @Override
     public void render(Graphics g) {
         //width and height from Creature
-        g.drawImage(Assets.player,(int) x,(int) y, width, height, null);
+       // g.drawImage(Assets.player,(int) x,(int) y, width, height, null);
+        g.drawImage(Assets.alien,(int) x,(int) y, width, height, null);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
