@@ -5,6 +5,7 @@
  */
 package dev.frank.tilegame.entities.creatures;
 
+import dev.frank.tilegame.Game;
 import dev.frank.tilegame.entities.Entity;
 
 /**
@@ -22,8 +23,8 @@ public abstract class Creature extends Entity {
     protected float xMove, yMove;
     
     
-    public Creature(float x, float y, int width, int heigth) {
-        super(x, y, width, heigth);
+    public Creature(Game game,float x, float y, int width, int heigth) {
+        super(game, x, y, width, heigth);
         health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;

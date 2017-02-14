@@ -20,6 +20,7 @@ public class Tile {
     public static Tile grassTile = new GrassTile(0); //grass has id zero
     public static Tile dirtTile = new DirtTile(1);
     public static Tile rockTile = new RockTile(2);
+    public static Tile sandMid = new SandMid(5);
     
     //set the first 3 only out of 256
     

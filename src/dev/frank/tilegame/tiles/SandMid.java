@@ -12,18 +12,19 @@ import java.awt.image.BufferedImage;
  *
  * @author Frank
  */
-public class RockTile extends Tile {
+public class SandMid extends Tile {
 
-    public RockTile(int id) {
-        super(Assets.stone, id);
+    public SandMid(int id) {
+        super(Assets.sandmid, id);
     }
+    
+
     
     //dont want player to walk through it
     @Override
     public boolean isSolid() {
         return true;
     }
-    
     
     
 }

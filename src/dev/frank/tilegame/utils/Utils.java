@@ -27,7 +27,7 @@ public class Utils {
     }
 
     public static String loadFileAsString(String path) {
-                //allows you to add charactor to string easily
+         //allows you to add charactor to string easily
         StringBuilder builder = new StringBuilder();
         
         try {

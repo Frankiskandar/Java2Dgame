@@ -5,6 +5,7 @@
  */
 package dev.frank.tilegame.worlds;
 
+import dev.frank.tilegame.Game;
 import dev.frank.tilegame.tiles.Tile;
 import dev.frank.tilegame.utils.Utils;
 import java.awt.Graphics;
@@ -16,12 +17,14 @@ import java.awt.Graphics;
 public class World {
     
     //3 main things
+    private Game game;
     private int width, height;
     private int spawnX, spawnY;
     //will hold bunch of tile id
     private int[][] tiles;
     
-    public World(String path) { //path is the location of the file we want to load
+    public World(Game game, String path) { //path is the location of the file we want to load
+        this.game = game;
         loadWorld(path);
     }
     
@@ -32,7 +35,9 @@ public class World {
     public void render(Graphics g) {
         for(int y = 0; y < height; y++)
             for(int x = 0;x<width;x++) {
-                getTile(x,y).render(g, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT);
+                getTile(x,y).render(g,(int) (x*Tile.TILEWIDTH - game.getGameCamera().getxOffset()),
+                        (int) (y*Tile.TILEHEIGHT - game.getGameCamera().getyOffset()));
+                //subtracting where x and y offset are to the  screen where we rendering the tiles to
             }
     }
     
@@ -56,6 +61,7 @@ public class World {
 //            }
 //        }
 //        
+        //load the map from text
         String file = Utils.loadFileAsString(path);
         String[] tokens = file.split("\\s+");
         width = Utils.parseInt(tokens[0]);

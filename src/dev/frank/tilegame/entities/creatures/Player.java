@@ -15,17 +15,20 @@ import java.awt.Graphics;
  */
 public class Player extends Creature{
     
-    private Game game; // need to access Game object
+    //private Game game; // need to access Game object
 
     public Player(Game game, float x, float y) {
-        super(x, y,Creature.DEFAULT_CREATURE_WIDTH,Creature.DEFAULT_CREATURE_HEIGTH);
-        this.game = game;
+        super(game, x, y,Creature.DEFAULT_CREATURE_WIDTH,Creature.DEFAULT_CREATURE_HEIGTH);
     }
 
     @Override
     public void tick() {
         getInput();
         move(); //from creature class
+        
+        //every time we tick after move
+        //we want to center it on this player
+        game.getGameCamera().centerOnEntity(this);
 //        if(game.getKeyManager().up)
 //            y -=3; // to move a player up we have to substract from y position
 //        if(game.getKeyManager().down)
@@ -56,7 +59,8 @@ public class Player extends Creature{
     public void render(Graphics g) {
         //width and height from Creature
        // g.drawImage(Assets.player,(int) x,(int) y, width, height, null);
-        g.drawImage(Assets.alien,(int) x,(int) y, width, height, null);
+        g.drawImage(Assets.alien,(int) (x - game.getGameCamera().getxOffset()),
+                (int) (y - game.getGameCamera().getyOffset()), width, height, null);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

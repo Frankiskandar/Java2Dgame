@@ -5,6 +5,7 @@
  */
 package dev.frank.tilegame.entities;
 
+import dev.frank.tilegame.Game;
 import java.awt.Graphics;
 
 /**
@@ -13,11 +14,13 @@ import java.awt.Graphics;
  */
 public abstract class Entity {
     
+    protected Game game;
     protected float x,y; //float for smooth movement
     protected int width, height;
     
 
-    public Entity(float x, float y, int width, int heigth) {
+    public Entity(Game game, float x, float y, int width, int heigth) {
+        this.game = game;
         this.x = x;
         this.y = y;
         this.width = width;

@@ -7,6 +7,7 @@ package dev.frank.tilegame;
 
 import dev.frank.tilegame.display.Display;
 import dev.frank.tilegame.gfx.Assets;
+import dev.frank.tilegame.gfx.GameCamera;
 import dev.frank.tilegame.gfx.ImageLoader;
 import dev.frank.tilegame.gfx.SpriteSheet;
 import dev.frank.tilegame.input.KeyManager;
@@ -27,7 +28,7 @@ import java.util.logging.Logger;
 public class Game implements Runnable { //to run runnable
     
     private Display display;
-    public int width, height;  
+    private int width, height;  
     public String title;
     
     private boolean running = false;
@@ -42,6 +43,9 @@ public class Game implements Runnable { //to run runnable
     
     //Input
     private KeyManager keyManager;
+    
+    //Camera
+    private GameCamera gameCamera;
     
 //    private BufferedImage test;
 //    private SpriteSheet sheet;
@@ -66,6 +70,9 @@ public class Game implements Runnable { //to run runnable
 //        test = ImageLoader.loadImage("/textures/sheet.png");
 //        sheet = new SpriteSheet(test);
         Assets.init(); // check init in assets
+        
+        gameCamera = new GameCamera(this,0,0);
+        
         gameState = new GameState(this);
         menuState = new MenuState(this);
         State.setState(gameState);
@@ -146,6 +153,20 @@ public class Game implements Runnable { //to run runnable
     // so other classes can access it too
     public KeyManager getKeyManager() {
         return keyManager;
+    }
+    
+    public GameCamera getGameCamera() {
+        return gameCamera;
+    }
+    
+    
+    //get height and width of our window
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
     }
     
     public synchronized void start() {
