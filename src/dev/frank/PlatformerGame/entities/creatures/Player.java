@@ -7,15 +7,21 @@ package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
+import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  *
  * @author Frank
  */
 public class Player extends Creature{
+    
+    //ANIMATIONS
+    private Animation animDown, animUp, animRight, animLeft, animStand;
+    
     
     //private Game game; // need to access Game object
 
@@ -27,10 +33,25 @@ public class Player extends Creature{
         bounds.y = 32; // 32 px down
         bounds.width = 32;
         bounds.height = 32;
+        
+        //Animations
+        animDown = new Animation(500, Assets.alien_down);
+        animUp = new Animation(500, Assets.alien_jump);
+        animLeft = new Animation(100, Assets.alien_left);
+        animRight = new Animation(100, Assets.alien_right);
+        animStand = new Animation(500, Assets.alien_stand);
+        
     }
 
     @Override
     public void tick() {
+        //Animations
+        animDown.tick(); //to update index var
+        animUp.tick();
+        animLeft.tick();
+        animRight.tick();
+        
+        //Movement
         getInput();
         move(); //from creature class
         
@@ -67,7 +88,7 @@ public class Player extends Creature{
     public void render(Graphics g) {
         //width and height from Creature
        // g.drawImage(Assets.player,(int) x,(int) y, width, height, null);
-        g.drawImage(Assets.alien,(int) (x - handler.getGameCamera().getxOffset()),
+        g.drawImage( getCurrentAnimationFrame() ,(int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //collision testing
 //        g.setColor(Color.red);
@@ -75,6 +96,21 @@ public class Player extends Creature{
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //                bounds.width, bounds.height);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private BufferedImage getCurrentAnimationFrame() {
+        //if we are moving to the left
+        if (xMove < 0) {
+            return animLeft.getCurrentFrame();
+        } else if (xMove > 0) {
+            return animRight.getCurrentFrame();     
+        } else if (yMove < 0) {
+            return animUp.getCurrentFrame();
+        } else if (yMove > 0) {
+            return animDown.getCurrentFrame();
+        } else {
+            return animStand.getCurrentFrame();
+        }
     }
     
     
