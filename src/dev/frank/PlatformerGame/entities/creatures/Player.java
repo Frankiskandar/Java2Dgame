@@ -72,6 +72,8 @@ public class Player extends Creature{
     private void getInput() {
         xMove = 0;
         yMove = 0;
+        //for gravity
+        // yMove = 5;
 
         if(handler.getKeyManager().up)
             yMove = -speed;

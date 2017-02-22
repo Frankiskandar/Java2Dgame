@@ -84,7 +84,7 @@ public class Assets {
         dirt = sheet.crop(width, 0, width, height);
         grass = sheet.crop(width*2, 0, width, height);
         stone = sheet.crop(width*3, 0, width,height);
-        tree = sheet.crop(0,height,width,height);
+        tree = sheet.crop(0,0,width,height*2);
         alien = alien_green.crop(0, 0, 72, 97);
         sandmid = ground.crop(288, 576, 70, 70);
         

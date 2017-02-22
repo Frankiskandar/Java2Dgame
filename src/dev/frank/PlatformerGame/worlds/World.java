@@ -7,6 +7,9 @@ package dev.frank.PlatformerGame.worlds;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
+import dev.frank.PlatformerGame.entities.EntityManager;
+import dev.frank.PlatformerGame.entities.creatures.Player;
+import dev.frank.PlatformerGame.entities.statics.Tree;
 import dev.frank.PlatformerGame.tiles.Tile;
 import dev.frank.PlatformerGame.utils.Utils;
 import java.awt.Graphics;
@@ -25,13 +28,23 @@ public class World {
     //will hold bunch of tile id
     private int[][] tiles;
     
+    //Entities
+    private EntityManager entityManager;
+    
     public World(Handler handler, String path) { //path is the location of the file we want to load
         this.handler = handler;
+        
+        entityManager = new EntityManager(handler, new Player(handler,100,100));
+        entityManager.addEntity(new Tree(handler,100,250) {});
+        
         loadWorld(path);
+        
+        entityManager.getPlayer().setX(spawnX);
+        entityManager.getPlayer().setY(spawnY);
     }
     
     public void tick() {
-        
+        entityManager.tick();
     }
     
     public void render(Graphics g) {
@@ -50,6 +63,8 @@ public class World {
                         (int) (y*Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
                 //subtracting where x and y offset are to the  screen where we rendering the tiles to
             }
+        //entities
+        entityManager.render(g);
     }
     
     // just to return tile for render method above
