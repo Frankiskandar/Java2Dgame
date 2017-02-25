@@ -9,6 +9,7 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  *
@@ -20,11 +21,24 @@ public class EntityManager {
     private Player player;
     //to hold every entity  just like entity[] but no size
     private ArrayList<Entity> entities;
+    private Comparator<Entity> renderSorter = new Comparator<Entity>() {
+        
+        //compare 2 entity which should be rendered first
+        @Override
+        public int compare(Entity a, Entity b) {
+            if (a.getY() + a.getHeight() < b.getY() + b.getHeight() ) // a should be rendered before b, a has less y component
+                    return -1;
+            return 1; //a should be rendered after b
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    };
     
     public EntityManager(Handler handler, Player player) {
         this.handler = handler;
         this.player = player;
         entities = new ArrayList<Entity>();
+        addEntity(player); // then we can remove player.render an tick inside tick and render
+        
     }
     
     public void tick() {
@@ -32,15 +46,13 @@ public class EntityManager {
             Entity e = entities.get(i); // just like Entity e = entities[i]
             e.tick();
         }
-        player.tick();
+        entities.sort(renderSorter);
     }
     
     public void render(Graphics g) {
             for (Entity e : entities) {
             e.render(g);
         }
-        player.render(g);
-        
     }
     
     //take an entity and add it to array list so can be ticked and rendered

@@ -118,4 +118,11 @@ public class World {
     public int getHeight() {
         return height;
     }
+    
+    //so we can access entitymanager
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+    
 }

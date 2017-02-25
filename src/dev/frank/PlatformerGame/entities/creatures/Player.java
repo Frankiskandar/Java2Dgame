@@ -83,6 +83,8 @@ public class Player extends Creature{
             xMove = -speed;
         if(handler.getKeyManager().right)
             xMove = speed;
+        // else yMove = speed;
+             
         
     }
     

@@ -79,4 +79,25 @@ public abstract class Entity {
     
     public abstract void render(Graphics g);
     
+    
+    //to return bounding rectangle
+    //or the area around this entity
+    //cover area collision of entity
+    public Rectangle getCollisionBounds(float xOffset, float yOffset) {
+        return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset),bounds.width, bounds.height );
+    }
+    
+    //to check collision
+    public boolean checkEntityCollisions(float xOffset, float yOffset) {
+        // if 2 rectangle is collapsing and there is collision between these 2 entities, return true
+        for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
+            //dont check itself
+            if(e.equals(this))
+                continue;
+            if(e.getCollisionBounds(0f, 0f).intersects(getCollisionBounds(xOffset,yOffset)))
+                return true;
+        }
+        return false;
+    }
+    
 }
