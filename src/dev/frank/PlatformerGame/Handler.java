@@ -7,6 +7,7 @@ package dev.frank.PlatformerGame;
 
 import dev.frank.PlatformerGame.gfx.GameCamera;
 import dev.frank.PlatformerGame.input.KeyManager;
+import dev.frank.PlatformerGame.input.MouseManager;
 import dev.frank.PlatformerGame.worlds.World;
 
 /**
@@ -33,6 +34,10 @@ public class Handler {
         return game.getKeyManager();
     }
     
+    public MouseManager getMouseManager() {
+        return game.getMouseManager();
+    }
+    
     public int getWidth() {
         return game.getWidth();
     }
@@ -56,6 +61,10 @@ public class Handler {
     public void setWorld(World world) {
         this.world = world;
     }
+
+    /*    public Object getMouseManager() {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
     
     
     

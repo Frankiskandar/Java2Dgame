@@ -7,6 +7,7 @@ package dev.frank.PlatformerGame.state;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -15,6 +16,7 @@ import java.awt.Graphics;
  */
 public class MenuState extends State {
     
+    
 
     public MenuState(Handler handler) {
         super(handler);
@@ -22,11 +24,16 @@ public class MenuState extends State {
 
     @Override
     public void tick() {
+        if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
+            State.setState(handler.getGame().gameState);
+        //System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void render(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillRect(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), 8, 8);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

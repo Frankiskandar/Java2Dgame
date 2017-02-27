@@ -11,6 +11,7 @@ import dev.frank.PlatformerGame.gfx.GameCamera;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.gfx.SpriteSheet;
 import dev.frank.PlatformerGame.input.KeyManager;
+import dev.frank.PlatformerGame.input.MouseManager;
 import dev.frank.PlatformerGame.state.GameState;
 import dev.frank.PlatformerGame.state.MenuState;
 import dev.frank.PlatformerGame.state.State;
@@ -38,11 +39,12 @@ public class Game implements Runnable { //to run runnable
     private Graphics g; // like a paintbrush
     
     //States
-    private State gameState;
-    private State menuState;
+    public State gameState;
+    public State menuState;
     
     //Input
     private KeyManager keyManager;
+    private MouseManager mouseManager;
     
     //Camera
     private GameCamera gameCamera;
@@ -60,6 +62,7 @@ public class Game implements Runnable { //to run runnable
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
+        mouseManager = new MouseManager();
 
     }
     
@@ -67,6 +70,12 @@ public class Game implements Runnable { //to run runnable
         display = new Display(title, width, height);
         // adding keylistener to jframe, our keymanager extends key listener
         display.getFrame().addKeyListener(keyManager);
+        display.getFrame().addMouseListener(mouseManager);
+        display.getFrame().addMouseMotionListener(mouseManager);
+        // to both jframe and canvas (whoever active)
+        display.getCanvas().addMouseListener(mouseManager);
+        display.getCanvas().addMouseMotionListener(mouseManager);
+        
 //        testImage = ImageLoader.loadImage("/textures/test.png");
 //        testImage2 = ImageLoader.loadImage("/textures/test2.png");
 //        test = ImageLoader.loadImage("/textures/sheet.png");
@@ -79,7 +88,7 @@ public class Game implements Runnable { //to run runnable
         
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        State.setState(gameState);
+        State.setState(menuState);
     }
     
 //    int x = 0;
@@ -159,6 +168,11 @@ public class Game implements Runnable { //to run runnable
         return keyManager;
     }
     
+    //need mouse manager from another class
+    public MouseManager getMouseManager() {
+        return mouseManager;
+    }
+    
     public GameCamera getGameCamera() {
         return gameCamera;
     }
@@ -192,5 +206,7 @@ public class Game implements Runnable { //to run runnable
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
     
 }
