@@ -20,12 +20,19 @@ public class Assets {
     //walking animation down of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand;
+    public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
+    public static BufferedImage[] btn_start;
     
     public static void init() {
         
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
         SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/p1_spritesheet.png"));
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
+        
+        //start button
+        btn_start = new BufferedImage[2];
+        btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
+	btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
         
         player_down = new BufferedImage[2];
         player_up = new BufferedImage[2];
@@ -40,6 +47,20 @@ public class Assets {
         player_right[1] = sheet.crop(width * 5, height, width, height);
         player_left[0] = sheet.crop(width * 6, height, width, height);
         player_left[1] = sheet.crop(width * 7, height, width, height);
+        
+        zombie_down = new BufferedImage[2];
+        zombie_up = new BufferedImage[2];
+        zombie_left = new BufferedImage[2];
+        zombie_right = new BufferedImage[2];
+
+        zombie_down[0] = sheet.crop(width * 4, height * 2, width, height);
+        zombie_down[1] = sheet.crop(width * 5, height * 2, width, height);
+        zombie_up[0] = sheet.crop(width * 6, height * 2, width, height);
+        zombie_up[1] = sheet.crop(width * 7, height * 2, width, height);
+        zombie_right[0] = sheet.crop(width * 4, height * 3, width, height);
+        zombie_right[1] = sheet.crop(width * 5, height * 3, width, height);
+        zombie_left[0] = sheet.crop(width * 6, height * 3, width, height);
+        zombie_left[1] = sheet.crop(width * 7, height * 3, width, height);
         
         
         //GREEN ALIEN PLAYER 1
@@ -78,7 +99,7 @@ public class Assets {
         alien_left[8] = alien_green.crop(219,98 , 72, 97);
         alien_left[9] = alien_green.crop(365,0 , 72, 97);
         alien_left[10] = alien_green.crop(292,98 , 72, 97);
-        
+        //end alien green
             
         //player = sheet.crop(0,0, width, height);
         dirt = sheet.crop(width, 0, width, height);

@@ -5,6 +5,7 @@
  */
 package dev.frank.PlatformerGame.input;
 
+import dev.frank.PlatformerGame.ui.UIManager;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -18,9 +19,14 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
+    private UIManager uiManager;
     
     public MouseManager() {
         
+    }
+    
+    public void setUIManager(UIManager uiManager) {
+        this.uiManager = uiManager;
     }
     
     //getters
@@ -63,6 +69,11 @@ public class MouseManager implements MouseListener, MouseMotionListener {
             leftPressed = false;
         else if(e.getButton() == MouseEvent.BUTTON3)
             rightPressed = false;
+        
+        //if uimanager exists
+        if (uiManager != null)
+            uiManager.onMouseRelease(e);
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -86,6 +97,9 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         //store mouse position
         mouseX = e.getX();
         mouseY = e.getY();
+        
+        if (uiManager != null)
+            uiManager.onMouseMove(e);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
