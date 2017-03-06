@@ -15,7 +15,7 @@ public class Assets {
     
     private static final int width = 32, height = 32;
     
-    public static BufferedImage dirt, grass, stone, tree, alien, sandmid;
+    public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid;
     
     //walking animation down of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -106,6 +106,7 @@ public class Assets {
         grass = sheet.crop(width*2, 0, width, height);
         stone = sheet.crop(width*3, 0, width,height);
         tree = sheet.crop(0,0,width,height*2);
+        rock = sheet.crop(0, height * 2, width, height);
         alien = alien_green.crop(0, 0, 72, 97);
         sandmid = ground.crop(288, 576, 70, 70);
         

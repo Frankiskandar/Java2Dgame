@@ -25,7 +25,7 @@ public class GameState extends State {
     //private Tree tree;
  //   private Handler handler;
     
-    public GameState(Handler handler) {
+    public GameState(Handler handler) { //gamestate mereka ambil 2 param lg
         super(handler);
         world = new World(handler, "res/worlds/world1.txt");
         handler.setWorld(world);

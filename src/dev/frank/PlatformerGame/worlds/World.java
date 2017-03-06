@@ -9,6 +9,7 @@ import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.EntityManager;
 import dev.frank.PlatformerGame.entities.creatures.Player;
+import dev.frank.PlatformerGame.entities.statics.Rock;
 import dev.frank.PlatformerGame.entities.statics.Tree;
 import dev.frank.PlatformerGame.tiles.Tile;
 import dev.frank.PlatformerGame.utils.Utils;
@@ -35,7 +36,8 @@ public class World {
         this.handler = handler;
         
         entityManager = new EntityManager(handler, new Player(handler,100,100));
-        entityManager.addEntity(new Tree(handler,100,250) {});
+        entityManager.addEntity(new Rock(handler,100,450));
+        entityManager.addEntity(new Tree(handler,100,250));
         
         loadWorld(path);
         

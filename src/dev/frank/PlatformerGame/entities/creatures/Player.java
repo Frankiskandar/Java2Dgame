@@ -7,10 +7,13 @@ package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
+import dev.frank.PlatformerGame.entities.Entity;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.tiles.Tile;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,8 +22,17 @@ import java.awt.image.BufferedImage;
  */
 public class Player extends Creature{
     
+    public boolean jump = false;
+    public boolean fall = false;
+    public boolean played = false;
+    int jumpTimer= 0;
+    float jumpspeed =10;
+    
     //ANIMATIONS
     private Animation animDown, animUp, animRight, animLeft, animStand;
+    //Attack timer
+    private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+    
     
     
     //private Game game; // need to access Game object
@@ -58,6 +70,10 @@ public class Player extends Creature{
         //every time we tick after move
         //we want to center it on this player
         handler.getGameCamera().centerOnEntity(this);
+        
+        //Attack
+        checkAttacks();
+        
 //        if(game.getKeyManager().up)
 //            y -=3; // to move a player up we have to substract from y position
 //        if(game.getKeyManager().down)
@@ -68,15 +84,76 @@ public class Player extends Creature{
 //            x +=3;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void checkAttacks() {
+        attackTimer += System.currentTimeMillis() - lastAttackTimer;
+        lastAttackTimer = System.currentTimeMillis();
+        if(attackTimer < attackCooldown)
+            return;
+        
+        //else will frun below code
+        
+        //collisionbounds
+        Rectangle cb = getCollisionBounds(0,0);
+        Rectangle ar = new Rectangle();
+        int arSize = 20;
+        ar.width = arSize;
+        ar.height = arSize;
+        
+        if(handler.getKeyManager().aUp) {
+            ar.x = cb.x + cb.width / 2 - arSize / 2;
+            ar.y = cb.y - arSize;    
+        } else if(handler.getKeyManager().aDown) {
+            ar.x = cb.x + cb.width / 2 - arSize / 2;
+            ar.y = cb.y + cb.height;
+        } else if(handler.getKeyManager().aLeft) {
+            ar.x = cb.x - arSize;
+            ar.y = cb.y + cb.height / 2 - arSize / 2;
+        } else if(handler.getKeyManager().aRight) {
+            ar.x = cb.x + cb.width;
+            ar.y = cb.y + cb.height / 2 - arSize / 2;
+        } else {
+            return; // do nothing
+        }
+        
+        attackTimer = 0;
+        
+        for(Entity e: handler.getWorld().getEntityManager().getEntities()) {
+            if(e.equals(this)) //if entity is this plyer
+                continue;
+            if(e.getCollisionBounds(0, 0).intersects(ar)) {
+                e.hurt(1);
+                return;
+            }
+        }
+        
+    }
+    
+    @Override
+    public void die() {
+        System.out.println("You Lose");
+    }
 
     private void getInput() {
         xMove = 0;
-        yMove = 0;
+        //yMove = 0;
+
+
+        
         //for gravity
         // yMove = 5;
+        
+        
 
-        if(handler.getKeyManager().up)
-            yMove = -speed;
+        if(handler.getKeyManager().up) {
+            //yMove = -speed;
+            if (!jump && !fall) { // kalo 2-2nya false
+                jump = true;
+                fall = false;
+            }
+            
+            
+        }
         if(handler.getKeyManager().down)
             yMove = speed;
         if(handler.getKeyManager().left)
@@ -84,6 +161,32 @@ public class Player extends Creature{
         if(handler.getKeyManager().right)
             xMove = speed;
         // else yMove = speed;
+        
+        if (jump) {
+            jumpTimer++;
+            yMove = -jumpspeed;
+            if (jumpTimer >= 24) {
+                jumpTimer = 0;
+                jump = false;
+                fall = true;
+            }
+        } else { //if user doesnt press up
+            yMove = jumpspeed;
+        }
+                int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
+        if (collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty)
+                || collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)) {
+            fall = false;
+            if (!jump && !played) {
+                played = true;
+                //JukeBox.play("land");
+            }
+        } else {
+            played = false;
+            fall = true;
+        }
+        
+        
              
         
     }
@@ -110,8 +213,8 @@ public class Player extends Creature{
             return animRight.getCurrentFrame();     
         } else if (yMove < 0) {
             return animUp.getCurrentFrame();
-        } else if (yMove > 0) {
-            return animDown.getCurrentFrame();
+//        } else if (yMove > 0) {
+//            return animDown.getCurrentFrame();
         } else {
             return animStand.getCurrentFrame();
         }
