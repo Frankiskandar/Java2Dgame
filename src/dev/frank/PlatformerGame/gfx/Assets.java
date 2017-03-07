@@ -15,24 +15,35 @@ public class Assets {
     
     private static final int width = 32, height = 32;
     
-    public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid;
+    public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid, exitSign, rightSign, emptyTile;
     
     //walking animation down of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand;
     public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
-    public static BufferedImage[] btn_start;
+    public static BufferedImage[] btn_start, btn_quit;
+    
     
     public static void init() {
         
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
         SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/p1_spritesheet.png"));
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
+        SpriteSheet play_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button1.png"));
+        SpriteSheet play_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button2.png"));
         
         //start button
         btn_start = new BufferedImage[2];
-        btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
-	btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
+        btn_start[0] = play_button1.crop(0, 0, 190, 49);
+	btn_start[1] = play_button2.crop(0, 0, 190, 45);
+        
+        SpriteSheet quit_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/quit_button1.png"));
+        SpriteSheet quit_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/quit_button2.png"));
+        
+        btn_quit = new BufferedImage[2];
+        btn_quit[0] = quit_button1.crop(0, 0, 190, 49);
+	btn_quit[1] = quit_button2.crop(0, 0, 190, 45);
+        
         
         player_down = new BufferedImage[2];
         player_up = new BufferedImage[2];
@@ -109,6 +120,14 @@ public class Assets {
         rock = sheet.crop(0, height * 2, width, height);
         alien = alien_green.crop(0, 0, 72, 97);
         sandmid = ground.crop(288, 576, 70, 70);
+        
+        
+        //object
+        exitSign = ground.crop(288, 360, 70, 70);
+        rightSign = ground.crop(288, 216, 70, 70);
+        
+        //emptytile
+        emptyTile = alien_green.crop(286, 208, 32, 32);
         
     }
 }

@@ -10,9 +10,11 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import dev.frank.PlatformerGame.entities.statics.Tree;
 import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.tiles.Tile;
 import dev.frank.PlatformerGame.worlds.World;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -22,13 +24,16 @@ public class GameState extends State {
     
     private Player player;
     private World world;
+    private BufferedImage bg;
     //private Tree tree;
  //   private Handler handler;
     
-    public GameState(Handler handler) { //gamestate mereka ambil 2 param lg
+    public GameState(Handler handler) { 
         super(handler);
         world = new World(handler, "res/worlds/world1.txt");
         handler.setWorld(world);
+        
+        bg = ImageLoader.loadImage("/textures/bg_level1.png");
       //  player = new Player(handler,100,100);
         //tree = new Tree(handler, 100,200) {};
 
@@ -51,7 +56,8 @@ public class GameState extends State {
 
     @Override
     public void render(Graphics g) {
-      world.render(g);
+        g.drawImage(bg, 0, 0, null);
+        world.render(g);
      // player.render(g);
     //  tree.render(g);
      // Tile.tiles[0].render(g, 0, 0); // draw grass on 0,0

@@ -18,10 +18,12 @@ public class Tile {
     
     
     public static Tile[] tiles = new Tile[256];
-    public static Tile grassTile = new GrassTile(0); //grass has id zero
+    public static Tile grassTile = new GrassTile(10); //grass has id zero
     public static Tile dirtTile = new DirtTile(1);
     public static Tile rockTile = new RockTile(2);
     public static Tile sandMid = new SandMid(5);
+    public static Tile rightSign = new signRight(6);
+    public static Tile emptyTile = new EmptyTile(0);
     
     //set the first 3 only out of 256
     
