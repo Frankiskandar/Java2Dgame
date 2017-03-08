@@ -13,6 +13,7 @@ import dev.frank.PlatformerGame.ui.ClickListener;
 import dev.frank.PlatformerGame.ui.UIImageButton;
 import dev.frank.PlatformerGame.ui.UIManager;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -20,12 +21,12 @@ import java.awt.image.BufferedImage;
  *
  * @author Frank
  */
-public class MenuState extends State {
+public class FinishState extends State {
     
     private UIManager uiManager;
     private BufferedImage bg;
     
-    public MenuState(Handler handler) {
+    public FinishState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
@@ -33,17 +34,8 @@ public class MenuState extends State {
         //background image
         bg = ImageLoader.loadImage("/textures/bg_menu.png");
         
-        uiManager.addObject(new UIImageButton(445, 298, 128, 64, Assets.btn_start, new ClickListener(){
-
-            @Override
-            public void onClick() {
-                handler.getMouseManager().setUIManager(null);
-                State.setState(handler.getGame().gameState);
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        }));
         
-        uiManager.addObject(new UIImageButton(445, 363, 128, 64, Assets.btn_quit, new ClickListener(){
+        uiManager.addObject(new UIImageButton(462, 279, 128, 64, Assets.btn_quit, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -72,6 +64,9 @@ public class MenuState extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(bg, 0, 0, null);
+        g.setFont(new Font("Franklin Gothic Heavy", Font.BOLD, 30));
+        g.setColor(Color.BLACK);
+        g.drawString("Congratulations! You Finished The Game ", 250, 200);
         uiManager.render(g);
         //test
 //        g.setColor(Color.RED);

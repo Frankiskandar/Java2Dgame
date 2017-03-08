@@ -10,6 +10,9 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.Entity;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.state.FinishState;
+import dev.frank.PlatformerGame.state.GameState;
+import dev.frank.PlatformerGame.state.State;
 import dev.frank.PlatformerGame.tiles.Tile;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -32,9 +35,7 @@ public class Player extends Creature{
     private Animation animDown, animUp, animRight, animLeft, animStand;
     //Attack timer
     private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
-    
-    
-    
+       
     //private Game game; // need to access Game object
 
     public Player(Handler handler, float x, float y) {
@@ -42,9 +43,9 @@ public class Player extends Creature{
         
         //customize this to change the bounding rectangle
         bounds.x = 16; // to the right
-        bounds.y = 32; // 32 px down
+        bounds.y = 0; //  px down
         bounds.width = 32;
-        bounds.height = 32;
+        bounds.height = 60;
         
         //Animations
         animDown = new Animation(500, Assets.alien_down);
@@ -62,6 +63,11 @@ public class Player extends Creature{
         animUp.tick();
         animLeft.tick();
         animRight.tick();
+        
+        //if the player at the finish position, change the state to finish state
+        if (Math.abs(x - GameState.EXIT_X_POSITION) < 20 && Math.abs(y - GameState.EXIT_Y_POSITION) < 20) {
+                State.setState(new FinishState(handler));
+            }
         
         //Movement
         getInput();
@@ -91,13 +97,9 @@ public class Player extends Creature{
         if(attackTimer < attackCooldown)
             return;
         
-        //else will frun below code
-        
+        //else will run below code
 
-        
         attackTimer = 0;
-
-        
     }
     
     @Override
@@ -116,9 +118,7 @@ public class Player extends Creature{
             if (!jump && !fall) { // kalo 2-2nya false
                 jump = true;
                 fall = false;
-            }
-            
-            
+            }         
         }
         if(handler.getKeyManager().down)
             yMove = speed;
@@ -150,11 +150,7 @@ public class Player extends Creature{
         } else {
             played = false;
             fall = true;
-        }
-        
-        
-             
-        
+        }      
     }
     
     @Override

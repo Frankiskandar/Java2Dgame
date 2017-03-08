@@ -19,11 +19,26 @@ public class Tile {
     
     public static Tile[] tiles = new Tile[256];
     public static Tile grassTile = new GrassTile(10); //grass has id zero
-    public static Tile dirtTile = new DirtTile(1);
-    public static Tile rockTile = new RockTile(2);
+    public static Tile dirtTile = new DirtTile(99);
+    public static Tile rockTile = new RockTile(98);
     public static Tile sandMid = new SandMid(5);
     public static Tile rightSign = new signRight(6);
+    
+    //emptyTile
     public static Tile emptyTile = new EmptyTile(0);
+    public static Tile solidEmptyTile = new SolidEmptyTile(4);
+    
+    //grass mid left right
+    public static Tile grassLeft = new GrassLeft(1);
+    public static Tile grassRight = new GrassRight(3);
+    public static Tile grassMid = new GrassMid(2);
+    
+    //water
+    public static Tile water = new Water(7);
+    
+    //box
+    public static Tile brownBox = new BrownBox(8);
+    
     
     //set the first 3 only out of 256
     

@@ -26,6 +26,9 @@ public class GameState extends State {
     private World world;
     private BufferedImage bg;
     private Tree tree;
+    public static final int PLAYER_SPAWN_X = 121, PLAYER_SPAWN_Y = 831;
+    public static final float EXIT_X_POSITION = 1216;
+    public static final float EXIT_Y_POSITION = 1151;
  //   private Handler handler;
     
     public GameState(Handler handler) { 
@@ -34,7 +37,7 @@ public class GameState extends State {
         handler.setWorld(world);
         
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
-        player = new Player(handler,100,100);
+        player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
         tree = new Tree(handler, 100,200) {};
         
 
@@ -61,6 +64,7 @@ public class GameState extends State {
         world.render(g);
         player.render(g);
         System.out.println(player.getX()+ " " + player.getY());
+        g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);
         tree.render(g);
      // Tile.tiles[0].render(g, 0, 0); // draw grass on 0,0
         

@@ -15,7 +15,19 @@ public class Assets {
     
     private static final int width = 32, height = 32;
     
-    public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid, exitSign, rightSign, emptyTile;
+    public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid, exitSign, rightSign;
+    
+    
+    public static BufferedImage emptyTile, solidEmptyTile;
+    
+    //grass
+    public static BufferedImage grassLeft, grassMid, grassRight;
+    
+    //water
+    public static BufferedImage water;
+    
+    //box
+    public static BufferedImage brownBox;
     
     //walking animation down of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -121,6 +133,14 @@ public class Assets {
         alien = alien_green.crop(0, 0, 72, 97);
         sandmid = ground.crop(288, 576, 70, 70);
         
+        //grass
+        grassLeft = ground.crop(504, 648, 70, 70);
+        grassMid = ground.crop(504, 576, 70, 70);
+        grassRight = ground.crop(504, 504, 70, 70);
+        
+        
+        //water
+        water = ground.crop(432, 576, 70, 70);
         
         //object
         exitSign = ground.crop(288, 360, 70, 70);
@@ -128,6 +148,10 @@ public class Assets {
         
         //emptytile
         emptyTile = alien_green.crop(286, 208, 32, 32);
+        solidEmptyTile = alien_green.crop(286, 208, 32, 32);
+        
+        //box
+        brownBox = ground.crop(0, 864, 70, 70);
         
     }
 }
