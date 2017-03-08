@@ -7,7 +7,7 @@ package dev.frank.PlatformerGame.worlds;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.entities.EntityManager;
+//import dev.frank.PlatformerGame.entities.EntityManager;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import dev.frank.PlatformerGame.entities.statics.Rock;
 import dev.frank.PlatformerGame.entities.statics.Tree;
@@ -30,23 +30,29 @@ public class World {
     private int[][] tiles;
     
     //Entities
-    private EntityManager entityManager;
+    //private EntityManager entityManager, entityManager2;
     
     public World(Handler handler, String path) { //path is the location of the file we want to load
         this.handler = handler;
         
-        entityManager = new EntityManager(handler, new Player(handler,100,100));
-        entityManager.addEntity(new Rock(handler,100,450));
-        entityManager.addEntity(new Tree(handler,100,250));
-        
+//        entityManager = new EntityManager(handler, new Player(handler,100,100));
+//        entityManager.addEntity(new Rock(handler,100,450));
+//        entityManager.addEntity(new Tree(handler,100,250));
+//        
+//        entityManager2 = new EntityManager(handler, new Player(handler,100,100));
+//        
         loadWorld(path);
         
-        entityManager.getPlayer().setX(spawnX);
-        entityManager.getPlayer().setY(spawnY);
+//        entityManager.getPlayer().setX(spawnX);
+//        entityManager.getPlayer().setY(spawnY);
+//        
+//        
+        
+        
     }
     
     public void tick() {
-        entityManager.tick();
+        
     }
     
     public void render(Graphics g) {
@@ -66,7 +72,7 @@ public class World {
                 //subtracting where x and y offset are to the  screen where we rendering the tiles to
             }
         //entities
-        entityManager.render(g);
+        //entityManager.render(g);
     }
     
     // just to return tile for render method above
@@ -123,8 +129,8 @@ public class World {
     
     //so we can access entitymanager
 
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
+//    public EntityManager getEntityManager() {
+//        return entityManager;
+//    }
     
 }

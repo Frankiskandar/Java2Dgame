@@ -37,9 +37,9 @@ public abstract class Creature extends Entity {
 //        x += xMove;
 //        y += yMove;
         // ga usah checkentity
-        if (!checkEntityCollisions(xMove,0f))
+     //   if (!checkEntityCollisions(xMove,0f))
             moveX();
-        if(!checkEntityCollisions(0f, yMove))
+     //   if(!checkEntityCollisions(0f, yMove))
             moveY();
 //        moveX();
 //        moveY();

@@ -25,7 +25,7 @@ public class GameState extends State {
     private Player player;
     private World world;
     private BufferedImage bg;
-    //private Tree tree;
+    private Tree tree;
  //   private Handler handler;
     
     public GameState(Handler handler) { 
@@ -34,8 +34,9 @@ public class GameState extends State {
         handler.setWorld(world);
         
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
-      //  player = new Player(handler,100,100);
-        //tree = new Tree(handler, 100,200) {};
+        player = new Player(handler,100,100);
+        tree = new Tree(handler, 100,200) {};
+        
 
         
         // adding 100 and 200 to offset
@@ -47,8 +48,8 @@ public class GameState extends State {
     @Override
     public void tick() {
         world.tick();
-       // player.tick(); //has getinpu and move() in player
-       // tree.tick();
+        player.tick(); //has getinpu and move() in player
+        tree.tick();
         //buat maju doank tembak2an
         //game.getGameCamera().move(1, 0); // add 1 to x and y offset every tick 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -58,8 +59,9 @@ public class GameState extends State {
     public void render(Graphics g) {
         g.drawImage(bg, 0, 0, null);
         world.render(g);
-     // player.render(g);
-    //  tree.render(g);
+        player.render(g);
+        System.out.println(player.getX()+ " " + player.getY());
+        tree.render(g);
      // Tile.tiles[0].render(g, 0, 0); // draw grass on 0,0
         
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
