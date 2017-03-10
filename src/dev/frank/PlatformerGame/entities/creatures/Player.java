@@ -11,6 +11,7 @@ import dev.frank.PlatformerGame.entities.Entity;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.state.FinishState;
+import dev.frank.PlatformerGame.state.GameOverState;
 import dev.frank.PlatformerGame.state.GameState;
 import dev.frank.PlatformerGame.state.State;
 import dev.frank.PlatformerGame.tiles.Tile;
@@ -27,26 +28,20 @@ import javax.swing.Timer;
  */
 public class Player extends Creature{
     
-        public int numOfNormalBullet = 25, numOfMagicalBullet = 5;
-
+    public int numOfNormalBullet = 25, numOfMagicalBullet = 5;
+    
     final float BULLETSPEED = 5f;
     int forward = 0;
     boolean isRight = true, shootAni = false, firstShoot = false, normalBulletShoot = false;
     public boolean jump = false, fall = false, flag = true, dead = false, attackAni = false;
-    public boolean cheat = false, hitByPlayer = false, hitByMagicalBullet = false;
     ;
-    float jumpspeed = 10; //Check how high the player can jump
-    int jumpTimer = 0; //Make the player can jump again using this timer
+    float jumpspeed = 10; 
+    int jumpTimer = 0; // timer to let player jumpt again after some time
     Timer timer;
     int preTime, time;
-    public boolean deadAni = false, first = false, hit = false, bulletShoot = false, firstHit = false;
-    
-
     public boolean played = false;
     
     ArrayList<Fireball> FireballArray = new ArrayList<>();
-
-    
     //ANIMATIONS
     private Animation animDown, animUp, animRight, animLeft, animStand;
     //Attack timer
@@ -134,16 +129,18 @@ public class Player extends Creature{
                 fall = false;
             }         
         }
-        if(handler.getKeyManager().down)
-            yMove = speed;
-        if(handler.getKeyManager().left)
+//        if(handler.getKeyManager().down)
+//            yMove = speed;
+        if(handler.getKeyManager().left) {
             xMove = -speed;
             isRight = false;
+        }
             
-        if(handler.getKeyManager().right)
+        if(handler.getKeyManager().right) {
             xMove = speed;
             isRight = true;
         // else yMove = speed;
+        }
         
         if (jump) {
             jumpTimer++;
@@ -156,23 +153,25 @@ public class Player extends Creature{
         } else { //if user doesnt press up
             yMove = jumpspeed;
         }
-                int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
+        int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
         if (collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty)
                 || collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)) {
             fall = false;
             if (!jump && !played) {
                 played = true;
-                //JukeBox.play("land");
+
             }
         } else {
             played = false;
             fall = true;
         }
         
-        if (handler.getKeyManager().attack) {
+        //if the user presses shoot button
+        if (handler.getKeyManager().attack && !firstShoot) {
             Fireball fireball = new Fireball(handler, x, y, isRight);
             FireballArray.add(fireball);
             normalBulletShoot = true;
+            firstShoot = true;
         }
         else {
             normalBulletShoot = false;
@@ -188,16 +187,28 @@ public class Player extends Creature{
             b.tick(); // update the fireball position
             
         }
-        
-        
-        //if the fireball's distance is greater than 200 dont draw it
+   
+        //if the fireball's distance is greater than 300 dont draw it
         //dont draw if it hits the wall
         for(int i = 0; i < FireballArray.size(); i++) {
             if (FireballArray.get(i).distance > 300 || FireballArray.get(i).hitWall) {
                 FireballArray.remove(i);
-            }
-                
+            }       
         }
+        if(this.health==0) {
+            dead = true;
+        }
+        
+        //If the user falls to their death
+        if(y > LEVEL1_DEAD_Y_COORDINATE) {
+            dead = true;
+        }
+    }
+    
+    public void stop() {
+        xMove = 0;
+        yMove = 0;
+        fall = jump = false;
     }
     
     public void render(Graphics g) {
@@ -210,8 +221,18 @@ public class Player extends Creature{
             b.render(g, time, Projectile.PLAYER1);
         }
         
+        // if player is dead, set the state to gameover state
+        if (dead) {
+            State.setState(new GameOverState(handler));
+        }
         
-        
+        if (handler.getKeyManager().attack) {
+            if (!firstShoot) {
+                firstShoot = true;
+                preTime = time;
+            }
+        }
+
         //collision testing
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), 
@@ -228,12 +249,10 @@ public class Player extends Creature{
             return animRight.getCurrentFrame();     
         } else if (yMove < 0) {
             return animUp.getCurrentFrame();
-//        } else if (yMove > 0) {
-//            return animDown.getCurrentFrame();
+        } else if (fall) {
+            return animDown.getCurrentFrame();
         } else {
             return animStand.getCurrentFrame();
         }
     }
-    
-    
 }

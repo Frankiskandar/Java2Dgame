@@ -20,7 +20,7 @@ public class Assets {
     //projectile
     public static BufferedImage fireball;
     
-    
+    //empty tile
     public static BufferedImage emptyTile, solidEmptyTile;
     
     //grass
@@ -31,6 +31,9 @@ public class Assets {
     
     //box
     public static BufferedImage brownBox;
+    
+    //decoration
+    public static BufferedImage bush;
     
     //walking animation down of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -157,6 +160,9 @@ public class Assets {
         
         //box
         brownBox = ground.crop(0, 864, 70, 70);
+        
+        //decoration
+        bush = item.crop(346, 144, 70, 70);
         
         //projectile
         fireball = item.crop(0, 435, 70, 70);

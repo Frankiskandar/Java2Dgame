@@ -22,7 +22,10 @@ public class Tile {
     public static Tile dirtTile = new DirtTile(99);
     public static Tile rockTile = new RockTile(98);
     public static Tile sandMid = new SandMid(5);
+    
+    //decoration
     public static Tile rightSign = new signRight(6);
+    public static Tile bush = new Bush(9);
     
     //emptyTile
     public static Tile emptyTile = new EmptyTile(0);
