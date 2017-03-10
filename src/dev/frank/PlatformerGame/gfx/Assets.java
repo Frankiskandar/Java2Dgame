@@ -17,6 +17,9 @@ public class Assets {
     
     public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid, exitSign, rightSign;
     
+    //projectile
+    public static BufferedImage fireball;
+    
     
     public static BufferedImage emptyTile, solidEmptyTile;
     
@@ -39,8 +42,10 @@ public class Assets {
     public static void init() {
         
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+        
         SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/p1_spritesheet.png"));
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
+        SpriteSheet item = new SpriteSheet(ImageLoader.loadImage("/textures/items_spritesheet.png"));
         SpriteSheet play_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button1.png"));
         SpriteSheet play_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button2.png"));
         
@@ -152,6 +157,9 @@ public class Assets {
         
         //box
         brownBox = ground.crop(0, 864, 70, 70);
+        
+        //projectile
+        fireball = item.crop(0, 435, 70, 70);
         
     }
 }

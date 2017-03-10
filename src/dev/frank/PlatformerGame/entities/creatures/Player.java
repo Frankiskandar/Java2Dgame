@@ -18,6 +18,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import javax.swing.Timer;
 
 /**
  *
@@ -25,11 +27,25 @@ import java.awt.image.BufferedImage;
  */
 public class Player extends Creature{
     
-    public boolean jump = false;
-    public boolean fall = false;
+        public int numOfNormalBullet = 25, numOfMagicalBullet = 5;
+
+    final float BULLETSPEED = 5f;
+    int forward = 0;
+    boolean isRight = true, shootAni = false, firstShoot = false, normalBulletShoot = false;
+    public boolean jump = false, fall = false, flag = true, dead = false, attackAni = false;
+    public boolean cheat = false, hitByPlayer = false, hitByMagicalBullet = false;
+    ;
+    float jumpspeed = 10; //Check how high the player can jump
+    int jumpTimer = 0; //Make the player can jump again using this timer
+    Timer timer;
+    int preTime, time;
+    public boolean deadAni = false, first = false, hit = false, bulletShoot = false, firstHit = false;
+    
+
     public boolean played = false;
-    int jumpTimer= 0;
-    float jumpspeed =10;
+    
+    ArrayList<Fireball> FireballArray = new ArrayList<>();
+
     
     //ANIMATIONS
     private Animation animDown, animUp, animRight, animLeft, animStand;
@@ -56,7 +72,6 @@ public class Player extends Creature{
         
     }
 
-    @Override
     public void tick() {
         //Animations
         animDown.tick(); //to update index var
@@ -102,7 +117,6 @@ public class Player extends Creature{
         attackTimer = 0;
     }
     
-    @Override
     public void die() {
         System.out.println("You Lose");
     }
@@ -124,8 +138,11 @@ public class Player extends Creature{
             yMove = speed;
         if(handler.getKeyManager().left)
             xMove = -speed;
+            isRight = false;
+            
         if(handler.getKeyManager().right)
             xMove = speed;
+            isRight = true;
         // else yMove = speed;
         
         if (jump) {
@@ -150,15 +167,51 @@ public class Player extends Creature{
         } else {
             played = false;
             fall = true;
-        }      
+        }
+        
+        if (handler.getKeyManager().attack) {
+            Fireball fireball = new Fireball(handler, x, y, isRight);
+            FireballArray.add(fireball);
+            normalBulletShoot = true;
+        }
+        else {
+            normalBulletShoot = false;
+        }
+        
+        if (!handler.getKeyManager().attack) {
+            firstShoot = false;
+            shootAni = false;
+        }
+        
+        // to check if enemy is hit/not
+        for(Fireball b : FireballArray) {
+            b.tick(); // update the fireball position
+            
+        }
+        
+        
+        //if the fireball's distance is greater than 200 dont draw it
+        //dont draw if it hits the wall
+        for(int i = 0; i < FireballArray.size(); i++) {
+            if (FireballArray.get(i).distance > 300 || FireballArray.get(i).hitWall) {
+                FireballArray.remove(i);
+            }
+                
+        }
     }
     
-    @Override
     public void render(Graphics g) {
         //width and height from Creature
        // g.drawImage(Assets.player,(int) x,(int) y, width, height, null);
         g.drawImage( getCurrentAnimationFrame() ,(int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        
+        for (Fireball b : FireballArray) {
+            b.render(g, time, Projectile.PLAYER1);
+        }
+        
+        
+        
         //collision testing
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), 

@@ -28,7 +28,6 @@ public class Rock extends StaticEntity {
         bounds.height = (int) (height - height / 2f);
     }
 
-    @Override
     public void tick() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -38,7 +37,6 @@ public class Rock extends StaticEntity {
         
     }
 
-    @Override
     public void render(Graphics g) {
         g.drawImage(Assets.rock, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

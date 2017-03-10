@@ -28,7 +28,6 @@ public class Tree extends StaticEntity {
         bounds.height = (int) (height - height / 1.5f);
     }
     
-    @Override
     public void tick() {
         
     }
@@ -38,7 +37,6 @@ public class Tree extends StaticEntity {
         
     }
     
-    @Override
     public void render(Graphics g) {
         g.drawImage(Assets.tree, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
     }

@@ -16,18 +16,21 @@ import dev.frank.PlatformerGame.tiles.Tile;
  */
 public abstract class Creature extends Entity {
 
-    //public static final int DEFAULT_HEALTH = 10;
+    public static final int DEFAULT_HEALTH = 10;
     public static final float DEFAULT_SPEED = 3.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 64,
                             DEFAULT_CREATURE_HEIGTH = 64;
     //protected int health;
     protected float speed;
     protected float xMove, yMove;
+    public int health;
+    protected float runSpeed;
+    boolean hitWall = false;
     
     
     public Creature(Handler handler,float x, float y, int width, int heigth) {
         super(handler, x, y, width, heigth);
-        //health = DEFAULT_HEALTH;
+        health = DEFAULT_HEALTH;
         speed = DEFAULT_SPEED;
         xMove = 0;
         yMove = 0;
@@ -57,9 +60,11 @@ public abstract class Creature extends Entity {
                 !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
             {
                 x += xMove;
+                hitWall = false;
             } else { // if there is a collision
                 //reset x position of player
                 x = tx * Tile.TILEWIDTH - bounds.x - bounds.width - 1; // -1 so it doesnt lock the plaer
+                hitWall = true;
             }
         } else if (xMove < 0 ) { //moving left //moving lower in the x axis
             //left side of bounding rectangle
@@ -69,8 +74,10 @@ public abstract class Creature extends Entity {
                 !collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT))
             {
                 x += xMove;
+                hitWall = false;
             } else {
-                x = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bounds.x;
+                x = tx * Tile.TILEWIDTH + Tile.TILEWIDTH - bounds.x; //might not need this
+                hitWall = true;
             }
         }
         
@@ -98,7 +105,7 @@ public abstract class Creature extends Entity {
                !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)) //right side
             {
                 y += yMove;
-            } else { // if there is collision
+            } else { // if there is collision //might not need this
                 y = ty * Tile.TILEHEIGHT - bounds.y - bounds.height - 1;
             }
             
@@ -143,9 +150,6 @@ public abstract class Creature extends Entity {
 
     public void setSpeed(float speed) {
         this.speed = speed;
-    }
-    
-    
-    
+    } 
     
 }

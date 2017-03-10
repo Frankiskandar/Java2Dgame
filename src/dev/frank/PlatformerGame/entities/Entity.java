@@ -99,19 +99,19 @@ public abstract class Entity {
 //    
     
     
-    public abstract void tick();
-    
-    public abstract void render(Graphics g);  
-    
-    public abstract void die();
-    
-    public  void hurt(int amt) {
-        health -= amt;
-        if(health <= 0)
-            active = false;
-            die();
-            
-    }
+//    public abstract void tick();
+//    
+//    public abstract void render(Graphics g);  
+//    
+//    public abstract void die();
+//    
+//    public  void hurt(int amt) {
+//        health -= amt;
+//        if(health <= 0)
+//            active = false;
+//            die();
+//            
+//    }
 
     
     //to return bounding rectangle
