@@ -3,29 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/FinishState.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/GrassLeft.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/statics/Rock.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/GrassMid.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/SolidEmptyTile.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/worlds/World.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/MenuState.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/input/KeyManager.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/SandMid.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/res/worlds/world1.txt</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/BrownBox.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/statics/StaticEntity.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Player.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/utils/Utils.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/GameCamera.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/Water.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Creature.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/Assets.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/statics/Tree.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/launcher.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/Tile.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/GrassRight.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/GameState.java</file>
         </group>
     </open-files>
 </project-private>

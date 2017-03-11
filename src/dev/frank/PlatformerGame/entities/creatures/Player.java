@@ -67,7 +67,7 @@ public class Player extends Creature{
         
     }
 
-    public void tick() {
+    public void tick(ArrayList<Enemy> enemies, Player player) {
         //Animations
         animDown.tick(); //to update index var
         animUp.tick();
@@ -80,7 +80,7 @@ public class Player extends Creature{
             }
         
         //Movement
-        getInput();
+        getInput(enemies, player);
         move(); //from creature class
         
         //every time we tick after move
@@ -116,7 +116,7 @@ public class Player extends Creature{
         System.out.println("You Lose");
     }
 
-    private void getInput() {
+    private void getInput(ArrayList<Enemy> enemies, Player player) {
         xMove = 0;
         //yMove = 0; 
         //for gravity
@@ -180,12 +180,20 @@ public class Player extends Creature{
         if (!handler.getKeyManager().attack) {
             firstShoot = false;
             shootAni = false;
+            
         }
         
         // to check if enemy is hit/not
         for(Fireball b : FireballArray) {
             b.tick(); // update the fireball position
-            
+            for (Enemy e : enemies) {
+                if (Math.abs(b.getX() - e.getX()) < 45 && b.getY() > e.getY() - 60 && b.getY() < e.getY() + 60) {
+                    if (!b.hitEnemy) {
+                        b.hitEnemy = true;
+                        e.health -= FIREBALL_DAMAGE;
+                    }
+                }           
+            }
         }
    
         //if the fireball's distance is greater than 300 dont draw it

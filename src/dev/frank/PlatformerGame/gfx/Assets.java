@@ -41,6 +41,9 @@ public class Assets {
     public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
     public static BufferedImage[] btn_start, btn_quit;
     
+    public static BufferedImage spider_idle_right[], spider_dead_right[];
+    public static BufferedImage spider_idle_left[], spider_dead_left[];
+    public static BufferedImage spider_walk_left[], spider_walk_right[];
     
     public static void init() {
         
@@ -64,7 +67,7 @@ public class Assets {
         btn_quit[0] = quit_button1.crop(0, 0, 190, 49);
 	btn_quit[1] = quit_button2.crop(0, 0, 190, 45);
         
-        
+        //player
         player_down = new BufferedImage[2];
         player_up = new BufferedImage[2];
         player_left = new BufferedImage[2];
@@ -131,7 +134,36 @@ public class Assets {
         alien_left[9] = alien_green.crop(365,0 , 72, 97);
         alien_left[10] = alien_green.crop(292,98 , 72, 97);
         //end alien green
-            
+        
+        
+        //spider enemy
+        SpriteSheet enemies = new SpriteSheet(ImageLoader.loadImage("/textures/enemies.png"));
+        spider_idle_right = new BufferedImage[2];
+        spider_idle_left = new BufferedImage[2];
+        spider_walk_right = new BufferedImage[2];
+        spider_walk_left = new BufferedImage[2];
+        spider_dead_right = new BufferedImage[2];
+        spider_dead_left = new BufferedImage[2];
+        
+        
+        spider_idle_right[0] = enemies.crop(0, 326, 71, 45);
+        spider_idle_right[1] = enemies.crop(0, 326, 71, 45);
+        
+        spider_idle_left[0] = enemies.crop(0, 326, 71, 45);
+        spider_idle_left[1] = enemies.crop(0, 326, 71, 45);
+        
+        spider_walk_right[0] = enemies.crop(0, 90, 72, 51);
+        spider_walk_right[1] = enemies.crop(0, 37, 77, 53);
+        
+        spider_walk_left[0] = enemies.crop(0, 90, 72, 51);
+        spider_walk_left[1] = enemies.crop(0, 37, 77, 53);
+        
+        spider_dead_right[0] = enemies.crop(71, 282, 69, 51);
+        spider_dead_right[1] = enemies.crop(71, 282, 69, 51);
+        
+        
+        
+        //ground etc
         //player = sheet.crop(0,0, width, height);
         dirt = sheet.crop(width, 0, width, height);
         grass = sheet.crop(width*2, 0, width, height);
