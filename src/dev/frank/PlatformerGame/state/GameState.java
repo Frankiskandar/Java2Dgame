@@ -111,6 +111,10 @@ public class GameState extends State {
         System.out.println(player.getX()+ " " + player.getY());
         System.out.println("player's health= "+player.health);
         g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);
+        // draw heart
+        for (int i = 0; i < player.health; i++) {
+            g.drawImage(Assets.heart, 60 * (i + 1) - 55, 25, 50, 50, null);
+        }
 //        tree.render(g);
      // Tile.tiles[0].render(g, 0, 0); // draw grass on 0,0
         

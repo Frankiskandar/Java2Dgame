@@ -35,6 +35,9 @@ public class Assets {
     //decoration
     public static BufferedImage bush;
     
+    //hud
+    public static BufferedImage heart;
+    
     //walking animation down of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand;
@@ -52,6 +55,7 @@ public class Assets {
         SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/p1_spritesheet.png"));
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
         SpriteSheet item = new SpriteSheet(ImageLoader.loadImage("/textures/items_spritesheet.png"));
+        SpriteSheet hud = new SpriteSheet(ImageLoader.loadImage("/textures/hud_spritesheet.png"));
         SpriteSheet play_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button1.png"));
         SpriteSheet play_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button2.png"));
         
@@ -140,8 +144,8 @@ public class Assets {
         SpriteSheet enemies = new SpriteSheet(ImageLoader.loadImage("/textures/enemies.png"));
         spider_idle_right = new BufferedImage[2];
         spider_idle_left = new BufferedImage[2];
-        spider_walk_right = new BufferedImage[2];
-        spider_walk_left = new BufferedImage[2];
+        spider_walk_right = new BufferedImage[4];
+        spider_walk_left = new BufferedImage[4];
         spider_dead_right = new BufferedImage[2];
         spider_dead_left = new BufferedImage[2];
         
@@ -154,9 +158,13 @@ public class Assets {
         
         spider_walk_right[0] = enemies.crop(0, 90, 72, 51);
         spider_walk_right[1] = enemies.crop(0, 37, 77, 53);
+        spider_walk_right[2] = enemies.crop(0, 90, 72, 51);
+        spider_walk_right[3] = enemies.crop(0, 37, 77, 53);
         
         spider_walk_left[0] = enemies.crop(0, 90, 72, 51);
         spider_walk_left[1] = enemies.crop(0, 37, 77, 53);
+        spider_walk_left[2] = enemies.crop(0, 90, 72, 51);
+        spider_walk_left[3] = enemies.crop(0, 37, 77, 53);
         
         spider_dead_right[0] = enemies.crop(71, 282, 69, 51);
         spider_dead_right[1] = enemies.crop(71, 282, 69, 51);
@@ -199,5 +207,7 @@ public class Assets {
         //projectile
         fireball = item.crop(0, 435, 70, 70);
         
+        //hud
+        heart = hud.crop(0, 94, 53, 45);
     }
 }
