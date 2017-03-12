@@ -28,11 +28,9 @@ import javax.swing.Timer;
  */
 public class Player extends Creature{
     
-    public int numOfNormalBullet = 25, numOfMagicalBullet = 5;
-    
-    final float BULLETSPEED = 5f;
+    final float FIREBALLSPEED = 5f;
     int forward = 0;
-    boolean isRight = true, shootAni = false, firstShoot = false, normalBulletShoot = false;
+    boolean isRight = true, shootAni = false, firstShoot = false, fireBallShoot = false;
     public boolean jump = false, fall = false, flag = true, dead = false, attackAni = false;
     ;
     float jumpspeed = 10; 
@@ -90,15 +88,6 @@ public class Player extends Creature{
         //Attack
         checkAttacks();
         
-//        if(game.getKeyManager().up)
-//            y -=3; // to move a player up we have to substract from y position
-//        if(game.getKeyManager().down)
-//            y +=3;
-//        if(game.getKeyManager().left)
-//            x -=3;
-//        if(game.getKeyManager().right)
-//            x +=3;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void checkAttacks() {
@@ -170,11 +159,11 @@ public class Player extends Creature{
         if (handler.getKeyManager().attack && !firstShoot) {
             Fireball fireball = new Fireball(handler, x, y, isRight);
             FireballArray.add(fireball);
-            normalBulletShoot = true;
+            fireBallShoot = true;
             firstShoot = true;
         }
         else {
-            normalBulletShoot = false;
+            fireBallShoot = false;
         }
         
         if (!handler.getKeyManager().attack) {
@@ -183,7 +172,7 @@ public class Player extends Creature{
             
         }
         
-        // to check if enemy is hit/not
+        // to check if an enemy is hit/not
         for(Fireball b : FireballArray) {
             b.tick(); // update the fireball position
             for (Enemy e : enemies) {

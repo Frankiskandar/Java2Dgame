@@ -90,9 +90,7 @@ public class Game implements Runnable { //to run runnable
         menuState = new MenuState(handler);
         State.setState(menuState);
     }
-    
-//    int x = 0;
-//    
+       
    private void tick() {// update
         //x += 1;
        keyManager.tick();

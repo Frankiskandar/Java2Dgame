@@ -26,17 +26,18 @@ public class Enemy extends Creature {
     public boolean dead = false, deadAni = false, first = false, restart = false;
     boolean isRight = false, attack = false, hitRight = false, hitByPlayer = false;
     boolean magicalBulletHit = false, normalBulletHit = false, hitLeft = false;
-    
+    boolean autoRight = true;
+    boolean autoLeft = false;
     int preTime, action = 0;
-    final int IDLE = 0, MOVELEFT = 1, MOVERIGHT = 2;
+//    final int IDLE = 0, MOVELEFT = 1, MOVERIGHT = 2;
     final float MOVESPEED = 1.0f, JUMPSPEED = 10f;
-    Random random = new Random();
+//    Random random = new Random();
     int time = 0, i = 0;
     int tracker = 0;
     public boolean firstCall = true, notDraw = false, aimPlayer = false, deadTimeSet = false;
     int id, deadTime = 0;
-    boolean isAmmo = false, pickedByPlayer = false, isHeart = false, isMagicalAmmo = false;
-    boolean isDraw = false, hitByMagicalBullet = false, hitByRobot = false;
+//    boolean isAmmo = false, pickedByPlayer = false, isHeart = false, isMagicalAmmo = false;
+//    boolean isDraw = false, hitByMagicalBullet = false, hitByRobot = false;
     
     private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDead;
 
@@ -87,32 +88,29 @@ public class Enemy extends Creature {
             attack = false;
             return;
         }
-        boolean autoRight = true;
-        boolean autoLeft = false;
+
         
         //if player is not in line of sight, auto move back and forth
-        //doesnt work yet
         if (!aimPlayer) {
-            if (autoRight && !autoLeft) {
+            if (autoRight) {
                 xMove = MOVESPEED;
-                tracker += MOVESPEED;
-                if(tracker == 5) {
-                   autoLeft = true;
+                tracker++;
+                if(tracker == 120) {
                    autoRight = false;
+                   autoLeft = true;
                    tracker = 0;          
                 }
             }
 
-            if (autoLeft && !autoRight) {
+            if (autoLeft) {
                 xMove = -MOVESPEED;
-                tracker += MOVESPEED;
-                if(tracker == 5) {
+                tracker++;
+                if(tracker == 120) {
                    autoLeft = false;
                    autoRight = true;
                    tracker = 0;          
                 }
-            }
-            
+            } 
         }
         
         //the enemy will walk toward player if the player in its line of sight
@@ -130,7 +128,6 @@ public class Enemy extends Creature {
             }
         }
         
-
         if (attack) {
             //works
             if (isRight) {
@@ -138,7 +135,6 @@ public class Enemy extends Creature {
                     if (!hitRight) {
                         hitRight = true;
                         player.health -= 1;
-                        //JukeBox.play("playerhit");
                     }
                 } else {
                     hitRight = false;
@@ -148,37 +144,17 @@ public class Enemy extends Creature {
                 if (!hitLeft) {
                     hitLeft = true;
                     player.health -= 1;
-                    //JukeBox.play("playerhit");
                 }
             } else {
                 hitLeft = false;
             }
-
         }
     //gravity
     yMove = JUMPSPEED;
-        
-    //resetState();
-    
     move();
         
     }
     
-    public void resetState() {
-        if (id == 0) {
-            //musuh pertama di single
-            if (x + xMove > 582) {
-                xMove = 0;
-                action = IDLE;
-            }
-
-            if (x + xMove < 132) {
-                xMove = 0;
-                action = IDLE;
-            }
-        }
-    }
-
 
     public void stop() {
         xMove = yMove = 0;
@@ -186,6 +162,7 @@ public class Enemy extends Creature {
     
     public void render(Graphics g) {
         
+        //if enemy is dead
         if (dead) {
             g.drawImage(animDead.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);  
         } else { // if enemy is still alive

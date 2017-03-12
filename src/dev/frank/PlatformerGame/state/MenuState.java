@@ -38,7 +38,7 @@ public class MenuState extends State {
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
-                State.setState(handler.getGame().gameState);
+                State.setState(new GameState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));

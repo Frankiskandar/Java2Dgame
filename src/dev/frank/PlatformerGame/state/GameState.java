@@ -92,6 +92,13 @@ public class GameState extends State {
                 e.tick(player);
             } 
         }
+//        
+//        for (Enemy e : enemy) {
+//            if (e.dead)
+//            {
+//                enemies.remove(e);
+//            }
+//        }
          //has getinpu and move() in player
         
         //buat maju doank tembak2an
