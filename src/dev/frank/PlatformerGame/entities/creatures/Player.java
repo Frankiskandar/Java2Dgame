@@ -240,11 +240,11 @@ public class Player extends Creature{
     
     private BufferedImage getCurrentAnimationFrame() {
         //if we are moving to the left
-        if (xMove < 0) {
+        if (xMove < 0 && !jump && !fall) {
             return animLeft.getCurrentFrame();
-        } else if (xMove > 0) {
+        } else if (xMove > 0 && !jump && !fall) {
             return animRight.getCurrentFrame();     
-        } else if (yMove < 0) {
+        } else if (yMove < 0 ) {
             return animUp.getCurrentFrame();
         } else if (fall) {
             return animDown.getCurrentFrame();

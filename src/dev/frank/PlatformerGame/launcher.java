@@ -17,7 +17,7 @@ public class launcher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Game game = new Game("Tile Game", 1000, 500);
+       Game game = new Game("Platformer Game", 1000, 500);
        game.start(); 
     }
     

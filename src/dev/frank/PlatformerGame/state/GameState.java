@@ -28,14 +28,13 @@ public class GameState extends State {
     private Player player;
     private World world;
     private BufferedImage bg;
-    private Tree tree;
     private Enemy[] enemy;
-    public static final int ENEMY_NUMBER = 1;
+    public static final int ENEMY_NUMBER = 4;
     public ArrayList<Enemy> enemies;
     
     public static final int PLAYER_SPAWN_X = 121, PLAYER_SPAWN_Y = 831;
-    public static final float EXIT_X_POSITION = 1216;
-    public static final float EXIT_Y_POSITION = 1151;
+    public static final float EXIT_X_POSITION = 2409;
+    public static final float EXIT_Y_POSITION = 259;
  //   private Handler handler;
     
     public GameState(Handler handler) { 
@@ -49,10 +48,10 @@ public class GameState extends State {
         enemies = new ArrayList<>();
         enemy = new Enemy[ENEMY_NUMBER];
         enemy[0] = new Enemy(handler, 683, 1155, 0);
-        //enemy[1] = new Enemy(handler, 700, 1155, 1);
-        
-        
-        
+        enemy[1] = new Enemy(handler, 2245, 707, 1);
+        enemy[2] = new Enemy(handler, 125, 579, 2);
+        enemy[3] = new Enemy(handler, 848, 323, 3);
+           
         for (Enemy e : enemy) {
             enemies.add(e);
         }
