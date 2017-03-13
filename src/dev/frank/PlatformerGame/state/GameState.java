@@ -10,6 +10,7 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Creature;
 import dev.frank.PlatformerGame.entities.creatures.Enemy;
 import dev.frank.PlatformerGame.entities.creatures.Player;
+import dev.frank.PlatformerGame.entities.creatures.Spinner;
 import dev.frank.PlatformerGame.entities.statics.Tree;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
@@ -32,6 +33,12 @@ public class GameState extends State {
     public static final int ENEMY_NUMBER = 4;
     public ArrayList<Enemy> enemies;
     
+    public static final int ENEMY_SPINNER_NUMBER = 1;
+    private Spinner[] spinner;
+    public ArrayList<Spinner> spinners;
+    
+    
+    
     public static final int PLAYER_SPAWN_X = 121, PLAYER_SPAWN_Y = 831;
     public static final float EXIT_X_POSITION = 2409;
     public static final float EXIT_Y_POSITION = 259;
@@ -51,6 +58,14 @@ public class GameState extends State {
         enemy[1] = new Enemy(handler, 2245, 707, 1);
         enemy[2] = new Enemy(handler, 125, 579, 2);
         enemy[3] = new Enemy(handler, 848, 323, 3);
+        
+        //spinner test
+        spinners = new ArrayList<>();
+        spinner = new Spinner[ENEMY_SPINNER_NUMBER];
+        spinner[0] = new Spinner(handler, 1000, 1155,0);
+        for (Spinner s : spinner) {
+            spinners.add(s);
+        }
            
         for (Enemy e : enemy) {
             enemies.add(e);
@@ -91,6 +106,11 @@ public class GameState extends State {
                 e.tick(player);
             } 
         }
+        
+        //remove this later
+        for (Spinner s : spinner) {
+            s.tick(player);
+        }
 //        
 //        for (Enemy e : enemy) {
 //            if (e.dead)
@@ -114,6 +134,11 @@ public class GameState extends State {
             System.out.println("enemy's health: "+ e.health);
             e.render(g);
         }
+        //spinner
+        for (Spinner s: spinner) {
+            s.render(g);
+        }
+        
         System.out.println(player.getX()+ " " + player.getY());
         System.out.println("player's health= "+player.health);
         g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);

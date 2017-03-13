@@ -18,7 +18,7 @@ public class Tile {
     
     
     public static Tile[] tiles = new Tile[256];
-    public static Tile grassTile = new GrassTile(10); //grass has id zero
+    public static Tile grassTile = new GrassTile(10);
     public static Tile dirtTile = new DirtTile(99);
     public static Tile rockTile = new RockTile(98);
     public static Tile sandMid = new SandMid(5);
@@ -31,13 +31,20 @@ public class Tile {
     public static Tile emptyTile = new EmptyTile(0);
     public static Tile solidEmptyTile = new SolidEmptyTile(4);
     
-    //grass mid left right
+    //grass left mid right
     public static Tile grassLeft = new GrassLeft(1);
-    public static Tile grassRight = new GrassRight(3);
     public static Tile grassMid = new GrassMid(2);
+    public static Tile grassRight = new GrassRight(3);
+    
+    //stone left mid right
+    public static Tile stoneLeft = new StoneLeft(11);
+    public static Tile stoneMid = new StoneMid(12);
+    public static Tile stoneRight = new StoneRight(13);
+    
     
     //water
     public static Tile water = new Water(7);
+    public static Tile lava = new Lava(17);
     
     //box
     public static Tile brownBox = new BrownBox(8);

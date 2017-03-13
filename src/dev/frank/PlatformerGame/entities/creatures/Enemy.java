@@ -29,15 +29,11 @@ public class Enemy extends Creature {
     boolean autoRight = true;
     boolean autoLeft = false;
     int preTime, action = 0;
-//    final int IDLE = 0, MOVELEFT = 1, MOVERIGHT = 2;
     final float MOVESPEED = 1.0f, JUMPSPEED = 10f;
-//    Random random = new Random();
     int time = 0, i = 0;
     int tracker = 0;
     public boolean firstCall = true, notDraw = false, aimPlayer = false, deadTimeSet = false;
     int id, deadTime = 0;
-//    boolean isAmmo = false, pickedByPlayer = false, isHeart = false, isMagicalAmmo = false;
-//    boolean isDraw = false, hitByMagicalBullet = false, hitByRobot = false;
     
     private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDead;
 
@@ -112,6 +108,28 @@ public class Enemy extends Creature {
                 }
             } 
         }
+        //for boulder enemy
+//        if (!aimPlayer) {
+//            if (autoRight) {
+//                yMove = 3.0f;
+//                tracker++;
+//                if(tracker == 200) {
+//                   autoRight = false;
+//                   autoLeft = true;
+//                   tracker = 0;          
+//                }
+//            }
+//
+//            if (autoLeft) {
+//                yMove = -3.0f;
+//                tracker++;
+//                if(tracker == 200) {
+//                   autoLeft = false;
+//                   autoRight = true;
+//                   tracker = 0;          
+//                }
+//            } 
+//        }
         
         //the enemy will walk toward player if the player in its line of sight
         if (aimPlayer) {

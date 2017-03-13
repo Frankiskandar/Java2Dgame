@@ -23,11 +23,12 @@ public class Assets {
     //empty tile
     public static BufferedImage emptyTile, solidEmptyTile;
     
-    //grass
+    //ground
     public static BufferedImage grassLeft, grassMid, grassRight;
+    public static BufferedImage stoneLeft, stoneMid, stoneRight;
     
     //water
-    public static BufferedImage water;
+    public static BufferedImage water, lava;
     
     //box
     public static BufferedImage brownBox;
@@ -44,9 +45,12 @@ public class Assets {
     public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
     public static BufferedImage[] btn_start, btn_quit;
     
+    //enemy
     public static BufferedImage spider_idle_right[], spider_dead_right[];
     public static BufferedImage spider_idle_left[], spider_dead_left[];
     public static BufferedImage spider_walk_left[], spider_walk_right[];
+    
+    public static BufferedImage spinner[];
     
     public static void init() {
         
@@ -169,6 +173,11 @@ public class Assets {
         spider_dead_right[0] = enemies.crop(71, 282, 69, 51);
         spider_dead_right[1] = enemies.crop(71, 282, 69, 51);
         
+        spinner = new BufferedImage[4];
+        spinner[0] = enemies.crop(134, 372, 63, 62);
+        spinner[1] = enemies.crop(196, 65, 61, 61);
+        spinner[2] = enemies.crop(134, 372, 63, 62);
+        spinner[3] = enemies.crop(196, 65, 61, 61);
         
         
         //ground etc
@@ -186,9 +195,16 @@ public class Assets {
         grassMid = ground.crop(504, 576, 70, 70);
         grassRight = ground.crop(504, 504, 70, 70);
         
+        //stone
+        stoneLeft = ground.crop(72, 504, 70, 70);
+        stoneMid = ground.crop(72, 432, 70, 70);
+        stoneRight = ground.crop(72, 360, 70, 70);
+       
+        
         
         //water
         water = ground.crop(432, 576, 70, 70);
+        lava = ground.crop(432, 792, 70, 70);
         
         //object
         exitSign = ground.crop(288, 360, 70, 70);
