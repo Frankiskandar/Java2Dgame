@@ -146,8 +146,7 @@ public class GameState extends State {
         for (int i = 0; i < player.health; i++) {
             g.drawImage(Assets.heart, 60 * (i + 1) - 55, 25, 50, 50, null);
         }
-//        tree.render(g);
-     // Tile.tiles[0].render(g, 0, 0); // draw grass on 0,0
+        
         
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -42,10 +42,10 @@ public class Spinner extends Creature {
         this.id = id;
         health = 100;
         
-        bounds.x = 32;
-        bounds.y = 32;
-        bounds.width = 30;
-        bounds.height = 15;
+        bounds.x = 14;
+        bounds.y = 10;
+        bounds.width = 35;
+        bounds.height = 48;
         
         animation = new Animation(100, Assets.spinner);
         
@@ -129,6 +129,11 @@ public class Spinner extends Creature {
     
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+//                //collision testing
+//        g.setColor(Color.red);
+//        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), 
+//                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+//                bounds.width, bounds.height);
     }
     
     private BufferedImage getCurrentAnimationFrame() {
