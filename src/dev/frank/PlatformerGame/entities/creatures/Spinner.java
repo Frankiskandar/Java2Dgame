@@ -76,25 +76,50 @@ public class Spinner extends Creature {
         
         //for boulder enemy
         if (!aimPlayer) {
-            if (autoRight) {
-                yMove = 3.0f;
-                tracker++;
-                if(tracker == 200) {
-                   autoRight = false;
-                   autoLeft = true;
-                   tracker = 0;          
+            
+            if (id==1) {
+                if (autoRight) {
+                    xMove = 3.0f;
+                    tracker++;
+                    if(tracker == 200) {
+                       autoRight = false;
+                       autoLeft = true;
+                       tracker = 0;          
+                    }
+                }
+
+                if (autoLeft) {
+                    xMove = -3.0f;
+                    tracker++;
+                    if(tracker == 200) {
+                       autoLeft = false;
+                       autoRight = true;
+                       tracker = 0;          
+                    }
+                }
+                
+            }
+            else {
+                if (autoRight) {
+                    yMove = 3.0f;
+                    tracker++;
+                    if(tracker == 200) {
+                       autoRight = false;
+                       autoLeft = true;
+                       tracker = 0;          
+                    }
+                }
+
+                if (autoLeft) {
+                    yMove = -3.0f;
+                    tracker++;
+                    if(tracker == 200) {
+                       autoLeft = false;
+                       autoRight = true;
+                       tracker = 0;          
+                    }
                 }
             }
-
-            if (autoLeft) {
-                yMove = -3.0f;
-                tracker++;
-                if(tracker == 200) {
-                   autoLeft = false;
-                   autoRight = true;
-                   tracker = 0;          
-                }
-            } 
         }
         
         

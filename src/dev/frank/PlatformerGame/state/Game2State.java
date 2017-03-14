@@ -30,7 +30,7 @@ public class Game2State extends State {
     public static final int ENEMY_NUMBER = 4;
     public ArrayList<Enemy> enemies;
     
-    public static final int ENEMY_SPINNER_NUMBER = 1;
+    public static final int ENEMY_SPINNER_NUMBER = 2;
     private Spinner[] spinner;
     public ArrayList<Spinner> spinners;
        
@@ -55,7 +55,8 @@ public class Game2State extends State {
         //spinner test
         spinners = new ArrayList<>();
         spinner = new Spinner[ENEMY_SPINNER_NUMBER];
-        spinner[0] = new Spinner(handler, 1000, 1155,0);
+        spinner[0] = new Spinner(handler, 709, 387,0);
+        spinner[1] = new Spinner(handler, 838, 515,1);
         for (Spinner s : spinner) {
             spinners.add(s);
         }
@@ -71,7 +72,7 @@ public class Game2State extends State {
         boolean aimPlayer = false;
         
         for (Enemy e : enemy) {
-            if (aimForPlayer(player, e)) {
+            if (CheckPlayerNearby(player, e)) {
                 aimPlayer = true;
             }
         }
@@ -119,7 +120,8 @@ public class Game2State extends State {
         
     }
     
-    public boolean aimForPlayer(Creature player, Enemy e) {
+    //check if player is nearby
+    public boolean CheckPlayerNearby(Creature player, Enemy e) {
         if (Math.abs(player.getX() - e.getX()) < 200 && Math.abs(player.getY() - e.getY()) < 20) {
             e.aimPlayer = Math.abs(player.getX() - e.getX()) >= 20;
         } else {

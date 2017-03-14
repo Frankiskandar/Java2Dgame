@@ -70,7 +70,7 @@ public class GameState extends State {
         boolean aimPlayer = false;
         
         for (Enemy e : enemy) {
-            if (aimForPlayer(player, e)) {
+            if (CheckPlayerNearby(player, e)) {
                 aimPlayer = true;
             }
         }
@@ -121,7 +121,7 @@ public class GameState extends State {
     }
     
     
-    public boolean aimForPlayer(Creature player, Enemy e) {
+    public boolean CheckPlayerNearby(Creature player, Enemy e) {
         if (Math.abs(player.getX() - e.getX()) < 200 && Math.abs(player.getY() - e.getY()) < 20) {
             e.aimPlayer = Math.abs(player.getX() - e.getX()) >= 20;
         } else {

@@ -16,7 +16,7 @@ import dev.frank.PlatformerGame.tiles.Tile;
  */
 public abstract class Creature extends Entity {
 
-    public static final int DEFAULT_HEALTH = 3;
+    public static final int DEFAULT_HEALTH = 5;
     public static final float DEFAULT_SPEED = 3.0f;
     public static final int DEFAULT_CREATURE_WIDTH = 64,
                             DEFAULT_CREATURE_HEIGTH = 64;

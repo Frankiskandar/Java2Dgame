@@ -31,10 +31,9 @@ public class Player extends Creature{
     final float FIREBALLSPEED = 5f;
     int forward = 0;
     boolean isRight = true, shootAni = false, firstShoot = false, fireBallShoot = false;
-    public boolean jump = false, fall = false, flag = true, dead = false, attackAni = false;
-    ;
+    public boolean jump = false, fall = false, dead = false;
     float jumpspeed = 10; 
-    int jumpTimer = 0; // timer to let player jumpt again after some time
+    int jumpTimer = 0; // timer to let player jump again after some time
     Timer timer;
     int preTime, time;
     public boolean played = false;
@@ -43,7 +42,7 @@ public class Player extends Creature{
     //ANIMATIONS
     private Animation animDown, animUp, animRight, animLeft, animStand;
     //Attack timer
-    private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
+    //private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
        
     //private Game game; // need to access Game object
 
@@ -85,25 +84,25 @@ public class Player extends Creature{
         //we want to center it on this player
         handler.getGameCamera().centerOnEntity(this);
         
-        //Attack
-        checkAttacks();
+//        //Attack
+//        checkAttacks();
         
     }
     
-    public void checkAttacks() {
-        attackTimer += System.currentTimeMillis() - lastAttackTimer;
-        lastAttackTimer = System.currentTimeMillis();
-        if(attackTimer < attackCooldown)
-            return;
-        
-        //else will run below code
-
-        attackTimer = 0;
-    }
+//    public void checkAttacks() {
+//        attackTimer += System.currentTimeMillis() - lastAttackTimer;
+//        lastAttackTimer = System.currentTimeMillis();
+//        if(attackTimer < attackCooldown)
+//            return;
+//        
+//        //else will run below code
+//
+//        attackTimer = 0;
+//    }
     
-    public void die() {
-        System.out.println("You Lose");
-    }
+//    public void die() {
+//        System.out.println("You Lose");
+//    }
 
     private void getInput(ArrayList<Enemy> enemies, Player player) {
         xMove = 0;
@@ -118,8 +117,6 @@ public class Player extends Creature{
                 fall = false;
             }         
         }
-//        if(handler.getKeyManager().down)
-//            yMove = speed;
         if(handler.getKeyManager().left) {
             xMove = -speed;
             isRight = false;
@@ -148,7 +145,7 @@ public class Player extends Creature{
             fall = false;
             if (!jump && !played) {
                 played = true;
-
+                
             }
         } else {
             played = false;
@@ -209,8 +206,6 @@ public class Player extends Creature{
     }
     
     public void render(Graphics g) {
-        //width and height from Creature
-       // g.drawImage(Assets.player,(int) x,(int) y, width, height, null);
         g.drawImage( getCurrentAnimationFrame() ,(int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         
