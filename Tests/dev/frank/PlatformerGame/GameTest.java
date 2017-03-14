@@ -31,7 +31,6 @@ public class GameTest extends TestCase {
     }
 
  
-
     /**
      * Test of getWidth method, of class Game.
      */

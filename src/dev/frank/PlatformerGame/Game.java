@@ -76,10 +76,6 @@ public class Game implements Runnable { //to run runnable
         display.getCanvas().addMouseListener(mouseManager);
         display.getCanvas().addMouseMotionListener(mouseManager);
         
-//        testImage = ImageLoader.loadImage("/textures/test.png");
-//        testImage2 = ImageLoader.loadImage("/textures/test2.png");
-//        test = ImageLoader.loadImage("/textures/sheet.png");
-//        sheet = new SpriteSheet(test);
         Assets.init(); // check init in assets
         
         handler = new Handler(this); //takes game object
@@ -109,14 +105,6 @@ public class Game implements Runnable { //to run runnable
         //Clear Screen
         g.clearRect(0, 0, width, height);
         //Draw here
-//        g.drawImage(Assets.grass,x,10,null);
-//        g.drawImage(Assets.tree, 200,200, null);
-//        
-//        g.drawImage(testImage, 20, 20, null);
-//        g.drawImage(testImage2, 20, 20, null);
-//        g.drawImage(sheet.crop(0, 0, 32, 32),5,5,null);
-      //  g.drawImage(sheet.crop(32, 0, 32, 32),25,25,null);
-        //if a state exists
         if(State.getState() != null) // if the current state is null
            State.getState().render(g);
         // end drawing

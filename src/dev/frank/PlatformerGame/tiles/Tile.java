@@ -40,20 +40,15 @@ public class Tile {
     public static Tile stoneLeft = new StoneLeft(11);
     public static Tile stoneMid = new StoneMid(12);
     public static Tile stoneRight = new StoneRight(13);
-    
-    
+    public static Tile stoneCenter = new StoneCenter(14);
+        
     //water
     public static Tile water = new Water(7);
     public static Tile lava = new Lava(17);
     
     //box
     public static Tile brownBox = new BrownBox(8);
-    
-    
-    //set the first 3 only out of 256
-    
-    
-    
+
     //CLASS
     public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
     

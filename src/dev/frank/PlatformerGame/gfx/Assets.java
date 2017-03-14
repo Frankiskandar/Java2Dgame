@@ -25,7 +25,7 @@ public class Assets {
     
     //ground
     public static BufferedImage grassLeft, grassMid, grassRight;
-    public static BufferedImage stoneLeft, stoneMid, stoneRight;
+    public static BufferedImage stoneLeft, stoneMid, stoneRight, stoneCenter;
     
     //water
     public static BufferedImage water, lava;
@@ -43,13 +43,18 @@ public class Assets {
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand;
     public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
-    public static BufferedImage[] btn_start, btn_quit;
+    
+    //menu buttons
+    public static BufferedImage[] btn_start, btn_quit, btn_return;
+    public static BufferedImage[] btn_level1, btn_level2;
     
     //enemy
+    //spider
     public static BufferedImage spider_idle_right[], spider_dead_right[];
     public static BufferedImage spider_idle_left[], spider_dead_left[];
     public static BufferedImage spider_walk_left[], spider_walk_right[];
     
+    //spinner
     public static BufferedImage spinner[];
     
     public static void init() {
@@ -60,21 +65,43 @@ public class Assets {
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
         SpriteSheet item = new SpriteSheet(ImageLoader.loadImage("/textures/items_spritesheet.png"));
         SpriteSheet hud = new SpriteSheet(ImageLoader.loadImage("/textures/hud_spritesheet.png"));
+     
+        //buttons
+        //start button
         SpriteSheet play_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button1.png"));
         SpriteSheet play_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button2.png"));
-        
-        //start button
         btn_start = new BufferedImage[2];
         btn_start[0] = play_button1.crop(0, 0, 190, 49);
 	btn_start[1] = play_button2.crop(0, 0, 190, 45);
-        
+ 
+        //quit button
         SpriteSheet quit_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/quit_button1.png"));
         SpriteSheet quit_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/quit_button2.png"));
-        
         btn_quit = new BufferedImage[2];
         btn_quit[0] = quit_button1.crop(0, 0, 190, 49);
 	btn_quit[1] = quit_button2.crop(0, 0, 190, 45);
         
+        //return button
+        SpriteSheet return_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/return_button1.png"));
+        SpriteSheet return_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/return_button2.png"));
+        btn_return = new BufferedImage[2];
+        btn_return[0] = return_button1.crop(0, 0, 190, 49);
+        btn_return[1] = return_button2.crop(0, 0, 190, 45);
+        
+        //level 1 button
+        SpriteSheet level1_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/level1_button1.png"));
+        SpriteSheet level1_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/level1_button2.png"));
+        btn_level1 = new BufferedImage[2];
+        btn_level1[0] = level1_button1.crop(0, 0, 190, 49);
+        btn_level1[1] = level1_button2.crop(0, 0, 190, 45);
+        
+        //level 2 button
+        SpriteSheet level2_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/level2_button1.png"));
+        SpriteSheet level2_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/level2_button2.png"));
+        btn_level2 = new BufferedImage[2];
+        btn_level2[0] = level2_button1.crop(0, 0, 190, 49);
+        btn_level2[1] = level2_button2.crop(0, 0, 190, 45);
+               
         //player
         player_down = new BufferedImage[2];
         player_up = new BufferedImage[2];
@@ -199,9 +226,8 @@ public class Assets {
         stoneLeft = ground.crop(72, 504, 70, 70);
         stoneMid = ground.crop(72, 432, 70, 70);
         stoneRight = ground.crop(72, 360, 70, 70);
+        stoneCenter = ground.crop(144, 576, 70, 70);
        
-        
-        
         //water
         water = ground.crop(432, 576, 70, 70);
         lava = ground.crop(432, 792, 70, 70);
