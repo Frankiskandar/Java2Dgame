@@ -30,6 +30,7 @@ public class Spinner extends Creature {
     boolean autoLeft = false;
     int preTime, action = 0;
     final float MOVESPEED = 1.0f, JUMPSPEED = 10f;
+    final float HORIZONTAL_SPEED = 3.0f;
     int time = 0, i = 0;
     int tracker = 0;
     public boolean firstCall = true, notDraw = false, aimPlayer = false, deadTimeSet = false;
@@ -79,7 +80,7 @@ public class Spinner extends Creature {
             
             if (id==1) {
                 if (autoRight) {
-                    xMove = 3.0f;
+                    xMove = HORIZONTAL_SPEED;
                     tracker++;
                     if(tracker == 200) {
                        autoRight = false;
@@ -89,7 +90,7 @@ public class Spinner extends Creature {
                 }
 
                 if (autoLeft) {
-                    xMove = -3.0f;
+                    xMove = -HORIZONTAL_SPEED;
                     tracker++;
                     if(tracker == 200) {
                        autoLeft = false;
@@ -98,6 +99,28 @@ public class Spinner extends Creature {
                     }
                 }
                 
+            }
+            
+            else if (id == 2) {
+                if (autoRight) {
+                    xMove = HORIZONTAL_SPEED;
+                    tracker++;
+                    if(tracker == 350) {
+                       autoRight = false;
+                       autoLeft = true;
+                       tracker = 0;          
+                    }
+                }
+
+                if (autoLeft) {
+                    xMove = -HORIZONTAL_SPEED;
+                    tracker++;
+                    if(tracker == 350) {
+                       autoLeft = false;
+                       autoRight = true;
+                       tracker = 0;          
+                    }
+                }
             }
             else {
                 if (autoRight) {

@@ -30,7 +30,7 @@ public class Game2State extends State {
     public static final int ENEMY_NUMBER = 4;
     public ArrayList<Enemy> enemies;
     
-    public static final int ENEMY_SPINNER_NUMBER = 2;
+    public static final int ENEMY_SPINNER_NUMBER = 7;
     private Spinner[] spinner;
     public ArrayList<Spinner> spinners;
        
@@ -47,16 +47,22 @@ public class Game2State extends State {
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
         enemies = new ArrayList<>();
         enemy = new Enemy[ENEMY_NUMBER];
-        enemy[0] = new Enemy(handler, 683, 1155, 0);
-        enemy[1] = new Enemy(handler, 2245, 707, 1);
-        enemy[2] = new Enemy(handler, 125, 579, 2);
+        enemy[0] = new Enemy(handler, 643, 643, 0);
+        enemy[1] = new Enemy(handler, 2668, 451, 1);
+        enemy[2] = new Enemy(handler, 4859, 643, 2);
         enemy[3] = new Enemy(handler, 848, 323, 3);
         
         //spinner test
         spinners = new ArrayList<>();
         spinner = new Spinner[ENEMY_SPINNER_NUMBER];
-        spinner[0] = new Spinner(handler, 709, 387,0);
-        spinner[1] = new Spinner(handler, 838, 515,1);
+        spinner[0] = new Spinner(handler, 709, 387, 0);
+        spinner[1] = new Spinner(handler, 2551, 451, 0);
+        spinner[2] = new Spinner(handler, 2770, 451, 0);
+        spinner[3] = new Spinner(handler, 1444, 323, 0);
+        spinner[4] = new Spinner(handler, 838, 515, 1);
+        spinner[5] = new Spinner(handler, 3707, 323, 1);
+        spinner[6] = new Spinner(handler, 2178, 451, 2);
+        
         for (Spinner s : spinner) {
             spinners.add(s);
         }

@@ -37,7 +37,7 @@ public class CreatureTest extends TestCase {
         Game game = new Game("Platformer Game", 1000, 500);
         Handler handler = new Handler(game);
         Creature instance = new Player(handler,100,100);;
-        int expResult = 5;
+        int expResult = 3;
         int result = instance.getHealth();
         assertEquals(expResult, result);
 
