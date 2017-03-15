@@ -21,11 +21,11 @@ public class Tile {
     public static Tile grassTile = new GrassTile(10);
     public static Tile dirtTile = new DirtTile(99);
     public static Tile rockTile = new RockTile(98);
-    public static Tile sandMid = new SandMid(5);
+    //public static Tile sandMid = new SandMid(5);
     
     //decoration
-    public static Tile rightSign = new signRight(6);
-    public static Tile bush = new Bush(9);
+    public static Tile rightSign = new signRight(11);
+    public static Tile bush = new Bush(21);
     
     //emptyTile
     public static Tile emptyTile = new EmptyTile(0);
@@ -37,17 +37,17 @@ public class Tile {
     public static Tile grassRight = new GrassRight(3);
     
     //stone left mid right
-    public static Tile stoneLeft = new StoneLeft(11);
-    public static Tile stoneMid = new StoneMid(12);
-    public static Tile stoneRight = new StoneRight(13);
-    public static Tile stoneCenter = new StoneCenter(14);
+    public static Tile stoneLeft = new StoneLeft(5);
+    public static Tile stoneMid = new StoneMid(6);
+    public static Tile stoneRight = new StoneRight(7);
+    public static Tile stoneCenter = new StoneCenter(8);
         
     //water
-    public static Tile water = new Water(7);
+    public static Tile water = new Water(16);
     public static Tile lava = new Lava(17);
     
     //box
-    public static Tile brownBox = new BrownBox(8);
+    public static Tile brownBox = new BrownBox(20);
 
     //CLASS
     public static final int TILEWIDTH = 64, TILEHEIGHT = 64;

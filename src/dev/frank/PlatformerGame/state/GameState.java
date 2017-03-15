@@ -87,6 +87,11 @@ public class GameState extends State {
             } 
         }
         
+        //if the player at the finish position, change the state to finish state
+        if (Math.abs(player.getX() - EXIT_X_POSITION) < 20 && Math.abs(player.getY() - EXIT_Y_POSITION) < 20) {
+                State.setState(new FinishState(handler));
+            }
+        
 //        
 //        for (Enemy e : enemy) {
 //            if (e.dead)

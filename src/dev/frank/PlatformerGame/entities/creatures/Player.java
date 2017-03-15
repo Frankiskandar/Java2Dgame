@@ -11,6 +11,7 @@ import dev.frank.PlatformerGame.entities.Entity;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.state.FinishState;
+import dev.frank.PlatformerGame.state.Game2State;
 import dev.frank.PlatformerGame.state.GameOverState;
 import dev.frank.PlatformerGame.state.GameState;
 import dev.frank.PlatformerGame.state.State;
@@ -70,12 +71,7 @@ public class Player extends Creature{
         animUp.tick();
         animLeft.tick();
         animRight.tick();
-        
-        //if the player at the finish position, change the state to finish state
-        if (Math.abs(x - GameState.EXIT_X_POSITION) < 20 && Math.abs(y - GameState.EXIT_Y_POSITION) < 20) {
-                State.setState(new FinishState(handler));
-            }
-        
+
         //Movement
         getInput(enemies, player);
         move(); //from creature class

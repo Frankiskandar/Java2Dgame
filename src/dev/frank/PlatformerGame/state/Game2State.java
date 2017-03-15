@@ -35,8 +35,8 @@ public class Game2State extends State {
     public ArrayList<Spinner> spinners;
        
     public static final int PLAYER_SPAWN_X = 100, PLAYER_SPAWN_Y = 100;
-    public static final float EXIT_X_POSITION = 2409;
-    public static final float EXIT_Y_POSITION = 259;
+    public static final float EXIT_X_POSITION = 4969;
+    public static final float EXIT_Y_POSITION = 643;
 
     public Game2State(Handler handler) {
         super(handler);
@@ -93,6 +93,10 @@ public class Game2State extends State {
         for (Spinner s : spinner) {
             s.tick(player);
         }
+        
+        if (Math.abs(player.getX() - EXIT_X_POSITION) < 20 && Math.abs(player.getY() - EXIT_Y_POSITION) < 20) {
+                State.setState(new FinishState(handler));
+            }
         
     }
 
