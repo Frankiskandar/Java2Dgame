@@ -31,9 +31,9 @@ public class Player extends Creature{
     
     final float FIREBALLSPEED = 5f;
     int forward = 0;
-    boolean isRight = true, shootAni = false, firstShoot = false, fireBallShoot = false;
+    boolean facingRight = true, shootAnimation = false, firstShot = false, fireBallShot = false;
     public boolean jump = false, fall = false, dead = false;
-    float jumpspeed = 10; 
+    float JUMPSPEED = 10; 
     int jumpTimer = 0; // timer to let player jump again after some time
     Timer timer;
     int preTime, time;
@@ -115,25 +115,25 @@ public class Player extends Creature{
         }
         if(handler.getKeyManager().left) {
             xMove = -speed;
-            isRight = false;
+            facingRight = false;
         }
             
         if(handler.getKeyManager().right) {
             xMove = speed;
-            isRight = true;
+            facingRight = true;
         // else yMove = speed;
         }
         
         if (jump) {
             jumpTimer++;
-            yMove = -jumpspeed;
+            yMove = -JUMPSPEED;
             if (jumpTimer >= 24) {
                 jumpTimer = 0;
                 jump = false;
                 fall = true;
             }
         } else { //if user doesnt press up
-            yMove = jumpspeed;
+            yMove = JUMPSPEED;
         }
         int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
         if (collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty)
@@ -149,19 +149,19 @@ public class Player extends Creature{
         }
         
         //if the user presses shoot button
-        if (handler.getKeyManager().attack && !firstShoot) {
-            Fireball fireball = new Fireball(handler, x, y, isRight);
+        if (handler.getKeyManager().attack && !firstShot) {
+            Fireball fireball = new Fireball(handler, x, y, facingRight);
             FireballArray.add(fireball);
-            fireBallShoot = true;
-            firstShoot = true;
+            fireBallShot = true;
+            firstShot = true;
         }
         else {
-            fireBallShoot = false;
+            fireBallShot = false;
         }
         
         if (!handler.getKeyManager().attack) {
-            firstShoot = false;
-            shootAni = false;
+            firstShot = false;
+            shootAnimation = false;
             
         }
         
@@ -215,8 +215,8 @@ public class Player extends Creature{
         }
         
         if (handler.getKeyManager().attack) {
-            if (!firstShoot) {
-                firstShoot = true;
+            if (!firstShot) {
+                firstShot = true;
                 preTime = time;
             }
         }

@@ -35,12 +35,12 @@ public class FinishState extends State {
         bg = ImageLoader.loadImage("/textures/bg_menu.png");
         
         
-        uiManager.addObject(new UIImageButton(462, 279, 128, 64, Assets.btn_quit, new ClickListener(){
+        uiManager.addObject(new UIImageButton(462, 279, 128, 64, Assets.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
-                System.exit(0);
+                State.setState(new MenuState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
@@ -66,7 +66,7 @@ public class FinishState extends State {
         g.drawImage(bg, 0, 0, null);
         g.setFont(new Font("Franklin Gothic Heavy", Font.BOLD, 30));
         g.setColor(Color.BLACK);
-        g.drawString("Congratulations! You Finished The Game ", 250, 200);
+        g.drawString("Congratulations! You Finished The Level ", 200, 200);
         uiManager.render(g);
         //test
 //        g.setColor(Color.RED);

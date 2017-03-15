@@ -34,19 +34,12 @@ public class World {
     
     public World(Handler handler, String path) { //path is the location of the file we want to load
         this.handler = handler;
-        
-//        entityManager = new EntityManager(handler, new Player(handler,100,100));
-//        entityManager.addEntity(new Rock(handler,100,450));
-//        entityManager.addEntity(new Tree(handler,100,250));
-//        
-//        entityManager2 = new EntityManager(handler, new Player(handler,100,100));
-//        
+      
         loadWorld(path);
         
 //        entityManager.getPlayer().setX(spawnX);
 //        entityManager.getPlayer().setY(spawnY);
-//        
-//        
+  
         
         
     }

@@ -22,18 +22,17 @@ public class Spinner extends Creature {
     
     public static final int ENEMY_WIDTH = 50;
     public static final int ENEMY_HEIGHT = 50;
-    
-    public boolean dead = false, deadAni = false, first = false, restart = false;
-    boolean isRight = false, attack = false, hitRight = false, hitByPlayer = false;
-    boolean magicalBulletHit = false, normalBulletHit = false, hitLeft = false;
+    public boolean dead = false, restart = false;
+    boolean facingRight = false, attack = false, hitRight = false;
+    boolean hitLeft = false;
     boolean autoRight = true;
     boolean autoLeft = false;
-    int preTime, action = 0;
-    final float MOVESPEED = 1.0f, JUMPSPEED = 10f;
+    int preTime;
+    final float VERTICAL_SPEED = 4.0f, JUMPSPEED = 10f;
     final float HORIZONTAL_SPEED = 3.0f;
     int time = 0, i = 0;
     int tracker = 0;
-    public boolean firstCall = true, notDraw = false, aimPlayer = false, deadTimeSet = false;
+    public boolean firstCall = true, aimPlayer = false, deadTimeSet = false;
     int id, deadTime = 0;
     
     private Animation animation;
@@ -74,10 +73,9 @@ public class Spinner extends Creature {
             return;
         }
 
-        
-        //for boulder enemy
+       
         if (!aimPlayer) {
-            
+            //horizontal spinner
             if (id==1) {
                 if (autoRight) {
                     xMove = HORIZONTAL_SPEED;
@@ -122,9 +120,9 @@ public class Spinner extends Creature {
                     }
                 }
             }
-            else {
+            else { // vertical spinner
                 if (autoRight) {
-                    yMove = 3.0f;
+                    yMove = VERTICAL_SPEED;
                     tracker++;
                     if(tracker == 200) {
                        autoRight = false;
@@ -134,7 +132,7 @@ public class Spinner extends Creature {
                 }
 
                 if (autoLeft) {
-                    yMove = -3.0f;
+                    yMove = -VERTICAL_SPEED;
                     tracker++;
                     if(tracker == 200) {
                        autoLeft = false;
@@ -147,8 +145,8 @@ public class Spinner extends Creature {
         
         
         if (attack) {
-            //works
-            if (isRight) {
+            //player gets hit by enemy
+            if (facingRight) {
                 if (x > player.getX() - 55 && x < player.getX() + 15 && y > player.getY() - 60 && y < player.getY() + 60) {
                     if (!hitRight) {
                         hitRight = true;
@@ -172,12 +170,13 @@ public class Spinner extends Creature {
     }
     
     public void stop() {
-        xMove = yMove = 0;
+        xMove = 0;
+        yMove = 0;
     }
     
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
-//                //collision testing
+//        //collision testing
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), 
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
@@ -185,7 +184,7 @@ public class Spinner extends Creature {
     }
     
     private BufferedImage getCurrentAnimationFrame() {
-        //if we are moving to the left
+       
         return animation.getCurrentFrame();
     }
     
