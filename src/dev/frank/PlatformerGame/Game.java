@@ -12,6 +12,7 @@ import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.gfx.SpriteSheet;
 import dev.frank.PlatformerGame.input.KeyManager;
 import dev.frank.PlatformerGame.input.MouseManager;
+import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.state.GameState;
 import dev.frank.PlatformerGame.state.MenuState;
 import dev.frank.PlatformerGame.state.State;
@@ -67,6 +68,18 @@ public class Game implements Runnable { //to run runnable
     }
     
     private void init() {
+        
+        Music.init();
+        Music.load("/sound/ammo.mp3", "ammo");
+        //Music.load("/sound/fireball.wav", "fireball");
+        Music.load("/sound/fire.wav", "fire");
+        Music.load("/sound/jump.wav", "jump");
+        Music.load("/sound/playerhit.wav", "playerhit");
+        Music.load("/sound/bgm_tropics.mp3", "bgm_tropics");
+        Music.load("/sound/bgm_castle.mp3", "bgm_castle");
+        Music.load("/sound/bgm_level1.mp3", "bgm_level1");
+        
+        
         display = new Display(title, width, height);
         // adding keylistener to jframe, our keymanager extends key listener
         display.getFrame().addKeyListener(keyManager);
@@ -85,6 +98,7 @@ public class Game implements Runnable { //to run runnable
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
         State.setState(menuState);
+        Music.loop("bgm_tropics");
     }
        
    private void tick() {// update

@@ -10,6 +10,7 @@ import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_HEIGHT;
 import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_WIDTH;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.music.Music;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -151,6 +152,7 @@ public class Spinner extends Creature {
                     if (!hitRight) {
                         hitRight = true;
                         player.health -= 1;
+                        Music.play("playerhit");
                     }
                 } else {
                     hitRight = false;
@@ -160,6 +162,7 @@ public class Spinner extends Creature {
                 if (!hitLeft) {
                     hitLeft = true;
                     player.health -= 1;
+                    Music.play("playerhit");
                 }
             } else {
                 hitLeft = false;

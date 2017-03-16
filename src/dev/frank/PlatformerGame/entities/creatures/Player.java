@@ -10,6 +10,7 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.Entity;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.state.FinishState;
 import dev.frank.PlatformerGame.state.Game2State;
 import dev.frank.PlatformerGame.state.GameOverState;
@@ -109,6 +110,7 @@ public class Player extends Creature{
         if(handler.getKeyManager().up) {
             //yMove = -speed;
             if (!jump && !fall) { // kalo 2-2nya false
+                Music.play("jump");
                 jump = true;
                 fall = false;
             }         
@@ -141,6 +143,7 @@ public class Player extends Creature{
             fall = false;
             if (!jump && !played) {
                 played = true;
+                //landing
                 
             }
         } else {
@@ -154,6 +157,7 @@ public class Player extends Creature{
             FireballArray.add(fireball);
             fireBallShot = true;
             firstShot = true;
+            Music.play("fire");
         }
         else {
             fireBallShot = false;
@@ -190,9 +194,9 @@ public class Player extends Creature{
         }
         
         //If the user falls to their death
-        if(y > LEVEL1_DEAD_Y_COORDINATE) {
-            dead = true;
-        }
+//        if(y > LEVEL1_DEAD_Y_COORDINATE) {
+//            dead = true;
+//        }
     }
     
     public void stop() {
@@ -210,9 +214,9 @@ public class Player extends Creature{
         }
         
         // if player is dead, set the state to gameover state
-        if (dead) {
-            State.setState(new GameOverState(handler));
-        }
+//        if (dead) {
+//            State.setState(new GameOverState(handler));
+//        }
         
         if (handler.getKeyManager().attack) {
             if (!firstShot) {

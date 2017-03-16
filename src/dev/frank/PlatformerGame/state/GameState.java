@@ -13,6 +13,8 @@ import dev.frank.PlatformerGame.entities.creatures.Player;
 import dev.frank.PlatformerGame.entities.creatures.Spinner;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
+import dev.frank.PlatformerGame.music.Music;
+import static dev.frank.PlatformerGame.state.Game2State.LEVEL2_DEAD_Y_COORDINATE;
 import dev.frank.PlatformerGame.tiles.Tile;
 import dev.frank.PlatformerGame.worlds.World;
 import java.awt.Graphics;
@@ -30,6 +32,7 @@ public class GameState extends State {
     private BufferedImage bg;
     private Enemy[] enemy;
     public static final int ENEMY_NUMBER = 4;
+    public static int LEVEL1_DEAD_Y_COORDINATE = 1300;
     public ArrayList<Enemy> enemies;
     public static final int PLAYER_SPAWN_X = 121, PLAYER_SPAWN_Y = 831;
     public static final float EXIT_X_POSITION = 2409;
@@ -53,6 +56,8 @@ public class GameState extends State {
         for (Enemy e : enemy) {
             enemies.add(e);
         }
+        
+        //Music.loop("bgm_castle");
         
 //        for (Enemy e: enemy) {
 //            e.tick(player);
@@ -90,7 +95,13 @@ public class GameState extends State {
         //if the player at the finish position, change the state to finish state
         if (Math.abs(player.getX() - EXIT_X_POSITION) < 20 && Math.abs(player.getY() - EXIT_Y_POSITION) < 20) {
                 State.setState(new FinishState(handler));
+                Music.stop("bgm_level1");
+                Music.loop("bgm_tropics");  
             }
+        
+        if(player.getY() > LEVEL2_DEAD_Y_COORDINATE) {
+            player.dead = true;                     
+        }
         
 //        
 //        for (Enemy e : enemy) {
@@ -121,6 +132,13 @@ public class GameState extends State {
         // draw heart
         for (int i = 0; i < player.health; i++) {
             g.drawImage(Assets.heart, 60 * (i + 1) - 55, 25, 50, 50, null);
+        }
+        
+        //if player is dead change the state to gameover state
+        if (player.dead) {
+            Music.stop("bgm_tropics");
+            Music.loop("bgm_tropics");
+            State.setState(new GameOverState(handler));
         }
         
     }

@@ -12,6 +12,7 @@ import dev.frank.PlatformerGame.entities.creatures.Player;
 import dev.frank.PlatformerGame.entities.creatures.Spinner;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
+import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.worlds.World;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -33,8 +34,9 @@ public class Game2State extends State {
     public static final int ENEMY_SPINNER_NUMBER = 7;
     private Spinner[] spinner;
     public ArrayList<Spinner> spinners;
+    public static int LEVEL2_DEAD_Y_COORDINATE = 1300;
        
-    public static final int PLAYER_SPAWN_X = 100, PLAYER_SPAWN_Y = 100;
+    public static final int PLAYER_SPAWN_X = 100, PLAYER_SPAWN_Y = 579;
     public static final float EXIT_X_POSITION = 4969;
     public static final float EXIT_Y_POSITION = 643;
 
@@ -102,7 +104,13 @@ public class Game2State extends State {
         
         if (Math.abs(player.getX() - EXIT_X_POSITION) < 20 && Math.abs(player.getY() - EXIT_Y_POSITION) < 20) {
                 State.setState(new FinishState(handler));
+                Music.stop("bgm_castle");
+                Music.loop("tropics");
             }
+        
+        if(player.getY() > LEVEL2_DEAD_Y_COORDINATE) {
+            player.dead = true;
+        }
         
     }
 
@@ -126,6 +134,13 @@ public class Game2State extends State {
         // draw heart
         for (int i = 0; i < player.health; i++) {
             g.drawImage(Assets.heart, 60 * (i + 1) - 55, 25, 50, 50, null);
+        }
+        
+        //if player is dead change the state to gameover state
+        if (player.dead) {
+            Music.stop("bgm_castle");
+            Music.loop("bgm_tropics");
+            State.setState(new GameOverState(handler));
         }
         
     }

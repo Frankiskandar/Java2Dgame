@@ -8,6 +8,7 @@ package dev.frank.PlatformerGame.state;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
+import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.ui.ClickListener;
 import dev.frank.PlatformerGame.ui.UIImageButton;
 import dev.frank.PlatformerGame.ui.UIManager;
@@ -30,27 +31,31 @@ public class GameModeState extends State {
         
         bg = ImageLoader.loadImage("/textures/bg_menu.png");
         
-        uiManager.addObject(new UIImageButton(445, 298, 128, 64, Assets.btn_level1, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 298, 150, 50, Assets.btn_level1, new ClickListener(){
 
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
+                Music.stop("bgm_tropics");
+                Music.loop("bgm_level1");               
                 State.setState(new GameState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
         
-        uiManager.addObject(new UIImageButton(445, 363, 128, 64, Assets.btn_level2, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 363, 150, 50, Assets.btn_level2, new ClickListener(){
 
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
+                Music.stop("bgm_tropics");
+                Music.loop("bgm_castle");
                 State.setState(new Game2State(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
         
-        uiManager.addObject(new UIImageButton(445, 428, 128, 64, Assets.btn_return, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 428, 150, 50, Assets.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {

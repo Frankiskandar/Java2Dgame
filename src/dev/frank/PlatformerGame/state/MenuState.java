@@ -33,7 +33,7 @@ public class MenuState extends State {
         //background image
         bg = ImageLoader.loadImage("/textures/bg_menu.png");
         
-        uiManager.addObject(new UIImageButton(445, 298, 128, 64, Assets.btn_start, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 298, 150, 50, Assets.btn_start, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -43,7 +43,7 @@ public class MenuState extends State {
             }
         }));
         
-        uiManager.addObject(new UIImageButton(445, 363, 128, 64, Assets.btn_quit, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 363, 150, 50, Assets.btn_quit, new ClickListener(){
 
             @Override
             public void onClick() {

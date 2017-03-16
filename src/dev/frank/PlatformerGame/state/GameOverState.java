@@ -35,7 +35,7 @@ public class GameOverState extends State {
         bg = ImageLoader.loadImage("/textures/bg_menu.png");
         
         
-        uiManager.addObject(new UIImageButton(462, 279, 128, 64, Assets.btn_return, new ClickListener(){
+        uiManager.addObject(new UIImageButton(462, 279, 150, 50, Assets.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {

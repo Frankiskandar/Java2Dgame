@@ -25,15 +25,15 @@ public class KeyManager implements KeyListener {
     }
 
     public void tick() {
-        up = keys[KeyEvent.VK_W];
+        up = keys[KeyEvent.VK_UP];
         down = keys[KeyEvent.VK_S];
-        left = keys[KeyEvent.VK_A];
-        right = keys[KeyEvent.VK_D];
+        left = keys[KeyEvent.VK_LEFT];
+        right = keys[KeyEvent.VK_RIGHT];
         
-        aUp =keys[KeyEvent.VK_UP];
-        aDown =keys[KeyEvent.VK_DOWN];
-        aLeft =keys[KeyEvent.VK_LEFT];
-        aRight =keys[KeyEvent.VK_RIGHT];
+//        aUp =keys[KeyEvent.VK_UP];
+//        aDown =keys[KeyEvent.VK_DOWN];
+//        aLeft =keys[KeyEvent.VK_LEFT];
+//        aRight =keys[KeyEvent.VK_RIGHT];
         
         attack = keys[KeyEvent.VK_F];
     }

@@ -8,6 +8,7 @@ package dev.frank.PlatformerGame.entities.creatures;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.state.State;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -128,6 +129,7 @@ public class Enemy extends Creature {
                     if (!hitRight) {
                         hitRight = true;
                         player.health -= 1;
+                        Music.play("playerhit");
                     }
                 } else {
                     hitRight = false;
@@ -137,6 +139,7 @@ public class Enemy extends Creature {
                 if (!hitLeft) {
                     hitLeft = true;
                     player.health -= 1;
+                    Music.play("playerhit");
                 }
             } else {
                 hitLeft = false;
