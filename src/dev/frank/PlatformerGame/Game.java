@@ -78,6 +78,8 @@ public class Game implements Runnable { //to run runnable
         Music.load("/sound/bgm_tropics.mp3", "bgm_tropics");
         Music.load("/sound/bgm_castle.mp3", "bgm_castle");
         Music.load("/sound/bgm_level1.mp3", "bgm_level1");
+        Music.load("/sound/click1.wav", "click");
+        Music.load("/sound/rollover2.wav", "rollover");
         
         
         display = new Display(title, width, height);

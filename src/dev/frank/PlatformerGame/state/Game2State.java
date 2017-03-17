@@ -105,7 +105,7 @@ public class Game2State extends State {
         if (Math.abs(player.getX() - EXIT_X_POSITION) < 20 && Math.abs(player.getY() - EXIT_Y_POSITION) < 20) {
                 State.setState(new FinishState(handler));
                 Music.stop("bgm_castle");
-                Music.loop("tropics");
+                Music.loop("bgm_tropics");
             }
         
         if(player.getY() > LEVEL2_DEAD_Y_COORDINATE) {

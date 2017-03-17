@@ -41,7 +41,8 @@ public class Assets {
     
     //walking animation down of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
-    public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand;
+    public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand, alien_stand_left;
+    public static BufferedImage[] alien_jump_left;
     public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
     
     //menu buttons
@@ -61,7 +62,7 @@ public class Assets {
         
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
         
-        SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/p1_spritesheet.png"));
+        
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
         SpriteSheet item = new SpriteSheet(ImageLoader.loadImage("/textures/items_spritesheet.png"));
         SpriteSheet hud = new SpriteSheet(ImageLoader.loadImage("/textures/hud_spritesheet.png"));
@@ -133,15 +134,34 @@ public class Assets {
         
         
         //GREEN ALIEN PLAYER 1
+        SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/p1_spritesheet.png"));
+        SpriteSheet alien_green_left = new SpriteSheet(ImageLoader.loadImage("/textures/p1left_spritesheet.png"));
+        SpriteSheet alien_jump_left1 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_jump_left.png"));
+        
+        SpriteSheet alien_green_left1 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk1_left.png"));
+        SpriteSheet alien_green_left2 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk2_left.png"));
+        SpriteSheet alien_green_left3 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk3_left.png"));
+        SpriteSheet alien_green_left4 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk4_left.png"));
+        SpriteSheet alien_green_left5 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk5_left.png"));
+        SpriteSheet alien_green_left6 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk6_left.png"));
+        SpriteSheet alien_green_left7 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk7_left.png"));
+        SpriteSheet alien_green_left8 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk8_left.png"));
+        SpriteSheet alien_green_left9 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk9_left.png"));
+        SpriteSheet alien_green_left10 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk10_left.png"));
+        
         alien_stand = new BufferedImage[1];
+        alien_stand_left = new BufferedImage[1];
         alien_jump = new BufferedImage[1];
+        alien_jump_left = new BufferedImage[1];
         alien_down = new BufferedImage[1];
         alien_right = new BufferedImage[11];
-        alien_left = new BufferedImage[11];
+        alien_left = new BufferedImage[10];
 
         alien_stand[0] = alien_green.crop(67, 196, 66, 92);
+        alien_stand_left[0] = alien_green_left.crop(377, 196, 65, 89);
         
         alien_jump[0] = alien_green.crop(438, 93, 67, 94);
+        alien_jump_left[0] = alien_jump_left1.crop(0, 0, 67, 94);
         
         alien_down[0] = alien_green.crop(438, 93, 67, 94);
         
@@ -157,17 +177,29 @@ public class Assets {
         alien_right[9] = alien_green.crop(365,0 , 72, 97);
         alien_right[10] = alien_green.crop(292,98 , 72, 97);
         
-        alien_left[0] = alien_green.crop(0,0 , 72, 97);
-        alien_left[1] = alien_green.crop(73,0 , 72, 97);
-        alien_left[2] = alien_green.crop(146,0 , 72, 97);
-        alien_left[3] = alien_green.crop(0,98 , 72, 97);
-        alien_left[4] = alien_green.crop(73,98 , 72, 97);
-        alien_left[5] = alien_green.crop(146,98 , 72, 97);
-        alien_left[6] = alien_green.crop(219,0 , 72, 97);
-        alien_left[7] = alien_green.crop(292,0 , 72, 97);
-        alien_left[8] = alien_green.crop(219,98 , 72, 97);
-        alien_left[9] = alien_green.crop(365,0 , 72, 97);
-        alien_left[10] = alien_green.crop(292,98 , 72, 97);
+        alien_left[0] = alien_green_left1.crop(0,0 , 72, 97);
+        alien_left[1] = alien_green_left2.crop(0,0 , 72, 97);
+        alien_left[2] = alien_green_left3.crop(0,0 , 72, 97);
+        alien_left[3] = alien_green_left4.crop(0,0 , 72, 97);
+        alien_left[4] = alien_green_left5.crop(0,0 , 72, 97);
+        alien_left[5] = alien_green_left6.crop(0,0 , 72, 97);
+        alien_left[6] = alien_green_left7.crop(0,0 , 72, 97);
+        alien_left[7] = alien_green_left8.crop(0,0 , 72, 97);
+        alien_left[8] = alien_green_left9.crop(0,0 , 72, 97);
+        alien_left[9] = alien_green_left10.crop(0,0 , 72, 97);
+
+        
+//        alien_left[0] = alien_green_left.crop(440,0 , 65, 90);
+//        alien_left[1] = alien_green_left.crop(365, 0, 67, 90);
+//        alien_left[2] = alien_green_left.crop(290, 0, 72, 88);
+//        alien_left[3] = alien_green_left.crop(436, 108, 72, 88);
+//        alien_left[4] = alien_green_left.crop(363, 108, 75, 88);
+//        alien_left[5] = alien_green_left.crop(289, 108, 76, 93);
+//        alien_left[6] = alien_green_left.crop(219,0 , 72, 90);
+//        alien_left[7] = alien_green_left.crop(146, 0, 72, 90);
+//        alien_left[8] = alien_green.crop(219,98 , 72, 97);
+//        alien_left[9] = alien_green.crop(365,0 , 72, 97);
+//        alien_left[10] = alien_green.crop(292,98 , 72, 97);
         //end alien green
         
         

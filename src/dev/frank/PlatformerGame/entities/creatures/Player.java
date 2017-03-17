@@ -42,7 +42,8 @@ public class Player extends Creature{
     
     ArrayList<Fireball> FireballArray = new ArrayList<>();
     //ANIMATIONS
-    private Animation animDown, animUp, animRight, animLeft, animStand;
+    private Animation animDown, animUp, animRight, animLeft, animStand, animUpLeft;
+    private Animation animDownLeft, animStandLeft;
     //Attack timer
     //private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
        
@@ -63,6 +64,10 @@ public class Player extends Creature{
         animLeft = new Animation(100, Assets.alien_left);
         animRight = new Animation(100, Assets.alien_right);
         animStand = new Animation(500, Assets.alien_stand);
+        
+        animUpLeft = new Animation(500, Assets.alien_jump_left);
+        animDownLeft = new Animation(500, Assets.alien_jump_left);
+        animStandLeft = new Animation(500, Assets.alien_stand_left);
         
     }
 
@@ -239,12 +244,17 @@ public class Player extends Creature{
             return animLeft.getCurrentFrame();
         } else if (xMove > 0 && !jump && !fall) {
             return animRight.getCurrentFrame();     
-        } else if (yMove < 0 ) {
+        } else if (yMove < 0 && facingRight ) {
             return animUp.getCurrentFrame();
-        } else if (fall) {
+        } else if (yMove < 0 && !facingRight ) {
+            return animUpLeft.getCurrentFrame();
+        } else if (fall & facingRight) {
             return animDown.getCurrentFrame();
-        } else {
+        } else if (fall & !facingRight) {
+            return animDownLeft.getCurrentFrame();
+        } else if (facingRight) {
             return animStand.getCurrentFrame();
-        }
+        } else 
+            return animStandLeft.getCurrentFrame();
     }
 }

@@ -136,7 +136,7 @@ public class GameState extends State {
         
         //if player is dead change the state to gameover state
         if (player.dead) {
-            Music.stop("bgm_tropics");
+            Music.stop("bgm_level1");
             Music.loop("bgm_tropics");
             State.setState(new GameOverState(handler));
         }

@@ -5,6 +5,7 @@
  */
 package dev.frank.PlatformerGame.ui;
 
+import dev.frank.PlatformerGame.music.Music;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
@@ -37,8 +38,9 @@ public abstract class UIObject {
     
     public void onMouseMove(MouseEvent e) {
         //detect if user's mouse is over the button or not
-        if(bounds.contains(e.getX(), e.getY()))
+        if(bounds.contains(e.getX(), e.getY())) {
             hovering = true;
+        }       
         else
             hovering = false;
     }

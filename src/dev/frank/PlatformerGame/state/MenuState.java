@@ -9,6 +9,7 @@ import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
+import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.ui.ClickListener;
 import dev.frank.PlatformerGame.ui.UIImageButton;
 import dev.frank.PlatformerGame.ui.UIManager;
@@ -38,6 +39,7 @@ public class MenuState extends State {
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
+                Music.play("click");
                 State.setState(new GameModeState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
@@ -48,6 +50,7 @@ public class MenuState extends State {
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
+                Music.play("click");
                 System.exit(0);
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }

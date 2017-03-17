@@ -36,6 +36,7 @@ public class GameModeState extends State {
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
+                Music.play("click");
                 Music.stop("bgm_tropics");
                 Music.loop("bgm_level1");               
                 State.setState(new GameState(handler));
@@ -48,6 +49,7 @@ public class GameModeState extends State {
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
+                Music.play("click");
                 Music.stop("bgm_tropics");
                 Music.loop("bgm_castle");
                 State.setState(new Game2State(handler));
@@ -60,6 +62,7 @@ public class GameModeState extends State {
             @Override
             public void onClick() {
                 handler.getMouseManager().setUIManager(null);
+                Music.play("click");
                 State.setState(new MenuState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
