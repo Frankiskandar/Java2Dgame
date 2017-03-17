@@ -64,41 +64,41 @@ public class Assets {
         
         
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
-        SpriteSheet item = new SpriteSheet(ImageLoader.loadImage("/textures/items_spritesheet.png"));
-        SpriteSheet hud = new SpriteSheet(ImageLoader.loadImage("/textures/hud_spritesheet.png"));
+        SpriteSheet item = new SpriteSheet(ImageLoader.loadImage("/textures/item/items_spritesheet.png"));
+        SpriteSheet hud = new SpriteSheet(ImageLoader.loadImage("/textures/hud/hud_spritesheet.png"));
      
         //buttons
         //start button
-        SpriteSheet play_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button1.png"));
-        SpriteSheet play_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/play_button2.png"));
+        SpriteSheet play_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/button/play_button1.png"));
+        SpriteSheet play_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/button/play_button2.png"));
         btn_start = new BufferedImage[2];
         btn_start[0] = play_button1.crop(0, 0, 190, 49);
 	btn_start[1] = play_button2.crop(0, 0, 190, 45);
  
         //quit button
-        SpriteSheet quit_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/quit_button1.png"));
-        SpriteSheet quit_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/quit_button2.png"));
+        SpriteSheet quit_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/button/quit_button1.png"));
+        SpriteSheet quit_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/button/quit_button2.png"));
         btn_quit = new BufferedImage[2];
         btn_quit[0] = quit_button1.crop(0, 0, 190, 49);
 	btn_quit[1] = quit_button2.crop(0, 0, 190, 45);
         
         //return button
-        SpriteSheet return_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/return_button1.png"));
-        SpriteSheet return_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/return_button2.png"));
+        SpriteSheet return_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/button/return_button1.png"));
+        SpriteSheet return_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/button/return_button2.png"));
         btn_return = new BufferedImage[2];
         btn_return[0] = return_button1.crop(0, 0, 190, 49);
         btn_return[1] = return_button2.crop(0, 0, 190, 45);
         
         //level 1 button
-        SpriteSheet level1_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/level1_button1.png"));
-        SpriteSheet level1_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/level1_button2.png"));
+        SpriteSheet level1_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/button/level1_button1.png"));
+        SpriteSheet level1_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/button/level1_button2.png"));
         btn_level1 = new BufferedImage[2];
         btn_level1[0] = level1_button1.crop(0, 0, 190, 49);
         btn_level1[1] = level1_button2.crop(0, 0, 190, 45);
         
         //level 2 button
-        SpriteSheet level2_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/level2_button1.png"));
-        SpriteSheet level2_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/level2_button2.png"));
+        SpriteSheet level2_button1 = new SpriteSheet(ImageLoader.loadImage("/textures/button/level2_button1.png"));
+        SpriteSheet level2_button2 = new SpriteSheet(ImageLoader.loadImage("/textures/button/level2_button2.png"));
         btn_level2 = new BufferedImage[2];
         btn_level2[0] = level2_button1.crop(0, 0, 190, 49);
         btn_level2[1] = level2_button2.crop(0, 0, 190, 45);
@@ -134,20 +134,20 @@ public class Assets {
         
         
         //GREEN ALIEN PLAYER 1
-        SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/p1_spritesheet.png"));
-        SpriteSheet alien_green_left = new SpriteSheet(ImageLoader.loadImage("/textures/p1left_spritesheet.png"));
-        SpriteSheet alien_jump_left1 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_jump_left.png"));
+        SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_spritesheet.png"));
+        SpriteSheet alien_green_left = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1left_spritesheet.png"));
+        SpriteSheet alien_jump_left1 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_jump_left.png"));
         
-        SpriteSheet alien_green_left1 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk1_left.png"));
-        SpriteSheet alien_green_left2 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk2_left.png"));
-        SpriteSheet alien_green_left3 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk3_left.png"));
-        SpriteSheet alien_green_left4 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk4_left.png"));
-        SpriteSheet alien_green_left5 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk5_left.png"));
-        SpriteSheet alien_green_left6 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk6_left.png"));
-        SpriteSheet alien_green_left7 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk7_left.png"));
-        SpriteSheet alien_green_left8 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk8_left.png"));
-        SpriteSheet alien_green_left9 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk9_left.png"));
-        SpriteSheet alien_green_left10 = new SpriteSheet(ImageLoader.loadImage("/textures/p1_walk10_left.png"));
+        SpriteSheet alien_green_left1 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk1_left.png"));
+        SpriteSheet alien_green_left2 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk2_left.png"));
+        SpriteSheet alien_green_left3 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk3_left.png"));
+        SpriteSheet alien_green_left4 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk4_left.png"));
+        SpriteSheet alien_green_left5 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk5_left.png"));
+        SpriteSheet alien_green_left6 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk6_left.png"));
+        SpriteSheet alien_green_left7 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk7_left.png"));
+        SpriteSheet alien_green_left8 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk8_left.png"));
+        SpriteSheet alien_green_left9 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk9_left.png"));
+        SpriteSheet alien_green_left10 = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_walk10_left.png"));
         
         alien_stand = new BufferedImage[1];
         alien_stand_left = new BufferedImage[1];
@@ -204,7 +204,11 @@ public class Assets {
         
         
         //spider enemy
-        SpriteSheet enemies = new SpriteSheet(ImageLoader.loadImage("/textures/enemies.png"));
+        SpriteSheet enemies = new SpriteSheet(ImageLoader.loadImage("/textures/enemy/enemies.png"));
+        SpriteSheet spider_walk_right1 = new SpriteSheet(ImageLoader.loadImage("/textures/enemy/spider_walk_right1.png"));
+        SpriteSheet spider_walk_right2 = new SpriteSheet(ImageLoader.loadImage("/textures/enemy/spider_walk_right2.png"));
+        SpriteSheet spider_dead_right_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/enemy/spider_dead_right.png"));
+        SpriteSheet spider_idle_right_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/enemy/spider_idle_right.png"));
         spider_idle_right = new BufferedImage[2];
         spider_idle_left = new BufferedImage[2];
         spider_walk_right = new BufferedImage[4];
@@ -213,24 +217,27 @@ public class Assets {
         spider_dead_left = new BufferedImage[2];
         
         
-        spider_idle_right[0] = enemies.crop(0, 326, 71, 45);
-        spider_idle_right[1] = enemies.crop(0, 326, 71, 45);
+        spider_idle_right[0] = spider_idle_right_sheet.crop(0, 0, 71, 45);
+        spider_idle_right[1] = spider_idle_right_sheet.crop(0, 0, 71, 45);
         
         spider_idle_left[0] = enemies.crop(0, 326, 71, 45);
         spider_idle_left[1] = enemies.crop(0, 326, 71, 45);
         
-        spider_walk_right[0] = enemies.crop(0, 90, 72, 51);
-        spider_walk_right[1] = enemies.crop(0, 37, 77, 53);
-        spider_walk_right[2] = enemies.crop(0, 90, 72, 51);
-        spider_walk_right[3] = enemies.crop(0, 37, 77, 53);
+        spider_walk_right[0] = spider_walk_right1.crop(0, 0, 72, 51);
+        spider_walk_right[1] = spider_walk_right2.crop(0, 0, 77, 53);
+        spider_walk_right[2] = spider_walk_right1.crop(0, 0, 72, 51);
+        spider_walk_right[3] = spider_walk_right2.crop(0, 0, 77, 53);
         
         spider_walk_left[0] = enemies.crop(0, 90, 72, 51);
         spider_walk_left[1] = enemies.crop(0, 37, 77, 53);
         spider_walk_left[2] = enemies.crop(0, 90, 72, 51);
         spider_walk_left[3] = enemies.crop(0, 37, 77, 53);
         
-        spider_dead_right[0] = enemies.crop(71, 282, 69, 51);
-        spider_dead_right[1] = enemies.crop(71, 282, 69, 51);
+        spider_dead_right[0] = spider_dead_right_sheet.crop(0, 0, 69, 51);
+        spider_dead_right[1] = spider_dead_right_sheet.crop(0, 0, 69, 51);
+        
+        spider_dead_left[0] = enemies.crop(71, 282, 69, 51);
+        spider_dead_left[1] = enemies.crop(71, 282, 69, 51);
         
         spinner = new BufferedImage[4];
         spinner[0] = enemies.crop(134, 372, 63, 62);

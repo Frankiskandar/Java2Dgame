@@ -31,13 +31,13 @@ public class Enemy extends Creature {
     boolean autoRight = true;
     boolean autoLeft = false;
     int preTime;
-    final float HORIZONTAL_SPEED = 1.0f, JUMPSPEED = 10f;
+    final float HORIZONTAL_SPEED = 1.0f, JUMPSPEED = 10f, AGGRESSIVE_SPEED = 2.0f;
     int time = 0, i = 0;
     int tracker = 0;
     public boolean aimPlayer = false, deadTimeSet = false;
     int id, deadTime = 0;
     
-    private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDead;
+    private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDeadRight, animDeadLeft;
 
     public Enemy(Handler handler, float x, float y, int id) {
         super(handler, x, y, ENEMY_WIDTH, ENEMY_HEIGHT);
@@ -53,7 +53,8 @@ public class Enemy extends Creature {
         animIdleRight = new Animation(500, Assets.spider_idle_right);
         animWalkRight = new Animation(500, Assets.spider_walk_right);
         animWalkLeft = new Animation(500, Assets.spider_walk_left);
-        animDead = new Animation(500, Assets.spider_dead_right);
+        animDeadRight = new Animation(500, Assets.spider_dead_right);
+        animDeadLeft = new Animation(500, Assets.spider_dead_left);
     }
     
     
@@ -63,7 +64,8 @@ public class Enemy extends Creature {
         animIdleRight.tick();
         animWalkRight.tick();
         animWalkLeft.tick();
-        animDead.tick();
+        animDeadRight.tick();
+        animDeadLeft.tick();
         
         attack = true;
         if (health <= 0) {
@@ -107,18 +109,18 @@ public class Enemy extends Creature {
             } 
         }
         
-        //the enemy will walk toward player if the player in its line of sight
+        //the enemy will walk toward player if the player is in its line of sight
         if (aimPlayer) {
             if (facingRight && x > player.getX()) {
-                xMove = -HORIZONTAL_SPEED;
+                xMove = -AGGRESSIVE_SPEED;
                 facingRight = false;
             } else if (!facingRight && x < player.getX()) {
-                xMove = HORIZONTAL_SPEED;
+                xMove = AGGRESSIVE_SPEED;
                 facingRight = true;
             } else if (facingRight) {
-                xMove = HORIZONTAL_SPEED;
+                xMove = AGGRESSIVE_SPEED;
             } else {
-                xMove = -HORIZONTAL_SPEED;
+                xMove = -AGGRESSIVE_SPEED;
             }
         }
         
@@ -160,8 +162,10 @@ public class Enemy extends Creature {
     public void render(Graphics g) {
         
         //if enemy is dead
-        if (dead) {
-            g.drawImage(animDead.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);  
+        if (dead && facingRight) {
+            g.drawImage(animDeadRight.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null); 
+        } else if (dead && !facingRight) {
+            g.drawImage(animDeadLeft.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
         } else { // if enemy is still alive
             g.setColor(Color.white);
             g.fillRect((int) (x - handler.getGameCamera().getxOffset() + 15), (int) (y - handler.getGameCamera().getyOffset() -15 ), 50, 15); //draws white health bar
@@ -178,8 +182,10 @@ public class Enemy extends Creature {
             return animWalkLeft.getCurrentFrame();
         } else if (xMove > 0) {
             return animWalkRight.getCurrentFrame();     
-        } else if (dead) {
-            return animDead.getCurrentFrame();
+        } else if (dead && facingRight) {
+            return animDeadRight.getCurrentFrame();
+        } else if (dead && !facingRight) {
+            return animDeadLeft.getCurrentFrame();
         } else {
             return animIdleRight.getCurrentFrame();
         }
