@@ -66,9 +66,9 @@ public class Spinner extends Creature {
 
     }
         
-        System.out.println(dead);
-        //will cause rendering problem
+        //System.out.println(dead);
         //if the enemy is dead, it cant attack
+        // but this will not apply to spinner
         if (dead) {
             attack = false;
             return;
@@ -146,7 +146,7 @@ public class Spinner extends Creature {
         
         
         if (attack) {
-            //player gets hit by enemy
+            //player gets hit by spinner
             if (facingRight) {
                 if (x > player.getX() - 55 && x < player.getX() + 15 && y > player.getY() - 60 && y < player.getY() + 60) {
                     if (!hitRight) {

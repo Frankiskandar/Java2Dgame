@@ -52,13 +52,6 @@ public class FinishState extends State {
     public void tick() {
         uiManager.tick();
         
-        //temporarilty just go directly to the gameState,skip the menu state!
-//        handler.getMouseManager().setUIManager(null);
-//        State.setState(handler.getGame().gameState);
-        
-        //test if both right and left click pressed, set the state to game state
-        if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
-            State.setState(handler.getGame().gameState);
         System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
         
     }

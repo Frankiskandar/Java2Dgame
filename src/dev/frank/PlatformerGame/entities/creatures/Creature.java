@@ -38,15 +38,14 @@ public abstract class Creature extends Entity {
     }
     
     public void move() {
-            moveX();
-            moveY();
+        moveX();
+        moveY();
 
     }
     
     //to move separately
     //going left and right
     public void moveX() {
-       // x += xMove;
         //to help determine what corners to check for collision detection
         if(xMove > 0) { //moving right
             int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
@@ -79,8 +78,6 @@ public abstract class Creature extends Entity {
     }
     //going up and down
     public void moveY() {
-        //y += yMove;
-        
         if (yMove < 0) { //moving up
             int ty = (int) (y + yMove + bounds.y) / Tile.TILEHEIGHT;
             

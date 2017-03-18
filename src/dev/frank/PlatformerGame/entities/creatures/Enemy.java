@@ -77,15 +77,13 @@ public class Enemy extends Creature {
 
     }
         
-        System.out.println(dead);
-        //will cause rendering problem
+        //System.out.println(dead);
         //if the enemy is dead, it cant attack
         if (dead) {
             attack = false;
             return;
         }
 
-        
         //if player is not in line of sight, auto move back and forth
         if (!aimPlayer) {
             if (autoRight) {
@@ -124,9 +122,9 @@ public class Enemy extends Creature {
             }
         }
         
+        //enemy attacks player if the player's position is close to enemy's position
         if (attack) {
-            //works
-            if (facingRight) {
+            if (facingRight) { //facing right direction
                 if (x > player.getX() - 55 && x < player.getX() + 15 && y > player.getY() - 60 && y < player.getY() + 60) {
                     if (!hitRight) {
                         hitRight = true;
@@ -136,7 +134,7 @@ public class Enemy extends Creature {
                 } else {
                     hitRight = false;
                 }
-
+                //facing left direction
             } else if (x > player.getX() - 15 && x < player.getX() + 55 && y > player.getY() - 60 && y < player.getY() + 60) {
                 if (!hitLeft) {
                     hitLeft = true;
@@ -162,11 +160,12 @@ public class Enemy extends Creature {
     public void render(Graphics g) {
         
         //if enemy is dead
+        //kinda overkill? when we already have getcurrentanimationframe
         if (dead && facingRight) {
             g.drawImage(animDeadRight.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null); 
         } else if (dead && !facingRight) {
             g.drawImage(animDeadLeft.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
-        } else { // if enemy is still alive
+        } else { // if enemy is still alive draw health bar above it
             g.setColor(Color.white);
             g.fillRect((int) (x - handler.getGameCamera().getxOffset() + 15), (int) (y - handler.getGameCamera().getyOffset() -15 ), 50, 15); //draws white health bar
             g.setColor(Color.red);
@@ -177,7 +176,7 @@ public class Enemy extends Creature {
     
     
     private BufferedImage getCurrentAnimationFrame() {
-        //if we are moving to the left
+        //animation
         if (xMove < 0) {
             return animWalkLeft.getCurrentFrame();
         } else if (xMove > 0) {

@@ -33,7 +33,7 @@ public class Player extends Creature{
     final float FIREBALLSPEED = 5f;
     int forward = 0;
     boolean facingRight = true, shootAnimation = false, firstShot = false, fireBallShot = false;
-    public boolean jump = false, fall = false, dead = false;
+    public boolean jumping = false, falling = false, dead = false;
     float JUMPSPEED = 10; 
     int jumpTimer = 0; // timer to let player jump again after some time
     Timer timer;
@@ -64,7 +64,6 @@ public class Player extends Creature{
         animLeft = new Animation(100, Assets.alien_left);
         animRight = new Animation(100, Assets.alien_right);
         animStand = new Animation(500, Assets.alien_stand);
-        
         animUpLeft = new Animation(500, Assets.alien_jump_left);
         animDownLeft = new Animation(500, Assets.alien_jump_left);
         animStandLeft = new Animation(500, Assets.alien_stand_left);
@@ -77,6 +76,10 @@ public class Player extends Creature{
         animUp.tick();
         animLeft.tick();
         animRight.tick();
+        animStand.tick();
+        animUpLeft.tick();
+        animDownLeft.tick();
+        animStandLeft.tick();
 
         //Movement
         getInput(enemies, player);
@@ -108,18 +111,28 @@ public class Player extends Creature{
 
     private void getInput(ArrayList<Enemy> enemies, Player player) {
         xMove = 0;
-        //yMove = 0; 
-        //for gravity
-        // yMove = 5;
 
         if(handler.getKeyManager().up) {
             //yMove = -speed;
-            if (!jump && !fall) { // kalo 2-2nya false
+            if (!jumping && !falling) { // if he is not currently jumping and falling, see if jump
                 Music.play("jump");
-                jump = true;
-                fall = false;
+                jumping = true;
+                falling = false;
             }         
         }
+        if (jumping) {
+            jumpTimer++;
+            yMove = -JUMPSPEED;
+            if (jumpTimer >= 24) {
+                jumpTimer = 0;
+                jumping = false;
+                falling = true;
+            }
+        } else { //if user doesnt press up
+            yMove = JUMPSPEED;
+        }
+        //end jumping mechanic
+        
         if(handler.getKeyManager().left) {
             xMove = -speed;
             facingRight = false;
@@ -131,29 +144,19 @@ public class Player extends Creature{
         // else yMove = speed;
         }
         
-        if (jump) {
-            jumpTimer++;
-            yMove = -JUMPSPEED;
-            if (jumpTimer >= 24) {
-                jumpTimer = 0;
-                jump = false;
-                fall = true;
-            }
-        } else { //if user doesnt press up
-            yMove = JUMPSPEED;
-        }
+
         int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
         if (collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty)
                 || collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)) {
-            fall = false;
-            if (!jump && !played) {
+            falling = false;
+            if (!jumping && !played) {
                 played = true;
                 //landing
                 
             }
         } else {
             played = false;
-            fall = true;
+            falling = true;
         }
         
         //if the user presses shoot button
@@ -177,7 +180,7 @@ public class Player extends Creature{
         // to check if an enemy is hit/not
         for(Fireball b : FireballArray) {
             b.tick(); // update the fireball position
-            for (Enemy e : enemies) {
+            for (Enemy e : enemies) { //check for every enemy
                 if (Math.abs(b.getX() - e.getX()) < 45 && b.getY() > e.getY() - 60 && b.getY() < e.getY() + 60) {
                     if (!b.hitEnemy) {
                         b.hitEnemy = true;
@@ -187,18 +190,19 @@ public class Player extends Creature{
             }
         }
    
-        //if the fireball's distance is greater than 300 dont draw it
-        //dont draw if it hits the wall
+        //if the fireball's distance is greater than 300 dont draw it, remove it from the game
+        //dont update if it hits the wall
         for(int i = 0; i < FireballArray.size(); i++) {
             if (FireballArray.get(i).distance > 300 || FireballArray.get(i).hitWall) {
                 FireballArray.remove(i);
             }       
         }
+        //if player's health = 0 
         if(this.health==0) {
             dead = true;
         }
         
-        //If the user falls to their death
+        //If the player falls to their death
 //        if(y > LEVEL1_DEAD_Y_COORDINATE) {
 //            dead = true;
 //        }
@@ -207,7 +211,7 @@ public class Player extends Creature{
     public void stop() {
         xMove = 0;
         yMove = 0;
-        fall = jump = false;
+        falling = jumping = false;
     }
     
     public void render(Graphics g) {
@@ -215,7 +219,7 @@ public class Player extends Creature{
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         
         for (Fireball b : FireballArray) {
-            b.render(g, time, Projectile.PLAYER1);
+            b.render(g, Projectile.PLAYER1);
         }
         
         // if player is dead, set the state to gameover state
@@ -226,7 +230,7 @@ public class Player extends Creature{
         if (handler.getKeyManager().attack) {
             if (!firstShot) {
                 firstShot = true;
-                preTime = time;
+                //preTime = time;
             }
         }
 
@@ -240,17 +244,17 @@ public class Player extends Creature{
     
     private BufferedImage getCurrentAnimationFrame() {
         //if we are moving to the left
-        if (xMove < 0 && !jump && !fall) {
+        if (xMove < 0 && !jumping && !falling) {
             return animLeft.getCurrentFrame();
-        } else if (xMove > 0 && !jump && !fall) {
+        } else if (xMove > 0 && !jumping && !falling) {
             return animRight.getCurrentFrame();     
         } else if (yMove < 0 && facingRight ) {
             return animUp.getCurrentFrame();
         } else if (yMove < 0 && !facingRight ) {
             return animUpLeft.getCurrentFrame();
-        } else if (fall & facingRight) {
+        } else if (falling & facingRight) {
             return animDown.getCurrentFrame();
-        } else if (fall & !facingRight) {
+        } else if (falling & !facingRight) {
             return animDownLeft.getCurrentFrame();
         } else if (facingRight) {
             return animStand.getCurrentFrame();

@@ -48,13 +48,9 @@ public abstract class UIObject {
     public void onMouseRelease(MouseEvent e) {
         //detect if the button has been click or not
         if (hovering)
-            onClick(); // if the mouse is release, click method is called
-        
-        
+            onClick(); // if the mouse is release, click method is called   
     }
-    
-    
-    
+     
     //getters and setters
     public float getX() {
         return x;
@@ -95,7 +91,5 @@ public abstract class UIObject {
     public void setHovering(boolean hovering) {
         this.hovering = hovering;
     }
-    
-    
-    
+      
 }

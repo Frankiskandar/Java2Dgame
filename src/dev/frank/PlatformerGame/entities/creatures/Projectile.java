@@ -13,11 +13,12 @@ import java.awt.Graphics;
  *
  * @author Frank
  */
+//fireball projectile
 public class Projectile extends Creature {
     
     public int projectileSpeed = 8, distance = 0;
 
-    boolean remove = false, isRight = false, first = false;
+    boolean remove = false, facingRight = false, first = false;
     boolean restart = false, isNormal = false, hitEnemy = false;
 
     public static final int PLAYER1 = 0, PLAYER2 = 1, ENEMY = 2;
@@ -27,8 +28,8 @@ public class Projectile extends Creature {
         this.isNormal = isNormal;
     }
     
-    public void render(Graphics g, int time, int type) {
-        if (isRight) {
+    public void render(Graphics g, int type) {
+        if (facingRight) {
                 g.drawImage(Assets.fireball, (int) (x - handler.getGameCamera().getxOffset() + 30), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
         } else {
                 g.drawImage(Assets.fireball, (int) (x - handler.getGameCamera().getxOffset() + 10), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
@@ -36,7 +37,7 @@ public class Projectile extends Creature {
     }
     
     public void tick() {
-        if (isRight) { //if facing right direction
+        if (facingRight) { //if facing right direction
             xMove = projectileSpeed;
         } else { //if facing left direction
             xMove = -projectileSpeed;

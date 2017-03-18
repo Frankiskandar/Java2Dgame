@@ -28,7 +28,7 @@ public class Animation {
     
     public void tick() {
         //adding to timer the amount of milis that has passed since the last tick() method called
-        // and this tck method called
+        // and this tick method called
         timer += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
         

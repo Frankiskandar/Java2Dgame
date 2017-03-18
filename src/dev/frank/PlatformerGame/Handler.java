@@ -61,11 +61,5 @@ public class Handler {
     public void setWorld(World world) {
         this.world = world;
     }
-
-    /*    public Object getMouseManager() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
-    
-    
     
 }

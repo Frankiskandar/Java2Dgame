@@ -14,7 +14,7 @@ import dev.frank.PlatformerGame.tiles.Tile;
  *
  * @author Frank
  */
-public class GameCamera { //to follow our player
+public class GameCamera { // camera class to follow our player
     
     private Handler handler;
     //position
@@ -74,7 +74,5 @@ public class GameCamera { //to follow our player
     public void setyOffset(float yOffset) {
         this.yOffset = yOffset;
     }
-    
-    
-    
+ 
 }
