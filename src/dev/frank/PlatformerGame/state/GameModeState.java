@@ -12,6 +12,8 @@ import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.ui.ClickListener;
 import dev.frank.PlatformerGame.ui.UIImageButton;
 import dev.frank.PlatformerGame.ui.UIManager;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -29,9 +31,9 @@ public class GameModeState extends State {
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
         
-        bg = ImageLoader.loadImage("/textures/bg_menu.png");
+        bg = ImageLoader.loadImage("/textures/bg_level1.png");
         
-        uiManager.addObject(new UIImageButton(445, 298, 150, 50, Assets.btn_level1, new ClickListener(){
+        uiManager.addObject(new UIImageButton(435, 298, 150, 50, Assets.btn_level1, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -44,7 +46,7 @@ public class GameModeState extends State {
             }
         }));
         
-        uiManager.addObject(new UIImageButton(445, 363, 150, 50, Assets.btn_level2, new ClickListener(){
+        uiManager.addObject(new UIImageButton(435, 363, 150, 50, Assets.btn_level2, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -57,7 +59,7 @@ public class GameModeState extends State {
             }
         }));
         
-        uiManager.addObject(new UIImageButton(445, 428, 150, 50, Assets.btn_return, new ClickListener(){
+        uiManager.addObject(new UIImageButton(435, 428, 150, 50, Assets.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -78,6 +80,9 @@ public class GameModeState extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(bg, 0, 0, null);
+        g.setFont(new Font("Helvetica", Font.BOLD, 30));
+        g.setColor(Color.BLACK);
+        g.drawString("SELECT GAME MODE", 350, 190);
         uiManager.render(g);
         
     }

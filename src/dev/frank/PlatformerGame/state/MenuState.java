@@ -25,6 +25,7 @@ public class MenuState extends State {
     
     private UIManager uiManager;
     private BufferedImage bg;
+    private BufferedImage title;
     
     public MenuState(Handler handler) {
         super(handler);
@@ -32,7 +33,8 @@ public class MenuState extends State {
         handler.getMouseManager().setUIManager(uiManager);
         
         //background image
-        bg = ImageLoader.loadImage("/textures/bg_menu.png");
+        bg = ImageLoader.loadImage("/textures/bg_level1.png");
+        title = ImageLoader.loadImage("/textures/title.png");
         
         uiManager.addObject(new UIImageButton(445, 298, 150, 50, Assets.btn_start, new ClickListener(){
 
@@ -75,6 +77,7 @@ public class MenuState extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(bg, 0, 0, null);
+        g.drawImage(title, 273, 110, 500, 107, null);
         uiManager.render(g);
         //test
 //        g.setColor(Color.RED);

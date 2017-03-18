@@ -33,10 +33,10 @@ public class FinishState extends State {
         handler.getMouseManager().setUIManager(uiManager);
         
         //background image
-        bg = ImageLoader.loadImage("/textures/bg_menu.png");
+        bg = ImageLoader.loadImage("/textures/bg_level1.png");
         
         
-        uiManager.addObject(new UIImageButton(462, 279, 150, 50, Assets.btn_return, new ClickListener(){
+        uiManager.addObject(new UIImageButton(432, 279, 150, 50, Assets.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -59,7 +59,7 @@ public class FinishState extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(bg, 0, 0, null);
-        g.setFont(new Font("Franklin Gothic Heavy", Font.BOLD, 30));
+        g.setFont(new Font("Helvetica", Font.BOLD, 30));
         g.setColor(Color.BLACK);
         g.drawString("Congratulations! You Finished The Level ", 200, 200);
         uiManager.render(g);
