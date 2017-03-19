@@ -58,6 +58,8 @@ public class Enemy extends Creature {
     }
     
     
+    
+    
     public void tick(Creature player) {
         
         animIdleLeft.tick();

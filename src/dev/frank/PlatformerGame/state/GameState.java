@@ -35,8 +35,8 @@ public class GameState extends State {
     public static int LEVEL1_DEAD_Y_COORDINATE = 1300;
     public ArrayList<Enemy> enemies;
     public static final int PLAYER_SPAWN_X = 121, PLAYER_SPAWN_Y = 831;
-    public static final float EXIT_X_POSITION = 2409;
-    public static final float EXIT_Y_POSITION = 259;
+    public static final float EXIT_X_POSITION = 2367;
+    public static final float EXIT_Y_POSITION = 269;
  //   private Handler handler;
     
     public GameState(Handler handler) { 
@@ -56,6 +56,8 @@ public class GameState extends State {
         for (Enemy e : enemy) {
             enemies.add(e);
         }
+        
+        Music.loop("bgm_level1"); 
         
         //Music.loop("bgm_castle");
         
@@ -128,8 +130,8 @@ public class GameState extends State {
  
         System.out.println(player.getX()+ " " + player.getY());
         System.out.println("player's health= "+player.health);
-        g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);
-        // draw heart
+        //g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);
+        // draw heart (player's health) on the top left corner
         for (int i = 0; i < player.health; i++) {
             g.drawImage(Assets.heart, 60 * (i + 1) - 55, 25, 50, 50, null);
         }

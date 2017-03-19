@@ -96,15 +96,12 @@ public class Game implements Runnable { //to run runnable
         handler = new Handler(this); //takes game object
         gameCamera = new GameCamera(handler,0,0);
         
-        
-        gameState = new GameState(handler);
         menuState = new MenuState(handler);
         State.setState(menuState);
         Music.loop("bgm_tropics");
     }
        
    private void tick() {// update
-        //x += 1;
        keyManager.tick();
        if(State.getState() != null)
            State.getState().tick();//RUN TICK() in game state which has tick() from player

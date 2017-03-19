@@ -37,6 +37,7 @@ public abstract class Entity {
         //width and height of actual entitiy
         
     }
+    
 
     public int getHealth() {
         return health;

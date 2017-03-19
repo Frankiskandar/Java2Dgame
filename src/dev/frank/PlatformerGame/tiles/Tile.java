@@ -16,15 +16,15 @@ public class Tile {
     
     // static stuff
     
-    
     public static Tile[] tiles = new Tile[256];
     public static Tile grassTile = new GrassTile(10);
-    public static Tile dirtTile = new DirtTile(99);
+    public static Tile dirtTile = new DirtTile(97);
     public static Tile rockTile = new RockTile(98);
     //public static Tile sandMid = new SandMid(5);
     
     //decoration
     public static Tile rightSign = new signRight(11);
+    public static Tile exitSign = new ExitSign(99);
     public static Tile bush = new Bush(21);
     
     //emptyTile
@@ -41,6 +41,13 @@ public class Tile {
     public static Tile stoneMid = new StoneMid(6);
     public static Tile stoneRight = new StoneRight(7);
     public static Tile stoneCenter = new StoneCenter(8);
+    
+    //snow left mid right
+    public static Tile snowLeft = new SnowLeft(31);
+    public static Tile snowMid = new SnowMid(32);
+    public static Tile snowRight = new SnowRight(33);
+    public static Tile snowCenter = new SnowCenter(34);
+    
         
     //water
     public static Tile water = new Water(16);

@@ -40,7 +40,7 @@ public class GameModeState extends State {
                 handler.getMouseManager().setUIManager(null);
                 Music.play("click");
                 Music.stop("bgm_tropics");
-                Music.loop("bgm_level1");               
+                //Music.loop("bgm_level1");               
                 State.setState(new GameState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
@@ -53,7 +53,7 @@ public class GameModeState extends State {
                 handler.getMouseManager().setUIManager(null);
                 Music.play("click");
                 Music.stop("bgm_tropics");
-                Music.loop("bgm_castle");
+                //Music.loop("bgm_castle");
                 State.setState(new Game2State(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }

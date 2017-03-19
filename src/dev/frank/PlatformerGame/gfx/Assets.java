@@ -26,6 +26,7 @@ public class Assets {
     //ground
     public static BufferedImage grassLeft, grassMid, grassRight;
     public static BufferedImage stoneLeft, stoneMid, stoneRight, stoneCenter;
+    public static BufferedImage snowLeft, snowMid, snowRight, snowCenter;
     
     //water
     public static BufferedImage water, lava;
@@ -266,6 +267,12 @@ public class Assets {
         stoneMid = ground.crop(72, 432, 70, 70);
         stoneRight = ground.crop(72, 360, 70, 70);
         stoneCenter = ground.crop(144, 576, 70, 70);
+        
+        //snow
+        snowLeft = ground.crop(144, 864, 70, 70);
+        snowMid = ground.crop(144, 792, 70, 70);
+        snowRight = ground.crop(144, 720, 70, 70);
+        snowCenter = ground.crop(720, 864, 70, 70);
        
         //water
         water = ground.crop(432, 576, 70, 70);
