@@ -50,9 +50,9 @@ public class Game2State extends State {
         enemies = new ArrayList<>();
         enemy = new Enemy[ENEMY_NUMBER];
         enemy[0] = new Enemy(handler, 643, 643, 0);
-        //enemy[1] = new Enemy(handler, 2668, 451, 1);
-        enemy[1] = new Enemy(handler, 4859, 643, 2);
-        enemy[2] = new Enemy(handler, 848, 323, 3);
+        enemy[1] = new Enemy(handler, 2668, 451, 1);
+        enemy[2] = new Enemy(handler, 4859, 643, 2);
+        //enemy[2] = new Enemy(handler, 848, 323, 3);
         
         //spinner test
         spinners = new ArrayList<>();
