@@ -6,6 +6,9 @@
 package dev.frank.PlatformerGame;
 
 import dev.frank.PlatformerGame.display.Display;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 /**
  *
@@ -17,8 +20,14 @@ public class launcher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Game game = new Game("Platformer Game", 1000, 500);
-       game.start(); 
+        Game game = new Game("Platformer Game", 1000, 500);
+        game.start();
+       
+        Result result = JUnitCore.runClasses(dev.frank.PlatformerGame.test.TestClass.class);
+		
+        for (Failure failure : result.getFailures()) {
+            System.out.println(failure.toString());
+        }
     }
     
     

@@ -58,16 +58,7 @@ public class GameState extends State {
         }
         
         Music.loop("bgm_level1"); 
-        
-        //Music.loop("bgm_castle");
-        
-//        for (Enemy e: enemy) {
-//            e.tick(player);
-//        }
-        
-        // adding 100 and 200 to offset
-        //boleh nih buat maju doank
-        //game.getGameCamera().move(0, 0);
+
     }
 
     @Override

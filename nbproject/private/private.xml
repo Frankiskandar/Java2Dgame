@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/Entity.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/MenuState.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Creature.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/Assets.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/Game.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/State.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Fireball.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/Tests/dev/frank/PlatformerGame/entities/creatures/PlayerTest.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Projectile.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/Game2State.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Player.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/Entity.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/Tests/dev/frank/PlatformerGame/entities/creatures/CreatureTest.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/Tests/dev/frank/PlatformerGame/GameTest.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Enemy.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Creature.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/launcher.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/test/TestClass.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/Handler.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/display/Display.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/GameState.java</file>
         </group>
     </open-files>
