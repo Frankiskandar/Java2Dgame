@@ -8,7 +8,6 @@ package dev.frank.PlatformerGame.test;
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Creature;
-import dev.frank.PlatformerGame.entities.creatures.Enemy;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import static junit.framework.Assert.assertEquals;
 import org.junit.Test;
@@ -22,9 +21,7 @@ public class TestClass {
     Game game = new Game("Platformer Game", 1000, 500);
     Handler handler = new Handler(game);
     Player player = new Player(handler, 100, 200);
-    Enemy enemy = new Enemy(handler, 100, 200, 1);
-    
-    
+
      /**
      * Test of getWidth method, of class Game.
      */
@@ -38,7 +35,7 @@ public class TestClass {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-
+                                
     /**
      * Test of getHeight method, of class Game.
      */
@@ -91,13 +88,5 @@ public class TestClass {
         assertEquals(50, result);
     }
     
-    @Test
-    public void enemyHealthTest() {
-        System.out.println("Enemy's health Test");
-        int expResult = 100;
-        int result = enemy.getHealth();
-        assertEquals("should be 100", expResult, result);
-    
-    }
     
 }

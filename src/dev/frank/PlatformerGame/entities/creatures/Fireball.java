@@ -13,7 +13,6 @@ import dev.frank.PlatformerGame.Handler;
  */
 //fireball projectile class
 public class Fireball extends Projectile {
-    
     public static final int DEFAULT_FIREBALL_WIDTH = 40;
     public static final int DEFAULT_FIREBALL_HEIGHT = 40;
     public static final int DEFAULT_FIREBALL_SPEED = 6;

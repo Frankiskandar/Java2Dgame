@@ -32,6 +32,7 @@ public class Game implements Runnable { //to run runnable
     private Display display;
     private int width, height;  
     public String title;
+    public int FPS = 60;
     
     private boolean running = false;
     private Thread thread;
@@ -70,11 +71,6 @@ public class Game implements Runnable { //to run runnable
     private void init() {
         
         Music.init();
-        Music.load("/sound/ammo.mp3", "ammo");
-        //Music.load("/sound/fireball.wav", "fireball");
-        Music.load("/sound/fire.wav", "fire");
-        Music.load("/sound/jump.wav", "jump");
-        Music.load("/sound/playerhit.wav", "playerhit");
         Music.load("/sound/bgm_tropics.mp3", "bgm_tropics");
         Music.load("/sound/bgm_castle.mp3", "bgm_castle");
         Music.load("/sound/bgm_level1.mp3", "bgm_level1");
@@ -128,7 +124,7 @@ public class Game implements Runnable { //to run runnable
     public void run() {
         init(); //run method will call init method
         
-        int fps = 60;
+        int fps = FPS;
         double timePerTick = 1000000000/fps; //1 bil ns per sec / fps
         double delta = 0;
         long now;

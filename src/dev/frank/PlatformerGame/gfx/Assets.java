@@ -17,6 +17,8 @@ public class Assets {
     
     public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid, exitSign, rightSign;
     
+    public static BufferedImage enemy_test;
+    
     //projectile
     public static BufferedImage fireball;
     
@@ -233,6 +235,8 @@ public class Assets {
         spider_walk_left[1] = enemies.crop(0, 37, 77, 53);
         spider_walk_left[2] = enemies.crop(0, 90, 72, 51);
         spider_walk_left[3] = enemies.crop(0, 37, 77, 53);
+        
+        enemy_test = enemies.crop(0, 90, 72, 51);
         
         spider_dead_right[0] = spider_dead_right_sheet.crop(0, 0, 69, 51);
         spider_dead_right[1] = spider_dead_right_sheet.crop(0, 0, 69, 51);

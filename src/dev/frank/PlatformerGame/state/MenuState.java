@@ -32,10 +32,11 @@ public class MenuState extends State {
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
         
-        //background image
+        //load background image and title
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         title = ImageLoader.loadImage("/textures/title.png");
         
+        //start button
         uiManager.addObject(new UIImageButton(445, 298, 150, 50, Assets.btn_start, new ClickListener(){
 
             @Override
@@ -43,10 +44,10 @@ public class MenuState extends State {
                 handler.getMouseManager().setUIManager(null);
                 Music.play("click");
                 State.setState(new GameModeState(handler));
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
         
+        //quit button
         uiManager.addObject(new UIImageButton(445, 363, 150, 50, Assets.btn_quit, new ClickListener(){
 
             @Override
@@ -54,7 +55,6 @@ public class MenuState extends State {
                 handler.getMouseManager().setUIManager(null);
                 Music.play("click");
                 System.exit(0);
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
     }
@@ -68,8 +68,8 @@ public class MenuState extends State {
 //        State.setState(handler.getGame().gameState);
         
         //test if both right and left click pressed, set the state to game state
-        if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
-            State.setState(handler.getGame().gameState);
+//        if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
+//            State.setState(handler.getGame().gameState);
         System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
         //System.out.println("State we are in: "+State.getState());
         

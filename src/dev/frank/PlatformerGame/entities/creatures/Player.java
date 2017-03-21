@@ -70,7 +70,7 @@ public class Player extends Creature{
         
     }
 
-    public void tick(ArrayList<Enemy> enemies, Player player) {
+    public void tick() {
         //Animations
         animDown.tick(); //to update index var
         animUp.tick();
@@ -82,7 +82,7 @@ public class Player extends Creature{
         animStandLeft.tick();
 
         //Movement
-        getInput(enemies, player);
+        getInput();
         move(); //from creature class
         
         //every time we tick after move
@@ -109,13 +109,12 @@ public class Player extends Creature{
 //        System.out.println("You Lose");
 //    }
 
-    private void getInput(ArrayList<Enemy> enemies, Player player) {
+    private void getInput() {
         xMove = 0;
 
         if(handler.getKeyManager().up) {
             //yMove = -speed;
             if (!jumping && !falling) { // if he is not currently jumping and falling, see if jump
-                Music.play("jump");
                 jumping = true;
                 falling = false;
             }         
@@ -158,45 +157,7 @@ public class Player extends Creature{
             played = false;
             falling = true;
         }
-        
-        //if the user presses shoot button
-        if (handler.getKeyManager().attack && !firstShot) {
-            Fireball fireball = new Fireball(handler, x, y, facingRight);
-            FireballArray.add(fireball);
-            fireBallShot = true;
-            firstShot = true;
-            Music.play("fire");
-        }
-        else {
-            fireBallShot = false;
-        }
-        
-        if (!handler.getKeyManager().attack) {
-            firstShot = false;
-            shootAnimation = false;
-            
-        }
-        
-        // to check if an enemy is hit/not
-        for(Fireball b : FireballArray) {
-            b.tick(); // update the fireball position
-            for (Enemy e : enemies) { //check for every enemy
-                if (Math.abs(b.getX() - e.getX()) < 45 && b.getY() > e.getY() - 60 && b.getY() < e.getY() + 60) {
-                    if (!b.hitEnemy) {
-                        b.hitEnemy = true;
-                        e.health -= FIREBALL_DAMAGE;
-                    }
-                }           
-            }
-        }
-   
-        //if the fireball's distance is greater than 300 dont draw it, remove it from the game
-        //dont update if it hits the wall
-        for(int i = 0; i < FireballArray.size(); i++) {
-            if (FireballArray.get(i).distance > 300 || FireballArray.get(i).hitWall) {
-                FireballArray.remove(i);
-            }       
-        }
+
         //if player's health = 0 
         if(this.health==0) {
             dead = true;
@@ -217,22 +178,6 @@ public class Player extends Creature{
     public void render(Graphics g) {
         g.drawImage( getCurrentAnimationFrame() ,(int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-        
-        for (Fireball b : FireballArray) {
-            b.render(g, Projectile.PLAYER1);
-        }
-        
-        // if player is dead, set the state to gameover state
-//        if (dead) {
-//            State.setState(new GameOverState(handler));
-//        }
-        
-        if (handler.getKeyManager().attack) {
-            if (!firstShot) {
-                firstShot = true;
-                //preTime = time;
-            }
-        }
 
         //collision testing
 //        g.setColor(Color.red);

@@ -7,7 +7,6 @@ package dev.frank.PlatformerGame.state;
 
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Creature;
-import dev.frank.PlatformerGame.entities.creatures.Enemy;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import dev.frank.PlatformerGame.entities.creatures.Spinner;
 import dev.frank.PlatformerGame.gfx.Assets;
@@ -27,13 +26,6 @@ public class Game2State extends State {
     private Player player;
     private World world;
     private BufferedImage bg;
-    private Enemy[] enemy;
-    public static final int ENEMY_NUMBER = 3;
-    public ArrayList<Enemy> enemies;
-    
-    public static final int ENEMY_SPINNER_NUMBER = 7;
-    private Spinner[] spinner;
-    public ArrayList<Spinner> spinners;
     public static int LEVEL2_DEAD_Y_COORDINATE = 1300;
        
     public static final int PLAYER_SPAWN_X = 100, PLAYER_SPAWN_Y = 579;
@@ -47,62 +39,15 @@ public class Game2State extends State {
         
         bg = ImageLoader.loadImage("/textures/bg_level2.png");
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
-        enemies = new ArrayList<>();
-        enemy = new Enemy[ENEMY_NUMBER];
-        enemy[0] = new Enemy(handler, 643, 643, 0);
-        enemy[1] = new Enemy(handler, 2668, 451, 1);
-        enemy[2] = new Enemy(handler, 4859, 643, 2);
-        //enemy[2] = new Enemy(handler, 848, 323, 3);
-        
-        //spinner test
-        spinners = new ArrayList<>();
-        spinner = new Spinner[ENEMY_SPINNER_NUMBER];
-        spinner[0] = new Spinner(handler, 709, 387, 0);
-        spinner[1] = new Spinner(handler, 2551, 451, 0);
-        spinner[2] = new Spinner(handler, 2770, 451, 0);
-        spinner[3] = new Spinner(handler, 1444, 323, 0);
-        spinner[4] = new Spinner(handler, 838, 515, 1);
-        spinner[5] = new Spinner(handler, 3707, 323, 1);
-        spinner[6] = new Spinner(handler, 2178, 451, 2);
         
         Music.loop("bgm_castle");
-        
-        for (Spinner s : spinner) {
-            spinners.add(s);
-        }
-           
-        for (Enemy e : enemy) {
-            enemies.add(e);
-        }
+
     }
 
     @Override
     public void tick() {
-        world.tick();
-        boolean aimPlayer = false;
-        
-        for (Enemy e : enemy) {
-            if (CheckPlayerNearby(player, e)) {
-                aimPlayer = true;
-            }
-        }
-        
-        player.tick(enemies, null);
-        
-        for (Enemy e : enemy) {
-            if(aimPlayer) {
-                e.tick(player);
-            }
-            //will stop if i dont include this
-            else {
-                e.tick(player);
-            } 
-        }
-        
-        //remove this later
-        for (Spinner s : spinner) {
-            s.tick(player);
-        }
+        world.tick();         
+        player.tick();
         
         if (Math.abs(player.getX() - EXIT_X_POSITION) < 20 && Math.abs(player.getY() - EXIT_Y_POSITION) < 20) {
                 State.setState(new FinishState(handler));
@@ -121,14 +66,6 @@ public class Game2State extends State {
         g.drawImage(bg, 0, 0, null);
         world.render(g);
         player.render(g);
-        for (Enemy e : enemy) {
-            System.out.println("enemy's health: "+ e.health);
-            e.render(g);
-        }
-        //spinner
-        for (Spinner s: spinner) {
-            s.render(g);
-        }
         
         System.out.println(player.getX()+ " " + player.getY());
         System.out.println("player's health= "+player.health);
@@ -146,16 +83,6 @@ public class Game2State extends State {
         }
         
     }
-    
-    //check if player is nearby
-    public boolean CheckPlayerNearby(Creature player, Enemy e) {
-        if (Math.abs(player.getX() - e.getX()) < 200 && Math.abs(player.getY() - e.getY()) < 20) {
-            e.aimPlayer = Math.abs(player.getX() - e.getX()) >= 20;
-        } else {
-            e.aimPlayer = false;
-        }
 
-        return e.aimPlayer;
-    }
     
 }

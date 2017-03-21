@@ -6,8 +6,6 @@
 package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Handler;
-import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_HEIGHT;
-import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_WIDTH;
 import dev.frank.PlatformerGame.gfx.Animation;
 import dev.frank.PlatformerGame.gfx.Assets;
 import dev.frank.PlatformerGame.music.Music;
