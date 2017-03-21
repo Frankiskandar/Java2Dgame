@@ -13,6 +13,7 @@ import junit.framework.TestCase;
  *
  * @author Frank
  */
+//creature health test
 public class CreatureTest extends TestCase {
     
     public CreatureTest(String testName) {
@@ -22,13 +23,11 @@ public class CreatureTest extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-    }
-    
+    }   
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-
     /**
      * Test of getHealth method, of class Creature.
      */
