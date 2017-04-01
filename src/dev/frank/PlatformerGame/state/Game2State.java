@@ -28,21 +28,21 @@ public class Game2State extends State {
     private World world;
     private BufferedImage bg;
     private Enemy[] enemy;
-    public static final int ENEMY_NUMBER = 3;
+    public static final int ENEMY_NUMBER = 6;
     public ArrayList<Enemy> enemies;
     
-    public static final int ENEMY_SPINNER_NUMBER = 7;
+    public static final int ENEMY_SPINNER_NUMBER = 9;
     private Spinner[] spinner;
     public ArrayList<Spinner> spinners;
     public static int LEVEL2_DEAD_Y_COORDINATE = 1300;
        
     public static final int PLAYER_SPAWN_X = 100, PLAYER_SPAWN_Y = 579;
-    public static final float EXIT_X_POSITION = 4990;
+    public static final float EXIT_X_POSITION = 10111;
     public static final float EXIT_Y_POSITION = 643;
 
     public Game2State(Handler handler) {
         super(handler);
-        world = new World(handler, "res/worlds/world2.txt");
+        world = new World(handler, "res/worlds/world3.txt");
         handler.setWorld(world);
         
         bg = ImageLoader.loadImage("/textures/bg_level2.png");
@@ -52,7 +52,9 @@ public class Game2State extends State {
         enemy[0] = new Enemy(handler, 643, 643, 0);
         enemy[1] = new Enemy(handler, 2668, 451, 1);
         enemy[2] = new Enemy(handler, 4859, 643, 2);
-        //enemy[2] = new Enemy(handler, 848, 323, 3);
+        enemy[3] = new Enemy(handler, 5915, 451, 3);
+        enemy[4] = new Enemy(handler, 7503, 579, 3);
+        enemy[5] = new Enemy(handler, 9991, 643, 3);
         
         //spinner test
         spinners = new ArrayList<>();
@@ -64,6 +66,8 @@ public class Game2State extends State {
         spinner[4] = new Spinner(handler, 838, 515, 1);
         spinner[5] = new Spinner(handler, 3707, 323, 1);
         spinner[6] = new Spinner(handler, 2178, 451, 2);
+        spinner[7] = new Spinner(handler, 5643, 451, 1);
+        spinner[8] = new Spinner(handler, 6895, 387, 0);
         
         Music.loop("bgm_castle");
         
@@ -122,7 +126,7 @@ public class Game2State extends State {
         world.render(g);
         player.render(g);
         for (Enemy e : enemy) {
-            System.out.println("enemy's health: "+ e.health);
+            //System.out.println("enemy's health: "+ e.health);
             e.render(g);
         }
         //spinner
@@ -131,7 +135,7 @@ public class Game2State extends State {
         }
         
         System.out.println(player.getX()+ " " + player.getY());
-        System.out.println("player's health= "+player.health);
+        //System.out.println("player's health= "+player.health);
         //g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);
         // draw heart
         for (int i = 0; i < player.health; i++) {
