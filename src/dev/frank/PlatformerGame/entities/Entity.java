@@ -34,8 +34,7 @@ public abstract class Entity {
         health = DEFAULT_HEALTH;
         
         bounds = new Rectangle(0,0, width, height); //upper left hand corener of entitiy image
-        //width and height of actual entitiy
-        
+        //width and height of actual entitiy   
     }
     
 
@@ -54,8 +53,6 @@ public abstract class Entity {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
-    
 
     public float getX() {
         return x;
@@ -88,36 +85,6 @@ public abstract class Entity {
     public void setHeight(int height) {
         this.height = height;
     }
-    
-    
-    
-//    public void entityTest(){
-//        Entity e = new Entity();
-//        int num = 5;
-//        e.setX(5);
-//        assertEquals(num, e.getX(), "number doesnt match")
-//    }
-//    
-    
-    
-//    public abstract void tick();
-//    
-//    public abstract void render(Graphics g);  
-//    
-//    public abstract void die();
-//    
-//    public  void hurt(int amt) {
-//        health -= amt;
-//        if(health <= 0)
-//            active = false;
-//            die();
-//            
-//    }
-
-    
-    //to return bounding rectangle
-    //or the area around this entity
-    //cover area collision of entity
 
     
 }

@@ -23,18 +23,16 @@ public class Spinner extends Creature {
     
     public static final int ENEMY_WIDTH = 50;
     public static final int ENEMY_HEIGHT = 50;
-    public boolean dead = false, restart = false;
+    public boolean dead = false;
     boolean facingRight = false, attack = false, hitRight = false;
     boolean hitLeft = false;
     boolean autoRight = true;
     boolean autoLeft = false;
-    int preTime;
-    final float VERTICAL_SPEED = 4.0f, JUMPSPEED = 10f;
+    final float VERTICAL_SPEED = 4.0f;
     final float HORIZONTAL_SPEED = 3.0f;
-    int time = 0, i = 0;
     int tracker = 0;
-    public boolean firstCall = true, aimPlayer = false, deadTimeSet = false;
-    int id, deadTime = 0;
+    public boolean firstCall = true, playerInLineofSight = false;
+    int id;
     
     private Animation animation;
 
@@ -59,11 +57,6 @@ public class Spinner extends Creature {
         attack = true;
         if (health <= 0) {
             dead = true;
-            if (!deadTimeSet) {
-                deadTime = time;
-                deadTimeSet = true;
-        }
-
     }
         
         //System.out.println(dead);
@@ -75,7 +68,7 @@ public class Spinner extends Creature {
         }
 
        
-        if (!aimPlayer) {
+        if (!playerInLineofSight) {
             //horizontal spinner
             if (id==1) {
                 if (autoRight) {
@@ -186,8 +179,7 @@ public class Spinner extends Creature {
 //                bounds.width, bounds.height);
     }
     
-    private BufferedImage getCurrentAnimationFrame() {
-       
+    private BufferedImage getCurrentAnimationFrame() {      
         return animation.getCurrentFrame();
     }
     

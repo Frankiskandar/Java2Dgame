@@ -31,11 +31,10 @@ public class Enemy extends Creature {
     boolean autoRight = true;
     boolean autoLeft = false;
     int preTime;
-    final float HORIZONTAL_SPEED = 1.0f, JUMPSPEED = 10f, AGGRESSIVE_SPEED = 2.0f;
-    int time = 0, i = 0;
+    final float HORIZONTAL_SPEED = 1.0f, GRAVITY_SPEED = 10f, AGGRESSIVE_SPEED = 2.0f;
     int tracker = 0;
-    public boolean aimPlayer = false, deadTimeSet = false;
-    int id, deadTime = 0;
+    public boolean playerInLineofSight = false;
+    int id;
     
     private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDeadRight, animDeadLeft;
 
@@ -57,9 +56,6 @@ public class Enemy extends Creature {
         animDeadLeft = new Animation(500, Assets.spider_dead_left);
     }
     
-    
-    
-    
     public void tick(Creature player) {
         
         animIdleLeft.tick();
@@ -72,10 +68,7 @@ public class Enemy extends Creature {
         attack = true;
         if (health <= 0) {
             dead = true;
-            if (!deadTimeSet) {
-                deadTime = time;
-                deadTimeSet = true;
-        }
+
 
     }
         
@@ -87,7 +80,7 @@ public class Enemy extends Creature {
         }
 
         //if player is not in line of sight, auto move back and forth
-        if (!aimPlayer) {
+        if (!playerInLineofSight) {
             if (autoRight) {
                 xMove = HORIZONTAL_SPEED;
                 tracker++;
@@ -109,8 +102,8 @@ public class Enemy extends Creature {
             } 
         }
         
-        //the enemy will walk toward player if the player is in its line of sight
-        if (aimPlayer) {
+        //the enemy will walk toward player a little bit faster if the player is in its line of sight
+        if (playerInLineofSight) {
             if (facingRight && x > player.getX()) {
                 xMove = -AGGRESSIVE_SPEED;
                 facingRight = false;
@@ -148,7 +141,7 @@ public class Enemy extends Creature {
             }
         }
     //gravity
-    yMove = JUMPSPEED;
+    yMove = GRAVITY_SPEED;
     move();
         
     }

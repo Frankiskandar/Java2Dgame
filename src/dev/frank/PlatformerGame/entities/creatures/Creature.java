@@ -58,7 +58,7 @@ public abstract class Creature extends Entity {
                 hitWall = false;
             } else { // if there is a collision
                 //reset x position of player
-                x = tx * Tile.TILEWIDTH - bounds.x - bounds.width - 1; // -1 so it doesnt lock the plaer
+                x = tx * Tile.TILEWIDTH - bounds.x - bounds.width - 1; // -1 so it doesnt lock the player
                 hitWall = true;
             }
         } else if (xMove < 0 ) { //moving left //moving lower in the x axis

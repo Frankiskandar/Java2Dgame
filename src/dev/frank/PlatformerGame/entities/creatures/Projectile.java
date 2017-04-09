@@ -19,13 +19,12 @@ public class Projectile extends Creature {
     public int projectileSpeed = 8, distance = 0;
 
     boolean remove = false, facingRight = false, first = false;
-    boolean restart = false, isNormal = false, hitEnemy = false;
-
+    boolean restart = false, hitEnemy = false;
+    
     public static final int PLAYER1 = 0, PLAYER2 = 1, ENEMY = 2;
 
-    public Projectile(Handler handler, float x, float y, int width, int heigth, boolean isNormal) {
+    public Projectile(Handler handler, float x, float y, int width, int heigth) {
         super(handler, x, y, width, heigth);
-        this.isNormal = isNormal;
     }
     
     public void render(Graphics g, int type) {

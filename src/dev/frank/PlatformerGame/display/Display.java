@@ -57,8 +57,7 @@ public class Display {
     public Canvas getCanvas() {
         return canvas;
     }
-    
-    
+      
     // to be able to access jframe outside of Display class
     public JFrame getFrame() {
         return frame;

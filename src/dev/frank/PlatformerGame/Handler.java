@@ -16,7 +16,7 @@ import dev.frank.PlatformerGame.worlds.World;
  */
 public class Handler {
     
-    //to allow us to pass 1 object (handler) and allow us access other object
+    //handler class allows us to pass 1 object (handler) and allows us access other object such as camera and key listener
     // will be useful to access world
     
     private Game game;

@@ -41,6 +41,7 @@ public class GameState extends State {
     
     public GameState(Handler handler) { 
         super(handler);
+        //load map from text file
         world = new World(handler, "res/worlds/world1.txt");
         handler.setWorld(world);
         
@@ -139,12 +140,12 @@ public class GameState extends State {
     
     public boolean CheckPlayerNearby(Creature player, Enemy e) {
         if (Math.abs(player.getX() - e.getX()) < 200 && Math.abs(player.getY() - e.getY()) < 20) {
-            e.aimPlayer = Math.abs(player.getX() - e.getX()) >= 20;
+            e.playerInLineofSight = Math.abs(player.getX() - e.getX()) >= 20;
         } else {
-            e.aimPlayer = false;
+            e.playerInLineofSight = false;
         }
 
-        return e.aimPlayer;
+        return e.playerInLineofSight;
     }
      
 }

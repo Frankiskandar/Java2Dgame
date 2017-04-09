@@ -44,10 +44,6 @@ public class Player extends Creature{
     //ANIMATIONS
     private Animation animDown, animUp, animRight, animLeft, animStand, animUpLeft;
     private Animation animDownLeft, animStandLeft;
-    //Attack timer
-    //private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown;
-       
-    //private Game game; // need to access Game object
 
     public Player(Handler handler, float x, float y) {
         super(handler, x, y,Creature.DEFAULT_CREATURE_WIDTH,Creature.DEFAULT_CREATURE_HEIGTH);
@@ -88,38 +84,25 @@ public class Player extends Creature{
         //every time we tick after move
         //we want to center it on this player
         handler.getGameCamera().centerOnEntity(this);
-        
-//        //Attack
-//        checkAttacks();
+
         
     }
     
-//    public void checkAttacks() {
-//        attackTimer += System.currentTimeMillis() - lastAttackTimer;
-//        lastAttackTimer = System.currentTimeMillis();
-//        if(attackTimer < attackCooldown)
-//            return;
-//        
-//        //else will run below code
-//
-//        attackTimer = 0;
-//    }
-    
-//    public void die() {
-//        System.out.println("You Lose");
-//    }
 
     private void getInput(ArrayList<Enemy> enemies, Player player) {
         xMove = 0;
 
         if(handler.getKeyManager().up) {
             //yMove = -speed;
-            if (!jumping && !falling) { // if he is not currently jumping and falling, see if jump
+            if (!jumping && !falling) { // if he is not currently jumping and falling
+                //player cant jump if he is current in the air or falling
+                //but if he is currently not jumping, then he can jump, therefor, set jumping boolean to true
                 Music.play("jump");
                 jumping = true;
                 falling = false;
             }         
         }
+        // if he is eligible to jump then, add speed to ymove
         if (jumping) {
             jumpTimer++;
             yMove = -JUMPSPEED;
@@ -164,7 +147,7 @@ public class Player extends Creature{
             Fireball fireball = new Fireball(handler, x, y, facingRight);
             FireballArray.add(fireball);
             fireBallShot = true;
-            firstShot = true;
+            firstShot = true; //for attack delay
             Music.play("fire");
         }
         else {
@@ -201,11 +184,6 @@ public class Player extends Creature{
         if(this.health==0) {
             dead = true;
         }
-        
-        //If the player falls to their death
-//        if(y > LEVEL1_DEAD_Y_COORDINATE) {
-//            dead = true;
-//        }
     }
     
     public void stop() {
@@ -222,15 +200,9 @@ public class Player extends Creature{
             b.render(g, Projectile.PLAYER1);
         }
         
-        // if player is dead, set the state to gameover state
-//        if (dead) {
-//            State.setState(new GameOverState(handler));
-//        }
-        
         if (handler.getKeyManager().attack) {
             if (!firstShot) {
                 firstShot = true;
-                //preTime = time;
             }
         }
 
@@ -243,7 +215,6 @@ public class Player extends Creature{
     }
     
     private BufferedImage getCurrentAnimationFrame() {
-        //if we are moving to the left
         if (xMove < 0 && !jumping && !falling) {
             return animLeft.getCurrentFrame();
         } else if (xMove > 0 && !jumping && !falling) {

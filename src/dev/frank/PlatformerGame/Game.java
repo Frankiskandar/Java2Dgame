@@ -69,9 +69,9 @@ public class Game implements Runnable { //to run runnable
     
     private void init() {
         
+        //load all necessary music files
         Music.init();
         Music.load("/sound/ammo.mp3", "ammo");
-        //Music.load("/sound/fireball.wav", "fireball");
         Music.load("/sound/fire.wav", "fire");
         Music.load("/sound/jump.wav", "jump");
         Music.load("/sound/playerhit.wav", "playerhit");
@@ -93,9 +93,10 @@ public class Game implements Runnable { //to run runnable
         
         Assets.init(); // check init in assets
         
-        handler = new Handler(this); //takes game object
+        handler = new Handler(this); 
         gameCamera = new GameCamera(handler,0,0);
         
+        //the game will show menu state when it runs
         menuState = new MenuState(handler);
         State.setState(menuState);
         Music.loop("bgm_tropics");
@@ -104,7 +105,7 @@ public class Game implements Runnable { //to run runnable
    private void tick() {// update
        keyManager.tick();
        if(State.getState() != null)
-           State.getState().tick();//RUN TICK() in game state which has tick() from player
+           State.getState().tick();//RUN TICK() in game state which has tick() from player, enemy etc
     }
     
     public void render() {//draw
