@@ -58,7 +58,7 @@ public class World {
     public Tile getTile(int x, int y) { //x location and y location of that tile
         //make user x and y are greater than 0
         //and less than height and width of the map
-        // ot player stands outside of the map, make it stand on a empty so no error
+        // if player stands outside of the map, make it stand on a empty tile so no error
         if (x < 0 || y < 0|| x>= width || y >= height )
             return Tile.emptyTile;
         
@@ -82,7 +82,6 @@ public class World {
             for (int x = 0; x < width; x++)
                 tiles[x][y] = Utils.parseInt(tokens[(x+y *width)+4]);
         }
-
     }
     // to access world height and width from outside the class
     public int getWidth() {
