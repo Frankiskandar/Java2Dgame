@@ -3,7 +3,7 @@
 Run this game on Netbeans IDE
 
 Controls:
-Move left = left arrow
-Move right = right arrow
-Jump = space
+Move left = left arrow,
+Move right = right arrow,
+Jump = space,
 Shoot = F key
