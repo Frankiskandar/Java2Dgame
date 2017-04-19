@@ -39,6 +39,8 @@ public class Assets {
     public static BufferedImage mushroomRed;
     public static BufferedImage mushroomBrown;
     public static BufferedImage cactus;
+    public static BufferedImage windowTop;
+    public static BufferedImage windowBottom;
     
     //hud
     public static BufferedImage heart;
@@ -285,6 +287,11 @@ public class Assets {
         mushroomRed = item.crop(72, 219, 70, 70);
         mushroomBrown = item.crop(72, 291, 70, 70);
         cactus = item.crop(360, 216, 70, 70);
+        
+        SpriteSheet topWindow = new SpriteSheet(ImageLoader.loadImage("/textures/windowTop.png"));
+        SpriteSheet bottomWindow = new SpriteSheet(ImageLoader.loadImage("/textures/windowBottom.png"));
+        windowTop = topWindow.crop(0, 0, 70, 70);
+        windowBottom = bottomWindow.crop(0, 0, 70, 70);
 
         
         
