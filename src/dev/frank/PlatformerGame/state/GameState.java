@@ -31,28 +31,29 @@ public class GameState extends State {
     private World world;
     private BufferedImage bg;
     private Enemy[] enemy;
-    public static final int ENEMY_NUMBER = 4;
+    public static final int ENEMY_NUMBER = 5;
     public static int LEVEL1_DEAD_Y_COORDINATE = 1300;
     public ArrayList<Enemy> enemies;
-    public static final int PLAYER_SPAWN_X = 121, PLAYER_SPAWN_Y = 831;
+    public static final int PLAYER_SPAWN_X = 136, PLAYER_SPAWN_Y = 643;
     public static final float EXIT_X_POSITION = 2367;
     public static final float EXIT_Y_POSITION = 269;
- //   private Handler handler;
     
     public GameState(Handler handler) { 
         super(handler);
         //load map from text file
-        world = new World(handler, "res/worlds/world1.txt");
+        world = new World(handler, "res/worlds/world1ext.txt");
         handler.setWorld(world);
         
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
         enemies = new ArrayList<>();
         enemy = new Enemy[ENEMY_NUMBER];
-        enemy[0] = new Enemy(handler, 683, 1155, 0);
-        enemy[1] = new Enemy(handler, 2245, 707, 1);
-        enemy[2] = new Enemy(handler, 125, 579, 2);
-        enemy[3] = new Enemy(handler, 848, 323, 3);
+        enemy[0] = new Enemy(handler, 640, 643, 0);
+        //enemy[1] = new Enemy(handler, 2245, 707, 1);
+        enemy[1] = new Enemy(handler, 2859, 451, 1);
+        enemy[2] = new Enemy(handler, 4415, 387, 2);
+        enemy[3] = new Enemy(handler, 5019, 643, 3);
+        enemy[4] = new Enemy(handler, 6075, 343, 4);
           
         for (Enemy e : enemy) {
             enemies.add(e);
@@ -106,7 +107,7 @@ public class GameState extends State {
 //        }
          //has getinpu and move() in player
         
-        //buat maju doank tembak2an
+        //move forward automatically
         //game.getGameCamera().move(1, 0); // add 1 to x and y offset every tick 
     }
 
@@ -137,7 +138,7 @@ public class GameState extends State {
         
     }
     
-    
+    // to check if player is nearby
     public boolean CheckPlayerNearby(Creature player, Enemy e) {
         if (Math.abs(player.getX() - e.getX()) < 200 && Math.abs(player.getY() - e.getY()) < 20) {
             e.playerInLineofSight = Math.abs(player.getX() - e.getX()) >= 20;

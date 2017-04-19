@@ -160,7 +160,7 @@ public class Enemy extends Creature {
             g.drawImage(animDeadRight.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null); 
         } else if (dead && !facingRight) {
             g.drawImage(animDeadLeft.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
-        } else { // if enemy is still alive draw health bar above it
+        } else if (!dead && (hitLeft || hitRight)) { // if enemy is still alive draw health bar above it
             g.setColor(Color.white);
             g.fillRect((int) (x - handler.getGameCamera().getxOffset() + 15), (int) (y - handler.getGameCamera().getyOffset() -15 ), 50, 15); //draws white health bar
             g.setColor(Color.red);

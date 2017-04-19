@@ -24,7 +24,7 @@ public class Assets {
     public static BufferedImage emptyTile, solidEmptyTile;
     
     //ground
-    public static BufferedImage grassLeft, grassMid, grassRight;
+    public static BufferedImage grassLeft, grassMid, grassRight, grassCenter;
     public static BufferedImage stoneLeft, stoneMid, stoneRight, stoneCenter;
     public static BufferedImage snowLeft, snowMid, snowRight, snowCenter;
     
@@ -261,6 +261,7 @@ public class Assets {
         grassLeft = ground.crop(504, 648, 70, 70);
         grassMid = ground.crop(504, 576, 70, 70);
         grassRight = ground.crop(504, 504, 70, 70);
+        grassCenter = ground.crop(576, 864, 70, 70);
         
         //stone
         stoneLeft = ground.crop(72, 504, 70, 70);

@@ -35,6 +35,7 @@ public class Tile {
     public static Tile grassLeft = new GrassLeft(1);
     public static Tile grassMid = new GrassMid(2);
     public static Tile grassRight = new GrassRight(3);
+    public static Tile grassCenter = new GrassCenter(9);
     
     //stone left mid right
     public static Tile stoneLeft = new StoneLeft(5);
