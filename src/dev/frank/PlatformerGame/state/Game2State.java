@@ -26,7 +26,7 @@ public class Game2State extends State {
     
     private Player player;
     private World world;
-    private BufferedImage bg;
+    private BufferedImage background;
     private Enemy[] enemy;
     public static final int ENEMY_NUMBER = 6;
     public ArrayList<Enemy> enemies;
@@ -46,8 +46,9 @@ public class Game2State extends State {
         world = new World(handler, "res/worlds/world3.txt");
         handler.setWorld(world);
         
-        bg = ImageLoader.loadImage("/textures/bg_level2.png");
+        background = ImageLoader.loadImage("/textures/bg_level2.png");
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
+        //spider enemies position
         enemies = new ArrayList<>();
         enemy = new Enemy[ENEMY_NUMBER];
         enemy[0] = new Enemy(handler, 643, 643, 0);
@@ -57,7 +58,7 @@ public class Game2State extends State {
         enemy[4] = new Enemy(handler, 7503, 579, 3);
         enemy[5] = new Enemy(handler, 9991, 643, 3);
         
-        //spinner test
+        //spinner enemies position
         spinners = new ArrayList<>();
         spinner = new Spinner[ENEMY_SPINNER_NUMBER];
         spinner[0] = new Spinner(handler, 709, 387, 0);
@@ -123,7 +124,7 @@ public class Game2State extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(bg, 0, 0, null);
+        g.drawImage(background, 0, 0, null);
         world.render(g);
         player.render(g);
         for (Enemy e : enemy) {

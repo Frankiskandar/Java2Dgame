@@ -18,8 +18,6 @@ public class GrassLeft extends Tile {
     }
 
 
-
-    
     //dont want player to walk through it
     @Override
     public boolean isSolid() {

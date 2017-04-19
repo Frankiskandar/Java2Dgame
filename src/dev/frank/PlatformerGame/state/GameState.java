@@ -29,7 +29,7 @@ public class GameState extends State {
     
     private Player player;
     private World world;
-    private BufferedImage bg;
+    private BufferedImage background;
     private Enemy[] enemy;
     public static final int ENEMY_NUMBER = 5;
     public static int LEVEL1_DEAD_Y_COORDINATE = 1300;
@@ -44,12 +44,12 @@ public class GameState extends State {
         world = new World(handler, "res/worlds/world1ext.txt");
         handler.setWorld(world);
         
-        bg = ImageLoader.loadImage("/textures/bg_level1.png");
+        background = ImageLoader.loadImage("/textures/bg_level1.png");
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
         enemies = new ArrayList<>();
         enemy = new Enemy[ENEMY_NUMBER];
         enemy[0] = new Enemy(handler, 640, 643, 0);
-        //enemy[1] = new Enemy(handler, 2245, 707, 1);
+        enemy[1] = new Enemy(handler, 2245, 707, 1);
         enemy[1] = new Enemy(handler, 2859, 451, 1);
         enemy[2] = new Enemy(handler, 4415, 387, 2);
         enemy[3] = new Enemy(handler, 5019, 643, 3);
@@ -113,11 +113,11 @@ public class GameState extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(bg, 0, 0, null);
+        g.drawImage(background, 0, 0, null);
         world.render(g);
         player.render(g);
         for (Enemy e : enemy) {
-            System.out.println("enemy's health: "+ e.health);
+            //System.out.println("enemy's health: "+ e.health);
             e.render(g);
         }
  
