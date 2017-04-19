@@ -26,6 +26,10 @@ public class Tile {
     public static Tile rightSign = new signRight(11);
     public static Tile exitSign = new ExitSign(99);
     public static Tile bush = new Bush(21);
+    public static Tile mushroomRed = new MushroomRed(22);
+    public static Tile mushroomBrown = new MushroomBrown(23);
+    public static Tile cactus = new Cactus(24);
+    
     
     //emptyTile
     public static Tile emptyTile = new EmptyTile(0);
