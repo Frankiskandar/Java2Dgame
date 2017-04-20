@@ -27,16 +27,21 @@ import java.util.logging.Logger;
  *
  * @author Frank
  */
-public class Game implements Runnable { //to run runnable
+//main class of the game
+//it will start everything, hold all base code of the game
+public class Game implements Runnable { //to run on a thread
     
     private Display display;
-    private int width, height;  
+    private int width, height;// to access width and height easily
     public String title;
     
     private boolean running = false;
     private Thread thread;
     
-    private BufferStrategy bs;//way for comp to draw things
+    //way for computer to draw things to the screen, to prevent flickering in our game
+    private BufferStrategy bs;
+    
+    //allows us to draw graphic to the screen
     private Graphics g; // like a paintbrush
     
     //States
@@ -71,7 +76,6 @@ public class Game implements Runnable { //to run runnable
         
         //load all necessary music files
         Music.init();
-        Music.load("/sound/ammo.mp3", "ammo");
         Music.load("/sound/fire.wav", "fire");
         Music.load("/sound/jump.wav", "jump");
         Music.load("/sound/playerhit.wav", "playerhit");
@@ -123,7 +127,7 @@ public class Game implements Runnable { //to run runnable
            State.getState().render(g);
         // end drawing
         bs.show();
-        g.dispose();
+        g.dispose();//make sure graphics objects get done properly
     }
     
     public void run() {
@@ -138,6 +142,7 @@ public class Game implements Runnable { //to run runnable
         int ticks = 0;
         
         while(running) {
+            //while running is true, we want to keep ticking and rendering all over again
             now = System.nanoTime();
             
             // time elapsed / max time allowed
@@ -186,10 +191,11 @@ public class Game implements Runnable { //to run runnable
     public int getHeight() {
         return height;
     }
-    
+    //will be called in main method game.start()
     public synchronized void start() {
+        //check if the code is already running
         if(running)
-            return;// ifthe game is already running
+            return;// ifthe game is already running, dont do any of the code below
         running = true;
         thread = new Thread(this);
         thread.start(); // will run run() method above
@@ -197,8 +203,8 @@ public class Game implements Runnable { //to run runnable
     
     //to close it properly
     public synchronized void stop() {
-        if(!running)// if its still running
-            return; //for safety
+        if(!running)// if the game is already stop, we dont want to stop it again
+            return; //for safety, dont do any of the code below
         running = false;
         try {
             thread.join();
