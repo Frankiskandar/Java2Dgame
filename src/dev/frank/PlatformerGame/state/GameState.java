@@ -97,6 +97,7 @@ public class GameState extends State {
                 Music.loop("bgm_tropics");  
             }
         
+        
         if(player.getY() > LEVEL2_DEAD_Y_COORDINATE) {
             player.dead = true;                     
         }
@@ -141,7 +142,7 @@ public class GameState extends State {
         if (show_instruction < 240){
             g.setFont(new Font("Helvetica", Font.BOLD, 30));
             g.setColor(Color.BLACK);
-            g.drawString("Move With Arrow Keys and F To Shoot", 200, 190);
+            g.drawString("Move With Arrow Keys and F to Shoot", 200, 190);
             show_instruction++;
         }  
         

@@ -15,6 +15,7 @@ import dev.frank.PlatformerGame.state.FinishState;
 import dev.frank.PlatformerGame.state.Game2State;
 import dev.frank.PlatformerGame.state.GameOverState;
 import dev.frank.PlatformerGame.state.GameState;
+import dev.frank.PlatformerGame.state.MenuState;
 import dev.frank.PlatformerGame.state.State;
 import dev.frank.PlatformerGame.tiles.Tile;
 import java.awt.Color;
@@ -160,6 +161,13 @@ public class Player extends Creature{
 //                    for (Enemy e : enemies) {
 //            e.hitByPlayer = false;
 //        }
+        }
+        
+        if (handler.getKeyManager().restart) {
+                State.setState(new MenuState(handler));
+                Music.stop("bgm_level1");
+                Music.stop("bgm_castle");
+                Music.loop("bgm_tropics");  
         }
         
         // to check if an enemy is hit/not
