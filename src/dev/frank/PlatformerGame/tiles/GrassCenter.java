@@ -12,16 +12,16 @@ import java.awt.image.BufferedImage;
  *
  * @author Frank
  */
-public class BrownBox extends Tile {
+public class GrassCenter extends Tile {
 
-    public BrownBox(int id) {
-        super(Assets.brownBox, id);
+    public GrassCenter(int id) {
+        super(Assets.grassCenter, id);
     }
-    
+
     //dont want player to walk through it
     @Override
     public boolean isSolid() {
         return true;
-    
     }
+    
 }

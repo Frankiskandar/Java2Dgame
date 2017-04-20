@@ -24,7 +24,7 @@ public class Assets {
     public static BufferedImage emptyTile, solidEmptyTile;
     
     //ground
-    public static BufferedImage grassLeft, grassMid, grassRight;
+    public static BufferedImage grassLeft, grassMid, grassRight, grassCenter;
     public static BufferedImage stoneLeft, stoneMid, stoneRight, stoneCenter;
     public static BufferedImage snowLeft, snowMid, snowRight, snowCenter;
     
@@ -36,11 +36,16 @@ public class Assets {
     
     //decoration
     public static BufferedImage bush;
+    public static BufferedImage mushroomRed;
+    public static BufferedImage mushroomBrown;
+    public static BufferedImage cactus;
+    public static BufferedImage windowTop;
+    public static BufferedImage windowBottom;
     
     //hud
     public static BufferedImage heart;
     
-    //walking animation down of player
+    //walking animation of player
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand, alien_stand_left;
     public static BufferedImage[] alien_jump_left;
@@ -190,19 +195,6 @@ public class Assets {
         alien_left[9] = alien_green_left10.crop(0,0 , 72, 97);
 
         
-//        alien_left[0] = alien_green_left.crop(440,0 , 65, 90);
-//        alien_left[1] = alien_green_left.crop(365, 0, 67, 90);
-//        alien_left[2] = alien_green_left.crop(290, 0, 72, 88);
-//        alien_left[3] = alien_green_left.crop(436, 108, 72, 88);
-//        alien_left[4] = alien_green_left.crop(363, 108, 75, 88);
-//        alien_left[5] = alien_green_left.crop(289, 108, 76, 93);
-//        alien_left[6] = alien_green_left.crop(219,0 , 72, 90);
-//        alien_left[7] = alien_green_left.crop(146, 0, 72, 90);
-//        alien_left[8] = alien_green.crop(219,98 , 72, 97);
-//        alien_left[9] = alien_green.crop(365,0 , 72, 97);
-//        alien_left[10] = alien_green.crop(292,98 , 72, 97);
-        //end alien green
-        
         
         //spider enemy
         SpriteSheet enemies = new SpriteSheet(ImageLoader.loadImage("/textures/enemy/enemies.png"));
@@ -261,6 +253,7 @@ public class Assets {
         grassLeft = ground.crop(504, 648, 70, 70);
         grassMid = ground.crop(504, 576, 70, 70);
         grassRight = ground.crop(504, 504, 70, 70);
+        grassCenter = ground.crop(576, 864, 70, 70);
         
         //stone
         stoneLeft = ground.crop(72, 504, 70, 70);
@@ -291,6 +284,16 @@ public class Assets {
         
         //decoration
         bush = item.crop(346, 144, 70, 70);
+        mushroomRed = item.crop(72, 219, 70, 70);
+        mushroomBrown = item.crop(72, 291, 70, 70);
+        cactus = item.crop(360, 216, 70, 70);
+        
+        SpriteSheet topWindow = new SpriteSheet(ImageLoader.loadImage("/textures/windowTop.png"));
+        SpriteSheet bottomWindow = new SpriteSheet(ImageLoader.loadImage("/textures/windowBottom.png"));
+        windowTop = topWindow.crop(0, 0, 70, 70);
+        windowBottom = bottomWindow.crop(0, 0, 70, 70);
+
+        
         
         //projectile
         fireball = item.crop(0, 435, 70, 70);

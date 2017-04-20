@@ -5,6 +5,15 @@
  */
 package dev.frank.PlatformerGame.tiles;
 
+import dev.frank.PlatformerGame.tiles.decorations.BrownBox;
+import dev.frank.PlatformerGame.tiles.decorations.Cactus;
+import dev.frank.PlatformerGame.tiles.decorations.MushroomBrown;
+import dev.frank.PlatformerGame.tiles.decorations.signRight;
+import dev.frank.PlatformerGame.tiles.decorations.ExitSign;
+import dev.frank.PlatformerGame.tiles.decorations.Bush;
+import dev.frank.PlatformerGame.tiles.decorations.MushroomRed;
+import dev.frank.PlatformerGame.tiles.decorations.WindowBottom;
+import dev.frank.PlatformerGame.tiles.decorations.WindowTop;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -26,7 +35,14 @@ public class Tile {
     public static Tile rightSign = new signRight(11);
     public static Tile exitSign = new ExitSign(99);
     public static Tile bush = new Bush(21);
-    
+    public static Tile mushroomRed = new MushroomRed(22);
+    public static Tile mushroomBrown = new MushroomBrown(23);
+    public static Tile cactus = new Cactus(24);
+    public static Tile windowTop = new WindowTop(25);
+    public static Tile windowBottom = new WindowBottom(26);
+    public static Tile brownBox = new BrownBox(20);
+
+      
     //emptyTile
     public static Tile emptyTile = new EmptyTile(0);
     public static Tile solidEmptyTile = new SolidEmptyTile(4);
@@ -35,6 +51,7 @@ public class Tile {
     public static Tile grassLeft = new GrassLeft(1);
     public static Tile grassMid = new GrassMid(2);
     public static Tile grassRight = new GrassRight(3);
+    public static Tile grassCenter = new GrassCenter(9);
     
     //stone left mid right
     public static Tile stoneLeft = new StoneLeft(5);
@@ -53,9 +70,7 @@ public class Tile {
     public static Tile water = new Water(16);
     public static Tile lava = new Lava(17);
     
-    //box
-    public static Tile brownBox = new BrownBox(20);
-
+    
     //CLASS
     public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
     

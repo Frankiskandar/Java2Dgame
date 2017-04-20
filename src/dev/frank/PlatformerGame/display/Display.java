@@ -18,7 +18,7 @@ public class Display {
     //to get windows display to screen
     private JFrame frame;
     // to get images into jframe
-    private Canvas canvas;// draw images into canvas
+    private Canvas canvas;// draw images to the canvas and put it on jframe
     private String title;
     private int width, height;
     
@@ -39,11 +39,12 @@ public class Display {
         // limit ability for user to resize the window
         frame.setResizable(false);
         frame.setLocationRelativeTo(null); //it will appear at the center 
-        frame.setVisible(true);
+        frame.setVisible(true); //jframe by default isnt visible
         
         //set canvas size
         canvas = new Canvas();
         canvas.setPreferredSize(new Dimension(width, height));
+        //make sure it stays at our width and height
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false); //must

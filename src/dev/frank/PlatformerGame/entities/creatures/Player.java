@@ -15,6 +15,7 @@ import dev.frank.PlatformerGame.state.FinishState;
 import dev.frank.PlatformerGame.state.Game2State;
 import dev.frank.PlatformerGame.state.GameOverState;
 import dev.frank.PlatformerGame.state.GameState;
+import dev.frank.PlatformerGame.state.MenuState;
 import dev.frank.PlatformerGame.state.State;
 import dev.frank.PlatformerGame.tiles.Tile;
 import java.awt.Color;
@@ -157,21 +158,37 @@ public class Player extends Creature{
         if (!handler.getKeyManager().attack) {
             firstShot = false;
             shootAnimation = false;
-            
+//                    for (Enemy e : enemies) {
+//            e.hitByPlayer = false;
+//        }
+        }
+        
+        if (handler.getKeyManager().restart) {
+                State.setState(new MenuState(handler));
+                Music.stop("bgm_level1");
+                Music.stop("bgm_castle");
+                Music.loop("bgm_tropics");  
         }
         
         // to check if an enemy is hit/not
         for(Fireball b : FireballArray) {
             b.tick(); // update the fireball position
-            for (Enemy e : enemies) { //check for every enemy
+            for (Enemy e : enemies) { //check for every enemy, if they are hit by fireballs
+                
                 if (Math.abs(b.getX() - e.getX()) < 45 && b.getY() > e.getY() - 60 && b.getY() < e.getY() + 60) {
                     if (!b.hitEnemy) {
                         b.hitEnemy = true;
+                        e.hitByPlayer = true;
                         e.health -= FIREBALL_DAMAGE;
-                    }
-                }           
+                    } //else e.hitByPlayer = false;
+                } 
             }
         }
+        
+//        for (Enemy e : enemies) {
+//            e.hitByPlayer = false;
+//        }
+        
    
         //if the fireball's distance is greater than 300 dont draw it, remove it from the game
         //dont update if it hits the wall

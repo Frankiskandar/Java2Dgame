@@ -25,7 +25,7 @@ public class Enemy extends Creature {
     public static final int ENEMY_WIDTH = 50;
     public static final int ENEMY_HEIGHT = 50;
     
-    public boolean dead = false, first = false, restart = false;
+    public boolean dead = false, first = false;
     boolean facingRight = false, attack = false, hitRight = false, hitByPlayer = false;
     boolean hitLeft = false;
     boolean autoRight = true;
@@ -33,8 +33,10 @@ public class Enemy extends Creature {
     int preTime;
     final float HORIZONTAL_SPEED = 1.0f, GRAVITY_SPEED = 10f, AGGRESSIVE_SPEED = 2.0f;
     int tracker = 0;
+    int health_tracker = 0;
     public boolean playerInLineofSight = false;
     int id;
+    
     
     private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDeadRight, animDeadLeft;
 
@@ -68,9 +70,7 @@ public class Enemy extends Creature {
         attack = true;
         if (health <= 0) {
             dead = true;
-
-
-    }
+        }
         
         //System.out.println(dead);
         //if the enemy is dead, it cant attack
@@ -141,7 +141,7 @@ public class Enemy extends Creature {
             }
         }
     //gravity
-    yMove = GRAVITY_SPEED;
+    yMove = GRAVITY_SPEED;   
     move();
         
     }
@@ -160,18 +160,26 @@ public class Enemy extends Creature {
             g.drawImage(animDeadRight.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null); 
         } else if (dead && !facingRight) {
             g.drawImage(animDeadLeft.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
-        } else { // if enemy is still alive draw health bar above it
+        } else if (!dead && hitByPlayer) { // if enemy is still alive and got hit, draw healthbar above it
             g.setColor(Color.white);
             g.fillRect((int) (x - handler.getGameCamera().getxOffset() + 15), (int) (y - handler.getGameCamera().getyOffset() -15 ), 50, 15); //draws white health bar
             g.setColor(Color.red);
             g.fillRect((int) (x - handler.getGameCamera().getxOffset() + 15), (int) (y - handler.getGameCamera().getyOffset() - 15), health / 2, 15); //draws red health bar
             g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
-        }        
+            health_tracker++; // draw the health bar for 50 frame then erase it
+                if(health_tracker == 50) {
+                   hitByPlayer = false;
+                   health_tracker = 0;          
+                }
+        } else {
+            g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
+        }
     }
     
     
     private BufferedImage getCurrentAnimationFrame() {
         //animation
+        //hitByPlayer = false;
         if (xMove < 0) {
             return animWalkLeft.getCurrentFrame();
         } else if (xMove > 0) {
