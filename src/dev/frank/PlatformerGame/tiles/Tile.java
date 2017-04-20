@@ -40,6 +40,8 @@ public class Tile {
     public static Tile cactus = new Cactus(24);
     public static Tile windowTop = new WindowTop(25);
     public static Tile windowBottom = new WindowBottom(26);
+    public static Tile brownBox = new BrownBox(20);
+
       
     //emptyTile
     public static Tile emptyTile = new EmptyTile(0);
@@ -68,9 +70,7 @@ public class Tile {
     public static Tile water = new Water(16);
     public static Tile lava = new Lava(17);
     
-    //box
-    public static Tile brownBox = new BrownBox(20);
-
+    
     //CLASS
     public static final int TILEWIDTH = 64, TILEHEIGHT = 64;
     

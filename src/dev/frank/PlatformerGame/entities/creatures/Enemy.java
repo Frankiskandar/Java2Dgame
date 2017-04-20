@@ -37,6 +37,7 @@ public class Enemy extends Creature {
     public boolean playerInLineofSight = false;
     int id;
     
+    
     private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDeadRight, animDeadLeft;
 
     public Enemy(Handler handler, float x, float y, int id) {
