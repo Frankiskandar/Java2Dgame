@@ -70,7 +70,7 @@ public class MenuState extends State {
         //test if both right and left click pressed, set the state to game state
         if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
             State.setState(handler.getGame().gameState);
-        System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
+        //System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
         //System.out.println("State we are in: "+State.getState());
         
     }

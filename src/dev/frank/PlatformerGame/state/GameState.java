@@ -125,8 +125,8 @@ public class GameState extends State {
             e.render(g);
         }
  
-        System.out.println(player.getX()+ " " + player.getY());
-        System.out.println("player's health= "+player.health);
+        //System.out.println(player.getX()+ " " + player.getY());
+        //System.out.println("player's health= "+player.health);
         
         // draw heart (player's health) on the top left corner
         for (int i = 0; i < player.health; i++) {
@@ -139,7 +139,7 @@ public class GameState extends State {
             Music.loop("bgm_tropics");
             State.setState(new GameOverState(handler));
         }
-        if (show_instruction < 240){
+        if (show_instruction < 400){
             g.setFont(new Font("Helvetica", Font.BOLD, 30));
             g.setColor(Color.BLACK);
             g.drawString("Move With Arrow Keys and F to Shoot", 200, 190);

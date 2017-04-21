@@ -159,7 +159,7 @@ public class Game implements Runnable { //to run on a thread
             }
             //to check 60 fps
             if(timer>= 1000000000) {
-                System.out.println("Ticks and Frames: "+ ticks);
+                //System.out.println("Ticks and Frames: "+ ticks);
                 ticks = 0;
                 timer = 0;                
             }

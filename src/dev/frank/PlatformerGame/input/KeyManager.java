@@ -40,7 +40,7 @@ public class KeyManager implements KeyListener {
     @Override
     public void keyPressed(KeyEvent ke) {
         keys[ke.getKeyCode()] = true;
-        System.out.println("Pressed!");
+        //System.out.println("Pressed!");
         
     }
 

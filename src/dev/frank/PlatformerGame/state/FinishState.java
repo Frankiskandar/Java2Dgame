@@ -52,7 +52,7 @@ public class FinishState extends State {
     public void tick() {
         uiManager.tick();
         
-        System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
+        //System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
         
     }
 
