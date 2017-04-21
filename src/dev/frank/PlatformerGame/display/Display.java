@@ -15,6 +15,7 @@ import javax.swing.JFrame;
  */
 public class Display {
     
+    
     //to get windows display to screen
     private JFrame frame;
     // to get images into jframe

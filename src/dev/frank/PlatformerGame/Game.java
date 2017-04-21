@@ -123,7 +123,7 @@ public class Game implements Runnable { //to run on a thread
         //Clear Screen
         g.clearRect(0, 0, width, height);
         //Draw here
-        if(State.getState() != null) // if the current state is null
+        if(State.getState() != null) // if the current state is not null, draw
            State.getState().render(g);
         // end drawing
         bs.show();
@@ -151,7 +151,7 @@ public class Game implements Runnable { //to run on a thread
             timer += now - lastTime; // amount of time that has passed since above code
             lastTime = now;
             
-            if(delta >= 1){
+            if(delta >= 1){ // gameloop runs tick and render everytime
                 tick();
                 render();
                 ticks++;
