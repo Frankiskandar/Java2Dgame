@@ -136,7 +136,7 @@ public class Game2State extends State {
             s.render(g);
         }
         
-        System.out.println(player.getX()+ " " + player.getY());
+        //System.out.println(player.getX()+ " " + player.getY());
         //System.out.println("player's health= "+player.health);
         //g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);
         // draw heart

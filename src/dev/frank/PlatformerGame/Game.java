@@ -39,13 +39,12 @@ public class Game implements Runnable { //to run on a thread
     private Thread thread;
     
     //way for computer to draw things to the screen, to prevent flickering in our game
-    private BufferStrategy bs;
+    private BufferStrategy bufferStrategy;
     
     //allows us to draw graphic to the screen
     private Graphics g; // like a paintbrush
     
-    //States
-    public State gameState;
+    //we start with menustate
     public State menuState;
     
     //Input
@@ -57,11 +56,6 @@ public class Game implements Runnable { //to run on a thread
     
     //Handler
     private Handler handler;
-//    private BufferedImage test;
-//    private SpriteSheet sheet;
-    
-//    private BufferedImage testImage;
-//    private BufferedImage testImage2;
     
     public Game(String title, int width, int height) {
         this.width = width;
@@ -84,8 +78,7 @@ public class Game implements Runnable { //to run on a thread
         Music.load("/sound/bgm_level1.mp3", "bgm_level1");
         Music.load("/sound/click1.wav", "click");
         Music.load("/sound/rollover2.wav", "rollover");
-        
-        
+                
         display = new Display(title, width, height);
         // adding keylistener to jframe, our keymanager extends key listener
         display.getFrame().addKeyListener(keyManager);
@@ -95,38 +88,38 @@ public class Game implements Runnable { //to run on a thread
         display.getCanvas().addMouseListener(mouseManager);
         display.getCanvas().addMouseMotionListener(mouseManager);
         
-        Assets.init(); // check init in assets
+        Assets.init(); // call init in assets
         
         handler = new Handler(this); 
         gameCamera = new GameCamera(handler,0,0);
         
-        //the game will show menu state when it runs
+        //the game will show menu state when it runs the first time
         menuState = new MenuState(handler);
         State.setState(menuState);
         Music.loop("bgm_tropics");
     }
        
-   private void tick() {// update
+   private void tick() {// update variables, positions etc
        keyManager.tick();
        if(State.getState() != null)
            State.getState().tick();//RUN TICK() in game state which has tick() from player, enemy etc
     }
     
-    public void render() {//draw
-        bs = display.getCanvas().getBufferStrategy();
-        if(bs == null){// if the canvas does not have bufferstrategy
+    public void render() {//draw things on the screen
+        bufferStrategy = display.getCanvas().getBufferStrategy();
+        if(bufferStrategy == null){// if the canvas does not have bufferstrategy
             //we create one
             display.getCanvas().createBufferStrategy(3);
             return;        
         }
-        g = bs.getDrawGraphics();
+        g = bufferStrategy.getDrawGraphics();
         //Clear Screen
         g.clearRect(0, 0, width, height);
         //Draw here
         if(State.getState() != null) // if the current state is not null, draw
            State.getState().render(g);
         // end drawing
-        bs.show();
+        bufferStrategy.show();
         g.dispose();//make sure graphics objects get done properly
     }
     
