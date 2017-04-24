@@ -7,10 +7,10 @@ package dev.frank.PlatformerGame.state;
 
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Creature;
-import dev.frank.PlatformerGame.entities.creatures.Enemy;
+import dev.frank.PlatformerGame.entities.creatures.Spider;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import dev.frank.PlatformerGame.entities.creatures.Spinner;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.worlds.World;
@@ -22,25 +22,25 @@ import java.util.ArrayList;
  *
  * @author Frank
  */
-public class Game2State extends State {
+public class LevelTwo extends State {
     
     private Player player;
     private World world;
     private BufferedImage background;
-    private Enemy[] enemy;
+    private Spider[] spider;
     public static final int ENEMY_NUMBER = 6;
-    public ArrayList<Enemy> enemies;
+    public ArrayList<Spider> spider_array;
     
     public static final int ENEMY_SPINNER_NUMBER = 9;
     private Spinner[] spinner;
-    public ArrayList<Spinner> spinners;
+    public ArrayList<Spinner> spinner_array;
     public static int LEVEL2_DEAD_Y_COORDINATE = 1300;
        
     public static final int PLAYER_SPAWN_X = 100, PLAYER_SPAWN_Y = 579;
     public static final float EXIT_X_POSITION = 10111;
     public static final float EXIT_Y_POSITION = 643;
 
-    public Game2State(Handler handler) {
+    public LevelTwo(Handler handler) {
         super(handler);
         //load map from text file
         world = new World(handler, "res/worlds/world3.txt");
@@ -49,17 +49,17 @@ public class Game2State extends State {
         background = ImageLoader.loadImage("/textures/bg_level2.png");
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
         //spider enemies position
-        enemies = new ArrayList<>();
-        enemy = new Enemy[ENEMY_NUMBER];
-        enemy[0] = new Enemy(handler, 643, 643, 0);
-        enemy[1] = new Enemy(handler, 2668, 451, 1);
-        enemy[2] = new Enemy(handler, 4859, 643, 2);
-        enemy[3] = new Enemy(handler, 5915, 451, 3);
-        enemy[4] = new Enemy(handler, 7503, 579, 3);
-        enemy[5] = new Enemy(handler, 9991, 643, 3);
+        spider_array = new ArrayList<>();
+        spider = new Spider[ENEMY_NUMBER];
+        spider[0] = new Spider(handler, 643, 643, 0);
+        spider[1] = new Spider(handler, 2668, 451, 1);
+        spider[2] = new Spider(handler, 4859, 643, 2);
+        spider[3] = new Spider(handler, 5915, 451, 3);
+        spider[4] = new Spider(handler, 7503, 579, 3);
+        spider[5] = new Spider(handler, 9991, 643, 3);
         
         //spinner enemies position
-        spinners = new ArrayList<>();
+        spinner_array = new ArrayList<>();
         spinner = new Spinner[ENEMY_SPINNER_NUMBER];
         spinner[0] = new Spinner(handler, 709, 387, 0);
         spinner[1] = new Spinner(handler, 2551, 451, 0);
@@ -74,11 +74,11 @@ public class Game2State extends State {
         Music.loop("bgm_castle");
         
         for (Spinner s : spinner) {
-            spinners.add(s);
+            spinner_array.add(s);
         }
            
-        for (Enemy e : enemy) {
-            enemies.add(e);
+        for (Spider e : spider) {
+            spider_array.add(e);
         }
     }
 
@@ -87,15 +87,15 @@ public class Game2State extends State {
         world.tick();
         boolean aimPlayer = false;
         
-        for (Enemy e : enemy) {
+        for (Spider e : spider) {
             if (CheckPlayerNearby(player, e)) {
                 aimPlayer = true;
             }
         }
         
-        player.tick(enemies, null);
+        player.tick(spider_array, null);
         
-        for (Enemy e : enemy) {
+        for (Spider e : spider) {
             if(aimPlayer) {
                 e.tick(player);
             }
@@ -127,7 +127,7 @@ public class Game2State extends State {
         g.drawImage(background, 0, 0, null);
         world.render(g);
         player.render(g);
-        for (Enemy e : enemy) {
+        for (Spider e : spider) {
             //System.out.println("enemy's health: "+ e.health);
             e.render(g);
         }
@@ -141,7 +141,7 @@ public class Game2State extends State {
         //g.drawImage(Assets.exitSign, (int) (EXIT_X_POSITION - handler.getGameCamera().getxOffset()), (int) (EXIT_Y_POSITION - handler.getGameCamera().getyOffset()), 100, 100, null);
         // draw heart
         for (int i = 0; i < player.health; i++) {
-            g.drawImage(Assets.heart, 60 * (i + 1) - 55, 25, 50, 50, null);
+            g.drawImage(Resources.heart, 60 * (i + 1) - 55, 25, 50, 50, null);
         }
         
         //if player is dead change the state to gameover state
@@ -154,7 +154,7 @@ public class Game2State extends State {
     }
     
     //check if player is nearby
-    public boolean CheckPlayerNearby(Creature player, Enemy e) {
+    public boolean CheckPlayerNearby(Creature player, Spider e) {
         if (Math.abs(player.getX() - e.getX()) < 200 && Math.abs(player.getY() - e.getY()) < 20) {
             e.playerInLineofSight = Math.abs(player.getX() - e.getX()) >= 20;
         } else {

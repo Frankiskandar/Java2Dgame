@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.tiles;
 
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import java.awt.image.BufferedImage;
 
 /**
@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class SnowCenter extends Tile {
 
     public SnowCenter(int id) {
-        super(Assets.snowCenter, id);
+        super(Resources.snowCenter, id);
     }
     
     @Override

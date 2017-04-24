@@ -5,21 +5,16 @@
  */
 package dev.frank.PlatformerGame;
 
-import dev.frank.PlatformerGame.display.Display;
-import dev.frank.PlatformerGame.gfx.Assets;
-import dev.frank.PlatformerGame.gfx.GameCamera;
-import dev.frank.PlatformerGame.gfx.ImageLoader;
-import dev.frank.PlatformerGame.gfx.SpriteSheet;
-import dev.frank.PlatformerGame.input.KeyManager;
-import dev.frank.PlatformerGame.input.MouseManager;
+import dev.frank.PlatformerGame.screen.Screen;
+import dev.frank.PlatformerGame.gfx.Resources;
+import dev.frank.PlatformerGame.gfx.Camera;
+import dev.frank.PlatformerGame.input.KeyboardInputManager;
+import dev.frank.PlatformerGame.input.MouseInputManager;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.state.GameState;
 import dev.frank.PlatformerGame.state.MenuState;
 import dev.frank.PlatformerGame.state.State;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,39 +26,33 @@ import java.util.logging.Logger;
 //it will start everything, hold all base code of the game
 public class Game implements Runnable { //to run on a thread
     
-    private Display display;
+    private Screen screen;
     private int width, height;// to access width and height easily
-    public String title;
     
-    private boolean running = false;
+    private boolean game_is_running = false;
     private Thread thread;
     
     //way for computer to draw things to the screen, to prevent flickering in our game
     private BufferStrategy bufferStrategy;
     
     //allows us to draw graphic to the screen
-    private Graphics g; // like a paintbrush
-    
-    //we start with menustate
-    public State menuState;
+    private Graphics graphics; // like a paintbrush
     
     //Input
-    private KeyManager keyManager;
-    private MouseManager mouseManager;
+    private KeyboardInputManager keyManager;
+    private MouseInputManager mouseManager;
     
     //Camera
-    private GameCamera gameCamera;
+    private Camera gameCamera;
     
     //Handler
     private Handler handler;
     
-    public Game(String title, int width, int height) {
+    public Game(int width, int height) {
         this.width = width;
         this.height = height;
-        this.title = title;
-        keyManager = new KeyManager();
-        mouseManager = new MouseManager();
-
+        keyManager = new KeyboardInputManager();
+        mouseManager = new MouseInputManager();
     }
     
     private void init() {
@@ -79,81 +68,73 @@ public class Game implements Runnable { //to run on a thread
         Music.load("/sound/click1.wav", "click");
         Music.load("/sound/rollover2.wav", "rollover");
                 
-        display = new Display(title, width, height);
+        screen = new Screen(width, height);
         // adding keylistener to jframe, our keymanager extends key listener
-        display.getFrame().addKeyListener(keyManager);
-        display.getFrame().addMouseListener(mouseManager);
-        display.getFrame().addMouseMotionListener(mouseManager);
+        screen.getFrame().addKeyListener(keyManager);
+        screen.getFrame().addMouseListener(mouseManager);
+        screen.getFrame().addMouseMotionListener(mouseManager);
         // to both jframe and canvas (whoever active)
-        display.getCanvas().addMouseListener(mouseManager);
-        display.getCanvas().addMouseMotionListener(mouseManager);
+        screen.getCanvas().addMouseListener(mouseManager);
+        screen.getCanvas().addMouseMotionListener(mouseManager);
         
-        Assets.init(); // call init in assets
+        Resources.init(); // call init in resources class
         
         handler = new Handler(this); 
-        gameCamera = new GameCamera(handler,0,0);
+        gameCamera = new Camera(handler,0,0);
         
         //the game will show menu state when it runs the first time
-        menuState = new MenuState(handler);
-        State.setState(menuState);
+        State.setState(new MenuState(handler));
         Music.loop("bgm_tropics");
     }
        
-   private void tick() {// update variables, positions etc
+   private void update() {// update variables, positions etc
        keyManager.tick();
        if(State.getState() != null)
            State.getState().tick();//RUN TICK() in game state which has tick() from player, enemy etc
     }
     
     public void render() {//draw things on the screen
-        bufferStrategy = display.getCanvas().getBufferStrategy();
+        bufferStrategy = screen.getCanvas().getBufferStrategy();
         if(bufferStrategy == null){// if the canvas does not have bufferstrategy
             //we create one
-            display.getCanvas().createBufferStrategy(3);
-            return;        
+            screen.getCanvas().createBufferStrategy(3);
+            return;
         }
-        g = bufferStrategy.getDrawGraphics();
-        //Clear Screen
-        g.clearRect(0, 0, width, height);
-        //Draw here
+        graphics = bufferStrategy.getDrawGraphics();
+        //Draw state
         if(State.getState() != null) // if the current state is not null, draw
-           State.getState().render(g);
-        // end drawing
+           State.getState().render(graphics);
+        // end draw state
         bufferStrategy.show();
-        g.dispose();//make sure graphics objects get done properly
+        graphics.dispose();//make sure graphics objects get done properly
     }
     
     public void run() {
         init(); //run method will call init method
         
-        int fps = 60;
-        double timePerTick = 1000000000/fps; //1 bil ns per sec / fps
-        double delta = 0;
-        long now;
+        int framePerSecond = 60; // we want the game loop calls tick 60 times per sec
+        double timePerTick = 1000000000/framePerSecond; //1 bil ns per sec / fps
+        double timeLeft = 0; //how much time we have until we call tick and render
+        long currentTime;
         long lastTime = System.nanoTime(); //current time of our comp in nano
         long timer = 0;
-        int ticks = 0;
         
-        while(running) {
+        while(game_is_running) {
             //while running is true, we want to keep ticking and rendering all over again
-            now = System.nanoTime();
+            currentTime = System.nanoTime();
             
             // time elapsed / max time allowed
-            // delta = how much time we have until we call tick and render
-            delta += (now - lastTime) / timePerTick;
-            timer += now - lastTime; // amount of time that has passed since above code
-            lastTime = now;
+            timeLeft += (currentTime - lastTime) / timePerTick;
+            timer += currentTime - lastTime; // amount of time that has passed since above code
+            lastTime = currentTime;
             
-            if(delta >= 1){ // gameloop runs tick and render everytime
-                tick();
+            if(timeLeft >= 1){ // gameloop runs tick and render everytime
+                update();
                 render();
-                ticks++;
-                delta--;
+                timeLeft--;
             }
             //to check 60 fps
             if(timer>= 1000000000) {
-                //System.out.println("Ticks and Frames: "+ ticks);
-                ticks = 0;
                 timer = 0;                
             }
         }//end while
@@ -162,20 +143,19 @@ public class Game implements Runnable { //to run on a thread
     }
     // player class needs access keymanager object
     // so other classes can access it too
-    public KeyManager getKeyManager() {
+    public KeyboardInputManager getKeyManager() {
         return keyManager;
     }
     
     //need mouse manager from another class
-    public MouseManager getMouseManager() {
+    public MouseInputManager getMouseManager() {
         return mouseManager;
     }
     
-    public GameCamera getGameCamera() {
+    public Camera getGameCamera() {
         return gameCamera;
     }
-    
-    
+     
     //get height and width of our window
     public int getWidth() {
         return width;
@@ -187,18 +167,18 @@ public class Game implements Runnable { //to run on a thread
     //will be called in main method game.start()
     public synchronized void start() {
         //check if the code is already running
-        if(running)
+        if(game_is_running)
             return;// ifthe game is already running, dont do any of the code below
-        running = true;
+        game_is_running = true;
         thread = new Thread(this);
         thread.start(); // will run run() method above
     }
     
     //to close it properly
     public synchronized void stop() {
-        if(!running)// if the game is already stop, we dont want to stop it again
+        if(!game_is_running)// if the game is already stop, we dont want to stop it again
             return; //for safety, dont do any of the code below
-        running = false;
+        game_is_running = false;
         try {
             thread.join();
         } catch (InterruptedException ex) {

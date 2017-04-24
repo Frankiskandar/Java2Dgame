@@ -7,42 +7,40 @@ package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.gfx.Animation;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.state.State;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 /**
  *
  * @author Frank
  */
 //THIS IS SPIDER ENEMY CLASS
-public class Enemy extends Creature {
+public class Spider extends Creature {
     
     public static final int ENEMY_WIDTH = 50;
     public static final int ENEMY_HEIGHT = 50;
-    
-    public boolean dead = false, first = false;
-    boolean facingRight = false, attack = false, hitRight = false, hitByPlayer = false;
+    public boolean dead = false;
+    boolean facingRight = false; 
+    boolean attack = false;
+    boolean hitRight = false;
+    boolean hitByPlayer = false;
     boolean hitLeft = false;
     boolean autoRight = true;
     boolean autoLeft = false;
-    int preTime;
     final float HORIZONTAL_SPEED = 1.0f, GRAVITY_SPEED = 10f, AGGRESSIVE_SPEED = 2.0f;
     int tracker = 0;
     int health_tracker = 0;
     public boolean playerInLineofSight = false;
-    int id;
-    
-    
+    int spider_id;
+        
     private Animation animIdleLeft, animIdleRight, animWalkRight, animWalkLeft, animDeadRight, animDeadLeft;
 
-    public Enemy(Handler handler, float x, float y, int id) {
+    public Spider(Handler handler, float x, float y, int id) {
         super(handler, x, y, ENEMY_WIDTH, ENEMY_HEIGHT);
-        this.id = id;
+        this.spider_id = id;
         health = 100;
         
         bounds.x = 32;
@@ -50,12 +48,12 @@ public class Enemy extends Creature {
         bounds.width = 30;
         bounds.height = 15;
         
-        animIdleLeft = new Animation(500, Assets.spider_idle_left);
-        animIdleRight = new Animation(500, Assets.spider_idle_right);
-        animWalkRight = new Animation(500, Assets.spider_walk_right);
-        animWalkLeft = new Animation(500, Assets.spider_walk_left);
-        animDeadRight = new Animation(500, Assets.spider_dead_right);
-        animDeadLeft = new Animation(500, Assets.spider_dead_left);
+        animIdleLeft = new Animation(500, Resources.spider_idle_left);
+        animIdleRight = new Animation(500, Resources.spider_idle_right);
+        animWalkRight = new Animation(500, Resources.spider_walk_right);
+        animWalkLeft = new Animation(500, Resources.spider_walk_left);
+        animDeadRight = new Animation(500, Resources.spider_dead_right);
+        animDeadLeft = new Animation(500, Resources.spider_dead_left);
     }
     
     public void tick(Creature player) {
@@ -68,11 +66,11 @@ public class Enemy extends Creature {
         animDeadLeft.tick();
         
         attack = true;
+        
         if (health <= 0) {
             dead = true;
         }
         
-        //System.out.println(dead);
         //if the enemy is dead, it cant attack
         if (dead) {
             attack = false;
@@ -142,8 +140,7 @@ public class Enemy extends Creature {
         }
     //gravity
     yMove = GRAVITY_SPEED;   
-    move();
-        
+    move();  
     }
     
 
@@ -155,7 +152,7 @@ public class Enemy extends Creature {
     public void render(Graphics g) {
         
         //if enemy is dead
-        //kinda overkill? when we already have getcurrentanimationframe
+        //kinda overkill? when we already have getcurrentanimationframe()
         if (dead && facingRight) {
             g.drawImage(animDeadRight.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null); 
         } else if (dead && !facingRight) {
@@ -175,11 +172,9 @@ public class Enemy extends Creature {
             g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
         }
     }
-    
-    
+        
     private BufferedImage getCurrentAnimationFrame() {
         //animation
-        //hitByPlayer = false;
         if (xMove < 0) {
             return animWalkLeft.getCurrentFrame();
         } else if (xMove > 0) {

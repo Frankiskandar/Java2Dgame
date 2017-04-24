@@ -14,22 +14,20 @@ import java.awt.event.MouseMotionListener;
  *
  * @author Frank
  */
-public class MouseManager implements MouseListener, MouseMotionListener {
+public class MouseInputManager implements MouseListener, MouseMotionListener {
 
     
     private boolean leftPressed, rightPressed;
     private int mouseX, mouseY;
     private UIManager uiManager;
     
-    public MouseManager() {
+    public MouseInputManager() {
         
     }
     
     public void setUIManager(UIManager uiManager) {
         this.uiManager = uiManager;
     }
-    
-    //getters
     
     public boolean isLeftPressed() {
         return leftPressed;
@@ -51,7 +49,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
     
     @Override
     public void mouseClicked(MouseEvent me) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -60,7 +58,6 @@ public class MouseManager implements MouseListener, MouseMotionListener {
             leftPressed = true;
         else if(e.getButton() == MouseEvent.BUTTON3)
             rightPressed = true;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -74,12 +71,11 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         if (uiManager != null)
             uiManager.onMouseRelease(e);
         
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseEntered(MouseEvent me) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -100,7 +96,6 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         
         if (uiManager != null)
             uiManager.onMouseMove(e);
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

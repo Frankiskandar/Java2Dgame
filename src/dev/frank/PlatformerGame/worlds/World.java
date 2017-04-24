@@ -17,10 +17,9 @@ import java.awt.Graphics;
  * @author Frank
  */
 public class World {
+    //load the world from textfile
     
-    //3 main things
     private Handler handler;
-    //private Game game;
     private int width, height;
     private int spawnX, spawnY;
     //will hold bunch of tile id

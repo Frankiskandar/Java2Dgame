@@ -8,7 +8,7 @@ package dev.frank.PlatformerGame.test;
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Creature;
-import dev.frank.PlatformerGame.entities.creatures.Enemy;
+import dev.frank.PlatformerGame.entities.creatures.Spider;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import static junit.framework.Assert.assertEquals;
 import org.junit.Test;
@@ -19,10 +19,10 @@ import org.junit.Test;
  */
 public class TestClass {
             
-    Game game = new Game("Platformer Game", 1000, 500);
+    Game game = new Game(1000, 500);
     Handler handler = new Handler(game);
     Player player = new Player(handler, 100, 200);
-    Enemy enemy = new Enemy(handler, 100, 200, 1);
+    Spider enemy = new Spider(handler, 100, 200, 1);
     
     
      /**
@@ -31,7 +31,7 @@ public class TestClass {
     @Test
     public void testGetWidth() {
         System.out.println("Game Window Width Test");
-        Game instance = new Game("Platformer Game", 1000, 500);
+        Game instance = new Game(1000, 500);
         int expResult = 1000;
         int result = instance.getWidth();
         assertEquals(expResult, result);
@@ -45,7 +45,7 @@ public class TestClass {
     @Test
     public void testGetHeight() {
         System.out.println("Game Window Height Test");
-        Game instance = new Game("Platformer Game", 1000, 500);
+        Game instance = new Game(1000, 500);
         int expResult = 500;
         int result = instance.getHeight();
         assertEquals(expResult, result);

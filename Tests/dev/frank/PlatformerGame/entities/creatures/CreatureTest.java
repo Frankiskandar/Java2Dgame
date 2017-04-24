@@ -34,7 +34,7 @@ public class CreatureTest extends TestCase {
      */
     public void testGetHealth() {
         System.out.println("getHealth");
-        Game game = new Game("Platformer Game", 1000, 500);
+        Game game = new Game(1000, 500);
         Handler handler = new Handler(game);
         Creature instance = new Player(handler,100,100);;
         int expResult = 3;
@@ -48,7 +48,7 @@ public class CreatureTest extends TestCase {
      */
     public void testSetHealth() {
         System.out.println("setHealth");        
-        Game game = new Game("Platformer Game", 1000, 500);
+        Game game = new Game(1000, 500);
         Handler handler = new Handler(game);
         Creature instance = new Player(handler,100,100);
         int health = 50;

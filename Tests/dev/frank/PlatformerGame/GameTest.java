@@ -5,9 +5,9 @@
  */
 package dev.frank.PlatformerGame;
 
-import dev.frank.PlatformerGame.gfx.GameCamera;
-import dev.frank.PlatformerGame.input.KeyManager;
-import dev.frank.PlatformerGame.input.MouseManager;
+import dev.frank.PlatformerGame.gfx.Camera;
+import dev.frank.PlatformerGame.input.KeyboardInputManager;
+import dev.frank.PlatformerGame.input.MouseInputManager;
 import junit.framework.TestCase;
 
 /**
@@ -36,7 +36,7 @@ public class GameTest extends TestCase {
      */
     public void testGetWidth() {
         System.out.println("Game Window Width Test");
-        Game instance = new Game("Platformer Game", 1000, 500);
+        Game instance = new Game(1000, 500);
         int expResult = 1000;
         int result = instance.getWidth();
         assertEquals(expResult, result);
@@ -49,7 +49,7 @@ public class GameTest extends TestCase {
      */
     public void testGetHeight() {
         System.out.println("Game Window Height Test");
-        Game instance = new Game("Platformer Game", 1000, 500);
+        Game instance = new Game(1000, 500);
         int expResult = 500;
         int result = instance.getHeight();
         assertEquals(expResult, result);

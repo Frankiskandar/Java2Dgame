@@ -11,11 +11,11 @@ import java.awt.image.BufferedImage;
  *
  * @author Frank
  */
-public class Assets {
+public class Resources {
     
     private static final int width = 32, height = 32;
     
-    public static BufferedImage dirt, grass, stone, tree,rock, alien, sandmid, exitSign, rightSign;
+    public static BufferedImage exitSign, rightSign;
     
     //projectile
     public static BufferedImage fireball;
@@ -46,10 +46,8 @@ public class Assets {
     public static BufferedImage heart;
     
     //walking animation of player
-    public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] alien_jump,alien_down, alien_left, alien_right, alien_stand, alien_stand_left;
     public static BufferedImage[] alien_jump_left;
-    public static BufferedImage[] zombie_down, zombie_up, zombie_left, zombie_right;
     
     //menu buttons
     public static BufferedImage[] btn_start, btn_quit, btn_return;
@@ -65,10 +63,7 @@ public class Assets {
     public static BufferedImage spinner[];
     
     public static void init() {
-        
-        SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
-        
-        
+              
         SpriteSheet ground = new SpriteSheet(ImageLoader.loadImage("/textures/tiles_spritesheet.png"));
         SpriteSheet item = new SpriteSheet(ImageLoader.loadImage("/textures/item/items_spritesheet.png"));
         SpriteSheet hud = new SpriteSheet(ImageLoader.loadImage("/textures/hud/hud_spritesheet.png"));
@@ -109,36 +104,6 @@ public class Assets {
         btn_level2[0] = level2_button1.crop(0, 0, 190, 49);
         btn_level2[1] = level2_button2.crop(0, 0, 190, 45);
                
-        //player
-        player_down = new BufferedImage[2];
-        player_up = new BufferedImage[2];
-        player_left = new BufferedImage[2];
-        player_right = new BufferedImage[2];
-        
-        player_down[0] = sheet.crop(width * 4, 0, width, height);
-        player_down[1] = sheet.crop(width * 5, 0, width, height);
-        player_up[0] = sheet.crop(width * 6, 0, width, height);
-        player_up[1] = sheet.crop(width * 7, 0, width, height);
-        player_right[0] = sheet.crop(width * 4, height, width, height);
-        player_right[1] = sheet.crop(width * 5, height, width, height);
-        player_left[0] = sheet.crop(width * 6, height, width, height);
-        player_left[1] = sheet.crop(width * 7, height, width, height);
-        
-        zombie_down = new BufferedImage[2];
-        zombie_up = new BufferedImage[2];
-        zombie_left = new BufferedImage[2];
-        zombie_right = new BufferedImage[2];
-
-        zombie_down[0] = sheet.crop(width * 4, height * 2, width, height);
-        zombie_down[1] = sheet.crop(width * 5, height * 2, width, height);
-        zombie_up[0] = sheet.crop(width * 6, height * 2, width, height);
-        zombie_up[1] = sheet.crop(width * 7, height * 2, width, height);
-        zombie_right[0] = sheet.crop(width * 4, height * 3, width, height);
-        zombie_right[1] = sheet.crop(width * 5, height * 3, width, height);
-        zombie_left[0] = sheet.crop(width * 6, height * 3, width, height);
-        zombie_left[1] = sheet.crop(width * 7, height * 3, width, height);
-        
-        
         //GREEN ALIEN PLAYER 1
         SpriteSheet alien_green = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1_spritesheet.png"));
         SpriteSheet alien_green_left = new SpriteSheet(ImageLoader.loadImage("/textures/player/p1left_spritesheet.png"));
@@ -238,16 +203,6 @@ public class Assets {
         spinner[2] = enemies.crop(134, 372, 63, 62);
         spinner[3] = enemies.crop(196, 65, 61, 61);
         
-        
-        //ground etc
-        //player = sheet.crop(0,0, width, height);
-        dirt = sheet.crop(width, 0, width, height);
-        grass = sheet.crop(width*2, 0, width, height);
-        stone = sheet.crop(width*3, 0, width,height);
-        tree = sheet.crop(0,0,width,height*2);
-        rock = sheet.crop(0, height * 2, width, height);
-        alien = alien_green.crop(0, 0, 72, 97);
-        sandmid = ground.crop(288, 576, 70, 70);
         
         //grass
         grassLeft = ground.crop(504, 648, 70, 70);

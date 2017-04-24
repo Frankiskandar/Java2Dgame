@@ -12,23 +12,21 @@ import java.awt.event.KeyListener;
  *
  * @author Frank
  */
-public class KeyManager implements KeyListener {
+public class KeyboardInputManager implements KeyListener {
 
     private boolean[] keys;
-    public boolean up, down, left, right;
+    public boolean up,left, right;
     
     public boolean attack, restart;
     
-    public KeyManager() {
+    public KeyboardInputManager() {
         keys = new boolean[256];
     }
 
     public void tick() {
         up = keys[KeyEvent.VK_UP];
-        down = keys[KeyEvent.VK_S];
         left = keys[KeyEvent.VK_LEFT];
-        right = keys[KeyEvent.VK_RIGHT];
-        
+        right = keys[KeyEvent.VK_RIGHT];       
         restart = keys[KeyEvent.VK_ESCAPE];
         attack = keys[KeyEvent.VK_F];
     }
@@ -40,7 +38,6 @@ public class KeyManager implements KeyListener {
     @Override
     public void keyPressed(KeyEvent ke) {
         keys[ke.getKeyCode()] = true;
-        //System.out.println("Pressed!");
         
     }
 

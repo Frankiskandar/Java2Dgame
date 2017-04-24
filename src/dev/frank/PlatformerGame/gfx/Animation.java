@@ -13,13 +13,13 @@ import java.awt.image.BufferedImage;
  */
 public class Animation {
     
-    private int speed;
+    private int animation_speed;
     private int index;
     private long lastTime , timer;
     private BufferedImage[] frames;
     
     public Animation(int speed, BufferedImage[] frames) {
-        this.speed = speed;
+        this.animation_speed = speed;
         this.frames = frames;
         index = 0; //to show the first image
         timer = 0;
@@ -32,7 +32,7 @@ public class Animation {
         timer += System.currentTimeMillis() - lastTime;
         lastTime = System.currentTimeMillis();
         
-        if(timer > speed) {
+        if(timer > animation_speed) {
             index++;
             timer = 0;
             if(index >= frames.length) // so it doesnt go out of bound

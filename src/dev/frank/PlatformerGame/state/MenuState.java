@@ -7,7 +7,7 @@ package dev.frank.PlatformerGame.state;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.ui.ClickListener;
@@ -36,7 +36,7 @@ public class MenuState extends State {
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         title = ImageLoader.loadImage("/textures/title.png");
         
-        uiManager.addObject(new UIImageButton(445, 298, 150, 50, Assets.btn_start, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 298, 150, 50, Resources.btn_start, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -47,7 +47,7 @@ public class MenuState extends State {
             }
         }));
         
-        uiManager.addObject(new UIImageButton(445, 363, 150, 50, Assets.btn_quit, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 363, 150, 50, Resources.btn_quit, new ClickListener(){
 
             @Override
             public void onClick() {

@@ -6,7 +6,7 @@
 package dev.frank.PlatformerGame.state;
 
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.ui.ClickListener;
@@ -33,7 +33,7 @@ public class GameModeState extends State {
         
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         
-        uiManager.addObject(new UIImageButton(435, 298, 150, 50, Assets.btn_level1, new ClickListener(){
+        uiManager.addObject(new UIImageButton(435, 298, 150, 50, Resources.btn_level1, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -41,12 +41,12 @@ public class GameModeState extends State {
                 Music.play("click");
                 Music.stop("bgm_tropics");
                 //Music.loop("bgm_level1");               
-                State.setState(new GameState(handler));
+                State.setState(new LevelOne(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
         
-        uiManager.addObject(new UIImageButton(435, 363, 150, 50, Assets.btn_level2, new ClickListener(){
+        uiManager.addObject(new UIImageButton(435, 363, 150, 50, Resources.btn_level2, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -54,12 +54,12 @@ public class GameModeState extends State {
                 Music.play("click");
                 Music.stop("bgm_tropics");
                 //Music.loop("bgm_castle");
-                State.setState(new Game2State(handler));
+                State.setState(new LevelTwo(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
         
-        uiManager.addObject(new UIImageButton(435, 428, 150, 50, Assets.btn_return, new ClickListener(){
+        uiManager.addObject(new UIImageButton(435, 428, 150, 50, Resources.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {

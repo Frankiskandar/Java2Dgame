@@ -6,12 +6,9 @@
 package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Handler;
-import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_HEIGHT;
-import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_WIDTH;
 import dev.frank.PlatformerGame.gfx.Animation;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.music.Music;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -31,14 +28,14 @@ public class Spinner extends Creature {
     final float VERTICAL_SPEED = 4.0f;
     final float HORIZONTAL_SPEED = 3.0f;
     int tracker = 0;
-    public boolean firstCall = true, playerInLineofSight = false;
-    int id;
+    public boolean playerInLineofSight = false;
+    int spinner_id;
     
     private Animation animation;
 
     public Spinner(Handler handler, float x, float y, int id) {
         super(handler, x, y, ENEMY_WIDTH, ENEMY_HEIGHT);
-        this.id = id;
+        this.spinner_id = id;
         health = 100;
         
         bounds.x = 14;
@@ -46,7 +43,7 @@ public class Spinner extends Creature {
         bounds.width = 35;
         bounds.height = 48;
         
-        animation = new Animation(100, Assets.spinner);
+        animation = new Animation(100, Resources.spinner);
         
     }
     
@@ -70,7 +67,7 @@ public class Spinner extends Creature {
        
         if (!playerInLineofSight) {
             //horizontal spinner
-            if (id==1) {
+            if (spinner_id==1) {
                 if (autoRight) {
                     xMove = HORIZONTAL_SPEED;
                     tracker++;
@@ -93,7 +90,7 @@ public class Spinner extends Creature {
                 
             }
             
-            else if (id == 2) {
+            else if (spinner_id == 2) {
                 if (autoRight) {
                     xMove = HORIZONTAL_SPEED;
                     tracker++;
@@ -161,8 +158,7 @@ public class Spinner extends Creature {
                 hitLeft = false;
             }
         }
-    move();
-        
+    move();        
     }
     
     public void stop() {

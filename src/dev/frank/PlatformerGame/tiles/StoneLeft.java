@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.tiles;
 
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import java.awt.image.BufferedImage;
 
 /**
@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class StoneLeft extends Tile {
 
     public StoneLeft(int id) {
-        super(Assets.stoneLeft, id);
+        super(Resources.stoneLeft, id);
     }
     
     //dont want player to walk through it

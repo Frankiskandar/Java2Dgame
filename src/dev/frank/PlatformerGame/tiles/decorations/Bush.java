@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.tiles.decorations;
 
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.tiles.Tile;
 import java.awt.image.BufferedImage;
 
@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 public class Bush extends Tile {
 
     public Bush(int id) {
-        super(Assets.bush, id);
+        super(Resources.bush, id);
     }
     
     @Override

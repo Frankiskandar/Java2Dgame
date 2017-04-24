@@ -5,9 +5,9 @@
  */
 package dev.frank.PlatformerGame;
 
-import dev.frank.PlatformerGame.gfx.GameCamera;
-import dev.frank.PlatformerGame.input.KeyManager;
-import dev.frank.PlatformerGame.input.MouseManager;
+import dev.frank.PlatformerGame.gfx.Camera;
+import dev.frank.PlatformerGame.input.KeyboardInputManager;
+import dev.frank.PlatformerGame.input.MouseInputManager;
 import dev.frank.PlatformerGame.worlds.World;
 
 /**
@@ -26,15 +26,15 @@ public class Handler {
         this.game = game;
     }
     
-    public GameCamera getGameCamera() {
+    public Camera getGameCamera() {
         return game.getGameCamera();
     }
     
-    public KeyManager getKeyManager() {
+    public KeyboardInputManager getKeyManager() {
         return game.getKeyManager();
     }
     
-    public MouseManager getMouseManager() {
+    public MouseInputManager getMouseManager() {
         return game.getMouseManager();
     }
     

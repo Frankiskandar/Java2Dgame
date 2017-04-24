@@ -15,12 +15,12 @@ import java.awt.image.BufferedImage;
 public class UIImageButton extends UIObject {
     
     private BufferedImage[] images;
-    private ClickListener clicker;
+    private ClickListener clickListener;
 
-    public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
+    public UIImageButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clickListener) {
         super(x, y, width, height);
         this.images = images;
-        this.clicker = clicker;   
+        this.clickListener = clickListener;   
     }
 
     @Override
@@ -40,7 +40,7 @@ public class UIImageButton extends UIObject {
 
     @Override
     public void onClick() {
-        clicker.onClick();
+        clickListener.onClick();
         
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

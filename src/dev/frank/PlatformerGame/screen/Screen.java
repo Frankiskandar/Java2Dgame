@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.frank.PlatformerGame.display;
+package dev.frank.PlatformerGame.screen;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -13,26 +13,25 @@ import javax.swing.JFrame;
  *
  * @author Frank
  */
-public class Display {
-    
-    
+public class Screen {   
     //to get windows display to screen
     private JFrame frame;
     // to get images into jframe
     private Canvas canvas;// draw images to the canvas and put it on jframe
-    private String title;
+    private String title = "Platformer Game"; // title of our game
+    
     private int width, height;
     
     //constructor
-    public Display(String title, int width, int height) {
-        this.title = title;
+    public Screen(int width, int height) {
+        String title;
         this.width = width;
         this.height = height;
         
-        createDisplay();
+        createScreen();
     }
     
-    private void createDisplay() {
+    private void createScreen() {
         frame = new JFrame(title);
         frame.setSize(width, height);
         //to make sure window closes down properly

@@ -5,9 +5,8 @@
  */
 package dev.frank.PlatformerGame.state;
 
-import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
 import dev.frank.PlatformerGame.ui.ClickListener;
@@ -36,7 +35,7 @@ public class FinishState extends State {
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         
         
-        uiManager.addObject(new UIImageButton(432, 279, 150, 50, Assets.btn_return, new ClickListener(){
+        uiManager.addObject(new UIImageButton(432, 279, 150, 50, Resources.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {
@@ -52,6 +51,7 @@ public class FinishState extends State {
     public void tick() {
         uiManager.tick();
         
+        //to print mouse x and y coordinate
         //System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
         
     }
@@ -66,7 +66,6 @@ public class FinishState extends State {
         //test
 //        g.setColor(Color.RED);
 //        g.fillRect(handler.getMouseManager().getMouseX(), handler.getMouseManager().getMouseY(), 8, 8);
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
