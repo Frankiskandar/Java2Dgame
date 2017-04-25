@@ -12,8 +12,7 @@ import java.awt.image.BufferedImage;
  * @author Frank
  */
 public class Resources {
-    
-    private static final int width = 32, height = 32;
+    // this class loads every image files
     
     public static BufferedImage exitSign, rightSign;
     

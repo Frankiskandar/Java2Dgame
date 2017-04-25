@@ -39,8 +39,8 @@ public class Game implements Runnable { //to run on a thread
     private Graphics graphics; // like a paintbrush
     
     //Input
-    private KeyboardInputManager keyManager;
-    private MouseInputManager mouseManager;
+    private KeyboardInputManager keyboardInputManager;
+    private MouseInputManager mouseInputManager;
     
     //Camera
     private Camera gameCamera;
@@ -51,8 +51,8 @@ public class Game implements Runnable { //to run on a thread
     public Game(int width, int height) {
         this.width = width;
         this.height = height;
-        keyManager = new KeyboardInputManager();
-        mouseManager = new MouseInputManager();
+        keyboardInputManager = new KeyboardInputManager();
+        mouseInputManager = new MouseInputManager();
     }
     
     private void init() {
@@ -70,12 +70,12 @@ public class Game implements Runnable { //to run on a thread
                 
         screen = new Screen(width, height);
         // adding keylistener to jframe, our keymanager extends key listener
-        screen.getFrame().addKeyListener(keyManager);
-        screen.getFrame().addMouseListener(mouseManager);
-        screen.getFrame().addMouseMotionListener(mouseManager);
+        screen.getFrame().addKeyListener(keyboardInputManager);
+        screen.getFrame().addMouseListener(mouseInputManager);
+        screen.getFrame().addMouseMotionListener(mouseInputManager);
         // to both jframe and canvas (whoever active)
-        screen.getCanvas().addMouseListener(mouseManager);
-        screen.getCanvas().addMouseMotionListener(mouseManager);
+        screen.getCanvas().addMouseListener(mouseInputManager);
+        screen.getCanvas().addMouseMotionListener(mouseInputManager);
         
         Resources.init(); // call init in resources class
         
@@ -87,8 +87,8 @@ public class Game implements Runnable { //to run on a thread
         Music.loop("bgm_tropics");
     }
        
-   private void update() {// update variables, positions etc
-       keyManager.tick();
+   private void tick() {// update variables, positions etc
+       keyboardInputManager.tick(); // will call tick from key manager and state
        if(State.getState() != null)
            State.getState().tick();//RUN TICK() in game state which has tick() from player, enemy etc
     }
@@ -129,7 +129,7 @@ public class Game implements Runnable { //to run on a thread
             lastTime = currentTime;
             
             if(timeLeft >= 1){ // gameloop runs tick and render everytime
-                update();
+                tick();
                 render();
                 timeLeft--;
             }
@@ -143,13 +143,13 @@ public class Game implements Runnable { //to run on a thread
     }
     // player class needs access keymanager object
     // so other classes can access it too
-    public KeyboardInputManager getKeyManager() {
-        return keyManager;
+    public KeyboardInputManager getKeyboardInputManager() {
+        return keyboardInputManager;
     }
     
     //need mouse manager from another class
-    public MouseInputManager getMouseManager() {
-        return mouseManager;
+    public MouseInputManager getMouseInputManager() {
+        return mouseInputManager;
     }
     
     public Camera getGameCamera() {

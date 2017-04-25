@@ -9,9 +9,9 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.ui.ClickListener;
-import dev.frank.PlatformerGame.ui.UIImageButton;
-import dev.frank.PlatformerGame.ui.UIManager;
+import dev.frank.PlatformerGame.uinterface.ClickListener;
+import dev.frank.PlatformerGame.uinterface.UIImageButton;
+import dev.frank.PlatformerGame.uinterface.UIManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -29,7 +29,7 @@ public class GameModeState extends State {
     public GameModeState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
-        handler.getMouseManager().setUIManager(uiManager);
+        handler.getMouseInputManager().setUIManager(uiManager);
         
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         
@@ -37,11 +37,11 @@ public class GameModeState extends State {
 
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 Music.stop("bgm_tropics");
                 //Music.loop("bgm_level1");               
-                State.setState(new LevelOne(handler));
+                State.setState(new LevelOneState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
@@ -50,11 +50,11 @@ public class GameModeState extends State {
 
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 Music.stop("bgm_tropics");
                 //Music.loop("bgm_castle");
-                State.setState(new LevelTwo(handler));
+                State.setState(new LevelTwoState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
@@ -63,7 +63,7 @@ public class GameModeState extends State {
 
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 State.setState(new MenuState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

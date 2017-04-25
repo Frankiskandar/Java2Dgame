@@ -29,14 +29,14 @@ public class Camera { // camera class to follow our player
     public void checkBlankSpace() { // to check if we see undrawn outside map
         if (xOffset < 0) {
             xOffset = 0;
-        } else if (xOffset > handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth()) {
-            xOffset = handler.getWorld().getWidth() * Tile.TILEWIDTH - handler.getWidth();
+        } else if (xOffset > handler.getMap().getWidth() * Tile.TILEWIDTH - handler.getWidth()) {
+            xOffset = handler.getMap().getWidth() * Tile.TILEWIDTH - handler.getWidth();
         }
         
         if (yOffset < 0) {
             yOffset = 0;
-        } else if (yOffset > handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
-            yOffset = handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight();
+        } else if (yOffset > handler.getMap().getHeight() * Tile.TILEHEIGHT - handler.getHeight()) {
+            yOffset = handler.getMap().getHeight() * Tile.TILEHEIGHT - handler.getHeight();
         }
     }
     

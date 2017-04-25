@@ -5,18 +5,14 @@
  */
 package dev.frank.PlatformerGame.state;
 
-import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Creature;
 import dev.frank.PlatformerGame.entities.creatures.Spider;
 import dev.frank.PlatformerGame.entities.creatures.Player;
-import dev.frank.PlatformerGame.entities.creatures.Spinner;
 import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
-import static dev.frank.PlatformerGame.state.LevelTwo.LEVEL2_DEAD_Y_COORDINATE;
-import dev.frank.PlatformerGame.tiles.Tile;
-import dev.frank.PlatformerGame.worlds.World;
+import dev.frank.PlatformerGame.maps.Map;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -27,13 +23,13 @@ import java.util.ArrayList;
  *
  * @author Frank
  */
-public class LevelOne extends State {
+public class LevelOneState extends State {
     
     private Player player;
-    private World world;
+    private Map map;
     private BufferedImage background;
     private Spider[] spider;
-    public static final int ENEMY_NUMBER = 6;
+    public static final int SPIDER_NUMBER = 6;
     public static int LEVEL1_DEAD_Y_COORDINATE = 1300;
     public ArrayList<Spider> spider_array;
     public static final int PLAYER_SPAWN_X = 136, PLAYER_SPAWN_Y = 643;
@@ -41,27 +37,27 @@ public class LevelOne extends State {
     public static final float EXIT_Y_POSITION = 195;
     int show_instruction = 0;
     
-    public LevelOne(Handler handler) { 
+    public LevelOneState(Handler handler) { 
         super(handler);
         //load map from text file
-        world = new World(handler, "res/worlds/world1ext.txt");
-        handler.setWorld(world);
+        map = new Map(handler, "res/worlds/world1ext.txt");
+        handler.setMap(map);
         
         background = ImageLoader.loadImage("/textures/bg_level1.png");
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
         spider_array = new ArrayList<>();
-        spider = new Spider[ENEMY_NUMBER];
+        spider = new Spider[SPIDER_NUMBER];//spider spawn
         spider[0] = new Spider(handler, 640, 643, 0);
         spider[1] = new Spider(handler, 2859, 451, 1);
         spider[2] = new Spider(handler, 4415, 387, 2);
         spider[3] = new Spider(handler, 5019, 643, 3);
         spider[4] = new Spider(handler, 6075, 343, 4);
         spider[5] = new Spider(handler, 7163, 643, 5);
-          
+         
+        //add every spider to array list
         for (Spider e : spider) {
             spider_array.add(e);
-        }
-        
+        }        
         Music.loop("bgm_level1"); 
 
     }
@@ -69,7 +65,7 @@ public class LevelOne extends State {
     @Override
     public void tick() {
         
-        world.tick();
+        map.tick();
         boolean aimPlayer = false;
         
         for (Spider e : spider) {
@@ -98,7 +94,7 @@ public class LevelOne extends State {
             }
         
         
-        if(player.getY() > LEVEL2_DEAD_Y_COORDINATE) {
+        if(player.getY() > LEVEL1_DEAD_Y_COORDINATE) {
             player.dead = true;                     
         }
         
@@ -118,7 +114,7 @@ public class LevelOne extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, null);
-        world.render(g);
+        map.render(g);
         player.render(g);
         for (Spider e : spider) {
             //System.out.println("enemy's health: "+ e.health);

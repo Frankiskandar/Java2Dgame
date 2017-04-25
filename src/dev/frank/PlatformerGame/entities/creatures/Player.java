@@ -29,7 +29,8 @@ public class Player extends Creature{
     public boolean jumping = false;
     boolean falling = false;
     public boolean dead = false;
-    float JUMPSPEED = 10; 
+    int JUMP_HEIGHT = 25;
+    float JUMP_SPEED = 10; 
     int jumpTimer = 0; // timer to let player jump again after some time
     ArrayList<Fireball> FireballArray = new ArrayList<>();
     //ANIMATIONS
@@ -81,8 +82,7 @@ public class Player extends Creature{
     private void getInput(ArrayList<Spider> enemies, Player player) {
         xMove = 0;
 
-        if(handler.getKeyManager().up) {
-            //yMove = -speed;
+        if(handler.getKeyboardInputManager().up) {
             if (!jumping && !falling) { // if he is not currently jumping and falling
                 //player cant jump if he is current in the air or falling
                 //but if he is currently not jumping, then he can jump, therefor, set jumping boolean to true
@@ -94,23 +94,23 @@ public class Player extends Creature{
         // if he is eligible to jump then, add speed to ymove
         if (jumping) {
             jumpTimer++;
-            yMove = -JUMPSPEED;
-            if (jumpTimer >= 24) {
+            yMove = -JUMP_SPEED;
+            if (jumpTimer >= JUMP_HEIGHT) {
                 jumpTimer = 0;
                 jumping = false;
                 falling = true;
             }
         } else { //if user doesnt press up
-            yMove = JUMPSPEED;
+            yMove = JUMP_SPEED;
         }
         //end jumping mechanic
         
-        if(handler.getKeyManager().left) {
+        if(handler.getKeyboardInputManager().left) {
             xMove = -speed;
             facingRight = false;
         }
             
-        if(handler.getKeyManager().right) {
+        if(handler.getKeyboardInputManager().right) {
             xMove = speed;
             facingRight = true;
         }
@@ -124,7 +124,7 @@ public class Player extends Creature{
         }
         
         //if the user presses shoot button
-        if (handler.getKeyManager().attack && !firstShot) {
+        if (handler.getKeyboardInputManager().attack && !firstShot) {
             Fireball fireball = new Fireball(handler, x, y, facingRight);
             FireballArray.add(fireball);
             fireBallShot = true;
@@ -135,11 +135,11 @@ public class Player extends Creature{
             fireBallShot = false;
         }
         
-        if (!handler.getKeyManager().attack) {
+        if (!handler.getKeyboardInputManager().attack) {
             firstShot = false;
         }
         
-        if (handler.getKeyManager().restart) {
+        if (handler.getKeyboardInputManager().restart) {
                 State.setState(new MenuState(handler));
                 Music.stop("bgm_level1");
                 Music.stop("bgm_castle");
@@ -149,14 +149,13 @@ public class Player extends Creature{
         // to check if an enemy is hit/not
         for(Fireball b : FireballArray) {
             b.tick(); // update the fireball position
-            for (Spider e : enemies) { //check for every enemy, if they are hit by fireballs
-                
+            for (Spider e : enemies) { //check for every enemy, if they are hit by fireballs                
                 if (Math.abs(b.getX() - e.getX()) < 45 && b.getY() > e.getY() - 60 && b.getY() < e.getY() + 60) {
                     if (!b.hitEnemy) {
                         b.hitEnemy = true;
                         e.hitByPlayer = true;
                         e.health -= FIREBALL_DAMAGE;
-                    } //else e.hitByPlayer = false;
+                    }
                 } 
             }
         }
@@ -174,27 +173,17 @@ public class Player extends Creature{
         }
     }
     
-    public void stop() {
-        xMove = 0;
-        yMove = 0;
-        falling = jumping = false;
-    }
     
     public void render(Graphics g) {
+        //draw animation
         g.drawImage( getCurrentAnimationFrame() ,(int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         
+        //Draw fireball
         for (Fireball b : FireballArray) {
             b.render(g);
         }
-        
-        if (handler.getKeyManager().attack) {
-            if (!firstShot) {
-                firstShot = true;
-            }
-        }
-
-        //collision testing
+        //collision testing, uncomment to see bounding box
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), 
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),

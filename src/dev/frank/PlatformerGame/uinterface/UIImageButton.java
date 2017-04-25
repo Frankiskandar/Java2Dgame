@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.frank.PlatformerGame.ui;
+package dev.frank.PlatformerGame.uinterface;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -31,7 +31,7 @@ public class UIImageButton extends UIObject {
 
     @Override
     public void render(Graphics g) {
-        if (hovering)
+        if (hovering)// if the mouse is on the button, show this image
             g.drawImage(images[1], (int) x, (int) y, width, height, null);
         else
             g.drawImage(images[0], (int) x, (int) y, width, height, null);

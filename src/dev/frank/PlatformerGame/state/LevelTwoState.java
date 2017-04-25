@@ -13,7 +13,7 @@ import dev.frank.PlatformerGame.entities.creatures.Spinner;
 import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.worlds.World;
+import dev.frank.PlatformerGame.maps.Map;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -22,10 +22,10 @@ import java.util.ArrayList;
  *
  * @author Frank
  */
-public class LevelTwo extends State {
+public class LevelTwoState extends State {
     
     private Player player;
-    private World world;
+    private Map map;
     private BufferedImage background;
     private Spider[] spider;
     public static final int ENEMY_NUMBER = 6;
@@ -40,11 +40,11 @@ public class LevelTwo extends State {
     public static final float EXIT_X_POSITION = 10111;
     public static final float EXIT_Y_POSITION = 643;
 
-    public LevelTwo(Handler handler) {
+    public LevelTwoState(Handler handler) {
         super(handler);
         //load map from text file
-        world = new World(handler, "res/worlds/world3.txt");
-        handler.setWorld(world);
+        map = new Map(handler, "res/worlds/world3.txt");
+        handler.setMap(map);
         
         background = ImageLoader.loadImage("/textures/bg_level2.png");
         player = new Player(handler,PLAYER_SPAWN_X,PLAYER_SPAWN_Y);
@@ -84,7 +84,7 @@ public class LevelTwo extends State {
 
     @Override
     public void tick() {
-        world.tick();
+        map.tick();
         boolean aimPlayer = false;
         
         for (Spider e : spider) {
@@ -125,7 +125,7 @@ public class LevelTwo extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, null);
-        world.render(g);
+        map.render(g);
         player.render(g);
         for (Spider e : spider) {
             //System.out.println("enemy's health: "+ e.health);

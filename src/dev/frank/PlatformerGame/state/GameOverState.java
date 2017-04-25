@@ -9,9 +9,9 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.ui.ClickListener;
-import dev.frank.PlatformerGame.ui.UIImageButton;
-import dev.frank.PlatformerGame.ui.UIManager;
+import dev.frank.PlatformerGame.uinterface.ClickListener;
+import dev.frank.PlatformerGame.uinterface.UIImageButton;
+import dev.frank.PlatformerGame.uinterface.UIManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -30,7 +30,7 @@ public class GameOverState extends State {
         super(handler);
         
         uiManager = new UIManager(handler);
-        handler.getMouseManager().setUIManager(uiManager);
+        handler.getMouseInputManager().setUIManager(uiManager);
         
         //background image
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
@@ -40,7 +40,7 @@ public class GameOverState extends State {
 
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 State.setState(new MenuState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

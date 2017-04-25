@@ -152,7 +152,7 @@ public class Spider extends Creature {
     public void render(Graphics g) {
         
         //if enemy is dead
-        //kinda overkill? when we already have getcurrentanimationframe()
+        //kinda overkill? because we already have getcurrentanimationframe()
         if (dead && facingRight) {
             g.drawImage(animDeadRight.getCurrentFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null); 
         } else if (dead && !facingRight) {

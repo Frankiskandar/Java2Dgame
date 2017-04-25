@@ -9,9 +9,9 @@ import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.ui.ClickListener;
-import dev.frank.PlatformerGame.ui.UIImageButton;
-import dev.frank.PlatformerGame.ui.UIManager;
+import dev.frank.PlatformerGame.uinterface.ClickListener;
+import dev.frank.PlatformerGame.uinterface.UIImageButton;
+import dev.frank.PlatformerGame.uinterface.UIManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -22,24 +22,24 @@ import java.awt.image.BufferedImage;
  * @author Frank
  */
 public class FinishState extends State {
+    //this screen is shown when player finishes a level
     
     private UIManager uiManager;
-    private BufferedImage bg;
+    private BufferedImage background;
     
     public FinishState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
-        handler.getMouseManager().setUIManager(uiManager);
+        handler.getMouseInputManager().setUIManager(uiManager);
         
         //background image
-        bg = ImageLoader.loadImage("/textures/bg_level1.png");
+        background = ImageLoader.loadImage("/textures/bg_level1.png");
         
         
         uiManager.addObject(new UIImageButton(432, 279, 150, 50, Resources.btn_return, new ClickListener(){
-
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 State.setState(new MenuState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -58,7 +58,7 @@ public class FinishState extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(bg, 0, 0, null);
+        g.drawImage(background, 0, 0, null);
         g.setFont(new Font("Helvetica", Font.BOLD, 30));
         g.setColor(Color.BLACK);
         g.drawString("Congratulations! You Finished The Level ", 200, 200);

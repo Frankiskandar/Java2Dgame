@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.frank.PlatformerGame.ui;
+package dev.frank.PlatformerGame.uinterface;
 
 import dev.frank.PlatformerGame.music.Music;
 import java.awt.Graphics;

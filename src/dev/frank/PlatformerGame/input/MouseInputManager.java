@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.input;
 
-import dev.frank.PlatformerGame.ui.UIManager;
+import dev.frank.PlatformerGame.uinterface.UIManager;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;

@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dev.frank.PlatformerGame.worlds;
+package dev.frank.PlatformerGame.maps;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import dev.frank.PlatformerGame.tiles.Tile;
-import dev.frank.PlatformerGame.utils.Utils;
 import java.awt.Graphics;
 
 /**
  *
  * @author Frank
  */
-public class World {
+public class Map {
     //load the world from textfile
     
     private Handler handler;
@@ -25,10 +24,10 @@ public class World {
     //will hold bunch of tile id
     private int[][] tiles;
     
-    public World(Handler handler, String path) { //path is the location of the file we want to load
+    public Map(Handler handler, String path) { //path is the location of the file we want to load
         this.handler = handler;
       
-        loadWorld(path);
+        loadMap(path);
     }
     
     public void tick() {
@@ -67,19 +66,19 @@ public class World {
         return t;
     }
     
-    private void loadWorld(String path) {      
+    private void loadMap(String path) {      
         //load the map from text
-        String file = Utils.loadFileAsString(path);
+        String file = TextFileLoader.loadFileAsString(path);
         String[] tokens = file.split("\\s+");
-        width = Utils.parseInt(tokens[0]);
-        height = Utils.parseInt(tokens[1]);
-        spawnX = Utils.parseInt(tokens[2]);
-        spawnY = Utils.parseInt(tokens[3]);
+        width = TextFileLoader.parseInt(tokens[0]);
+        height = TextFileLoader.parseInt(tokens[1]);
+        spawnX = TextFileLoader.parseInt(tokens[2]);
+        spawnY = TextFileLoader.parseInt(tokens[3]);
         
         tiles = new int[width][height];
         for(int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++)
-                tiles[x][y] = Utils.parseInt(tokens[(x+y *width)+4]);
+                tiles[x][y] = TextFileLoader.parseInt(tokens[(x+y *width)+4]);
         }
     }
     // to access world height and width from outside the class

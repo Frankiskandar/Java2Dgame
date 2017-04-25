@@ -31,10 +31,7 @@ public class Music {
                     return;
 		Clip clip;
 		try {			
-			AudioInputStream ais =
-				AudioSystem.getAudioInputStream(
-					Music.class.getResourceAsStream(s)
-				);
+			AudioInputStream ais = AudioSystem.getAudioInputStream(Music.class.getResourceAsStream(s));
 			AudioFormat baseFormat = ais.getFormat();
 			AudioFormat decodeFormat = new AudioFormat(
 				AudioFormat.Encoding.PCM_SIGNED,

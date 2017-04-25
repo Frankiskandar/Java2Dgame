@@ -15,7 +15,6 @@ import java.awt.Graphics;
  */
 public abstract class State {
     
-    //game state manager
     private static State currentState = null;
     
     public static void setState(State state) {

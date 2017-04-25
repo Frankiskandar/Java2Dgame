@@ -25,12 +25,7 @@ public class Projectile extends Creature {
         super(handler, x, y, width, heigth);
     }
     
-    public void render(Graphics g) {
-        if (facingRight) {
-                g.drawImage(Resources.fireball, (int) (x - handler.getGameCamera().getxOffset() + 30), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
-        } else {
-                g.drawImage(Resources.fireball, (int) (x - handler.getGameCamera().getxOffset() + 10), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
-        }     
+    public void render(Graphics g) {   
     }
     
     public void tick() {

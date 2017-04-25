@@ -106,7 +106,7 @@ public abstract class Creature extends Entity {
     //if its solid return true
     //if its not solid return false
     protected boolean collisionWithTile(int x, int y) {
-        return handler.getWorld().getTile(x, y).isSolid();
+        return handler.getMap().getTile(x, y).isSolid();
     }
     
  //getters and setters
