@@ -136,7 +136,7 @@ public class LevelOneState extends State {
             State.setState(new GameOverState(handler));
         }
         if (show_instruction < 400){
-            g.setFont(new Font("Helvetica", Font.BOLD, 30));
+            g.setFont(new Font("TimesRoman", Font.BOLD, 30));
             g.setColor(Color.BLACK);
             g.drawString("Move With Arrow Keys and F to Shoot", 200, 190);
             show_instruction++;

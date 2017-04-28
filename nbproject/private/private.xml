@@ -5,16 +5,15 @@
         <group>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Fireball.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/input/MouseInputManager.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/ui/UIObject.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/worlds/World.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/MenuState.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/ui/ClickListener.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/uinterface/ClickListener.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Spider.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Player.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/LevelTwo.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/Tests/dev/frank/PlatformerGame/entities/creatures/CreatureTest.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/maps/Map.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/SpriteSheet.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/Resources.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/maps/TextFileLoader.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/screen/Screen.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/launcher.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Creature.java</file>
@@ -22,20 +21,23 @@
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/test/TestClass.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/Handler.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/Game.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/LevelOneState.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/ImageLoader.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/FinishState.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/Tests/dev/frank/PlatformerGame/entities/creatures/PlayerTest.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/Animation.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Projectile.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/LevelOne.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/ui/UIManager.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/creatures/Spinner.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/ui/UIImageButton.java</file>
-            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/utils/Utils.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/uinterface/UIManager.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/State.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/uinterface/UIImageButton.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/entities/Entity.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/uinterface/UIObject.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/Tests/dev/frank/PlatformerGame/GameTest.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/tiles/Tile.java</file>
             <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/gfx/Camera.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/state/LevelTwoState.java</file>
+            <file>file:/C:/Users/Frank/Documents/NetBeansProjects/TileGame/src/dev/frank/PlatformerGame/music/Music.java</file>
         </group>
     </open-files>
 </project-private>

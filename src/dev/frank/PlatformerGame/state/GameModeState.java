@@ -80,7 +80,7 @@ public class GameModeState extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(bg, 0, 0, null);
-        g.setFont(new Font("Helvetica", Font.BOLD, 30));
+        g.setFont(new Font("TimesRoman", Font.BOLD, 30));
         g.setColor(Color.BLACK);
         g.drawString("SELECT GAME MODE", 350, 190);
         uiManager.render(g);

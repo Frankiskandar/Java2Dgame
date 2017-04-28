@@ -59,7 +59,7 @@ public class FinishState extends State {
     @Override
     public void render(Graphics g) {
         g.drawImage(background, 0, 0, null);
-        g.setFont(new Font("Helvetica", Font.BOLD, 30));
+        g.setFont(new Font("TimesRoman", Font.BOLD, 30));
         g.setColor(Color.BLACK);
         g.drawString("Congratulations! You Finished The Level ", 200, 200);
         uiManager.render(g);
