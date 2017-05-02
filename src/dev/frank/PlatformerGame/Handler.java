@@ -5,10 +5,10 @@
  */
 package dev.frank.PlatformerGame;
 
-import dev.frank.PlatformerGame.gfx.GameCamera;
-import dev.frank.PlatformerGame.input.KeyManager;
-import dev.frank.PlatformerGame.input.MouseManager;
-import dev.frank.PlatformerGame.worlds.World;
+import dev.frank.PlatformerGame.gfx.Camera;
+import dev.frank.PlatformerGame.input.KeyboardInputManager;
+import dev.frank.PlatformerGame.input.MouseInputManager;
+import dev.frank.PlatformerGame.maps.Map;
 
 /**
  *
@@ -16,26 +16,26 @@ import dev.frank.PlatformerGame.worlds.World;
  */
 public class Handler {
     
-    //handler class allows us to pass 1 object (handler) and allows us access other object such as camera and key listener
-    // will be useful to access world
+    //handler class allows us to pass 1 object (handler) and allows us access other object such as camera and keyboard listener
+    // will be useful to access map
     
     private Game game;
-    private World world;
+    private Map map;
     
     public Handler (Game game) {
         this.game = game;
     }
     
-    public GameCamera getGameCamera() {
+    public Camera getGameCamera() {
         return game.getGameCamera();
     }
     
-    public KeyManager getKeyManager() {
-        return game.getKeyManager();
+    public KeyboardInputManager getKeyboardInputManager() {
+        return game.getKeyboardInputManager();
     }
     
-    public MouseManager getMouseManager() {
-        return game.getMouseManager();
+    public MouseInputManager getMouseInputManager() {
+        return game.getMouseInputManager();
     }
     
     public int getWidth() {
@@ -54,12 +54,12 @@ public class Handler {
         this.game = game;
     }
 
-    public World getWorld() {
-        return world;
+    public Map getMap() {
+        return map;
     }
 
-    public void setWorld(World world) {
-        this.world = world;
+    public void setMap(Map map) {
+        this.map = map;
     }
     
 }

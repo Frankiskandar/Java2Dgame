@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.tiles;
 
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import java.awt.image.BufferedImage;
 
 /**
@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class GrassCenter extends Tile {
 
     public GrassCenter(int id) {
-        super(Assets.grassCenter, id);
+        super(Resources.grassCenter, id);
     }
 
     //dont want player to walk through it

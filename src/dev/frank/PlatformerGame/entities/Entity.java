@@ -5,9 +5,7 @@
  */
 package dev.frank.PlatformerGame.entities;
 
-import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
-import java.awt.Graphics;
 import java.awt.Rectangle;
 
 /**
@@ -21,7 +19,6 @@ public abstract class Entity {
     protected float x,y; //float for smooth movement
     protected int width, height;
     protected int health;
-    protected boolean active = true;
     protected Rectangle bounds; //will be our bounding box
     
 
@@ -44,14 +41,6 @@ public abstract class Entity {
 
     public void setHealth(int health) {
         this.health = health;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public float getX() {

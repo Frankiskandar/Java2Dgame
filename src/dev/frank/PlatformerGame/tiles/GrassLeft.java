@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.tiles;
 
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 
 /**
  *
@@ -14,7 +14,7 @@ import dev.frank.PlatformerGame.gfx.Assets;
 public class GrassLeft extends Tile {
     
     public GrassLeft(int id) {
-        super(Assets.grassLeft, id);
+        super(Resources.grassLeft, id);
     }
 
 

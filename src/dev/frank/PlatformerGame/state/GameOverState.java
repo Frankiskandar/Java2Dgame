@@ -6,12 +6,12 @@
 package dev.frank.PlatformerGame.state;
 
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.ui.ClickListener;
-import dev.frank.PlatformerGame.ui.UIImageButton;
-import dev.frank.PlatformerGame.ui.UIManager;
+import dev.frank.PlatformerGame.uinterface.ClickListener;
+import dev.frank.PlatformerGame.uinterface.UIImageButton;
+import dev.frank.PlatformerGame.uinterface.UIManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -30,20 +30,19 @@ public class GameOverState extends State {
         super(handler);
         
         uiManager = new UIManager(handler);
-        handler.getMouseManager().setUIManager(uiManager);
+        handler.getMouseInputManager().setUIManager(uiManager);
         
         //background image
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         
         
-        uiManager.addObject(new UIImageButton(445, 279, 150, 50, Assets.btn_return, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 279, 150, 50, Resources.btn_return, new ClickListener(){
 
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 State.setState(new MenuState(handler));
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
     }
@@ -53,17 +52,15 @@ public class GameOverState extends State {
     @Override
     public void tick() {
         uiManager.tick();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void render(Graphics g) {
         g.drawImage(bg, 0, 0, null);
-        g.setFont(new Font("Helvetica", Font.BOLD, 30));
+        g.setFont(new Font("TimesRoman", Font.BOLD, 30));
         g.setColor(Color.BLACK);
         g.drawString("YOU ARE DEAD", 400, 200);
         uiManager.render(g);
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -5,22 +5,14 @@
  */
 package dev.frank.PlatformerGame.entities.creatures;
 
-import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.entities.Entity;
 import dev.frank.PlatformerGame.gfx.Animation;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.state.FinishState;
-import dev.frank.PlatformerGame.state.Game2State;
-import dev.frank.PlatformerGame.state.GameOverState;
-import dev.frank.PlatformerGame.state.GameState;
 import dev.frank.PlatformerGame.state.MenuState;
 import dev.frank.PlatformerGame.state.State;
 import dev.frank.PlatformerGame.tiles.Tile;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.Timer;
@@ -31,16 +23,15 @@ import javax.swing.Timer;
  */
 public class Player extends Creature{
     
-    final float FIREBALLSPEED = 5f;
-    int forward = 0;
-    boolean facingRight = true, shootAnimation = false, firstShot = false, fireBallShot = false;
-    public boolean jumping = false, falling = false, dead = false;
-    float JUMPSPEED = 10; 
+    boolean facingRight = true; 
+    boolean firstShot = false;
+    boolean fireBallShot = false;
+    public boolean jumping = false;
+    boolean falling = false;
+    public boolean dead = false;
+    int JUMP_HEIGHT = 25;
+    float JUMP_SPEED = 10; 
     int jumpTimer = 0; // timer to let player jump again after some time
-    Timer timer;
-    int preTime, time;
-    public boolean played = false;
-    
     ArrayList<Fireball> FireballArray = new ArrayList<>();
     //ANIMATIONS
     private Animation animDown, animUp, animRight, animLeft, animStand, animUpLeft;
@@ -56,20 +47,20 @@ public class Player extends Creature{
         bounds.height = 60;
         
         //Animations
-        animDown = new Animation(500, Assets.alien_down);
-        animUp = new Animation(500, Assets.alien_jump);
-        animLeft = new Animation(100, Assets.alien_left);
-        animRight = new Animation(100, Assets.alien_right);
-        animStand = new Animation(500, Assets.alien_stand);
-        animUpLeft = new Animation(500, Assets.alien_jump_left);
-        animDownLeft = new Animation(500, Assets.alien_jump_left);
-        animStandLeft = new Animation(500, Assets.alien_stand_left);
+        animDown = new Animation(500, Resources.alien_down);
+        animUp = new Animation(500, Resources.alien_jump);
+        animLeft = new Animation(100, Resources.alien_left);
+        animRight = new Animation(100, Resources.alien_right);
+        animStand = new Animation(500, Resources.alien_stand);
+        animUpLeft = new Animation(500, Resources.alien_jump_left);
+        animDownLeft = new Animation(500, Resources.alien_jump_left);
+        animStandLeft = new Animation(500, Resources.alien_stand_left);
         
     }
 
-    public void tick(ArrayList<Enemy> enemies, Player player) {
+    public void tick(ArrayList<Spider> enemies, Player player) {
         //Animations
-        animDown.tick(); //to update index var
+        animDown.tick();
         animUp.tick();
         animLeft.tick();
         animRight.tick();
@@ -84,17 +75,14 @@ public class Player extends Creature{
         
         //every time we tick after move
         //we want to center it on this player
-        handler.getGameCamera().centerOnEntity(this);
-
-        
+        handler.getGameCamera().centerOnPlayer(this);      
     }
     
 
-    private void getInput(ArrayList<Enemy> enemies, Player player) {
+    private void getInput(ArrayList<Spider> enemies, Player player) {
         xMove = 0;
 
-        if(handler.getKeyManager().up) {
-            //yMove = -speed;
+        if(handler.getKeyboardInputManager().up) {
             if (!jumping && !falling) { // if he is not currently jumping and falling
                 //player cant jump if he is current in the air or falling
                 //but if he is currently not jumping, then he can jump, therefor, set jumping boolean to true
@@ -106,45 +94,37 @@ public class Player extends Creature{
         // if he is eligible to jump then, add speed to ymove
         if (jumping) {
             jumpTimer++;
-            yMove = -JUMPSPEED;
-            if (jumpTimer >= 24) {
+            yMove = -JUMP_SPEED;
+            if (jumpTimer >= JUMP_HEIGHT) {
                 jumpTimer = 0;
                 jumping = false;
                 falling = true;
             }
         } else { //if user doesnt press up
-            yMove = JUMPSPEED;
+            yMove = JUMP_SPEED;
         }
         //end jumping mechanic
         
-        if(handler.getKeyManager().left) {
+        if(handler.getKeyboardInputManager().left) {
             xMove = -speed;
             facingRight = false;
         }
             
-        if(handler.getKeyManager().right) {
+        if(handler.getKeyboardInputManager().right) {
             xMove = speed;
             facingRight = true;
-        // else yMove = speed;
         }
         
-
         int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
         if (collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty)
                 || collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)) {
             falling = false;
-            if (!jumping && !played) {
-                played = true;
-                //landing
-                
-            }
         } else {
-            played = false;
             falling = true;
         }
         
         //if the user presses shoot button
-        if (handler.getKeyManager().attack && !firstShot) {
+        if (handler.getKeyboardInputManager().attack && !firstShot) {
             Fireball fireball = new Fireball(handler, x, y, facingRight);
             FireballArray.add(fireball);
             fireBallShot = true;
@@ -155,15 +135,11 @@ public class Player extends Creature{
             fireBallShot = false;
         }
         
-        if (!handler.getKeyManager().attack) {
+        if (!handler.getKeyboardInputManager().attack) {
             firstShot = false;
-            shootAnimation = false;
-//                    for (Enemy e : enemies) {
-//            e.hitByPlayer = false;
-//        }
         }
         
-        if (handler.getKeyManager().restart) {
+        if (handler.getKeyboardInputManager().restart) {
                 State.setState(new MenuState(handler));
                 Music.stop("bgm_level1");
                 Music.stop("bgm_castle");
@@ -173,23 +149,17 @@ public class Player extends Creature{
         // to check if an enemy is hit/not
         for(Fireball b : FireballArray) {
             b.tick(); // update the fireball position
-            for (Enemy e : enemies) { //check for every enemy, if they are hit by fireballs
-                
+            for (Spider e : enemies) { //check for every enemy, if they are hit by fireballs                
                 if (Math.abs(b.getX() - e.getX()) < 45 && b.getY() > e.getY() - 60 && b.getY() < e.getY() + 60) {
                     if (!b.hitEnemy) {
                         b.hitEnemy = true;
                         e.hitByPlayer = true;
                         e.health -= FIREBALL_DAMAGE;
-                    } //else e.hitByPlayer = false;
+                    }
                 } 
             }
         }
         
-//        for (Enemy e : enemies) {
-//            e.hitByPlayer = false;
-//        }
-        
-   
         //if the fireball's distance is greater than 300 dont draw it, remove it from the game
         //dont update if it hits the wall
         for(int i = 0; i < FireballArray.size(); i++) {
@@ -203,32 +173,22 @@ public class Player extends Creature{
         }
     }
     
-    public void stop() {
-        xMove = 0;
-        yMove = 0;
-        falling = jumping = false;
-    }
     
     public void render(Graphics g) {
+        //draw animation
         g.drawImage( getCurrentAnimationFrame() ,(int) (x - handler.getGameCamera().getxOffset()),
                 (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         
+        //Draw fireball
         for (Fireball b : FireballArray) {
-            b.render(g, Projectile.PLAYER1);
+            b.render(g);
         }
-        
-        if (handler.getKeyManager().attack) {
-            if (!firstShot) {
-                firstShot = true;
-            }
-        }
-
-        //collision testing
+        //collision testing, uncomment to see bounding box
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), 
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //                bounds.width, bounds.height);
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
     private BufferedImage getCurrentAnimationFrame() {

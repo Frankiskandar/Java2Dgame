@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
  * @author Frank
  */
 public class SpriteSheet {
-    
+    //to crop image
     private BufferedImage sheet;
     
     public SpriteSheet(BufferedImage sheet) {

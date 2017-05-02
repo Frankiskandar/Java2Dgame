@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.tiles.decorations;
 
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.tiles.Tile;
 import java.awt.image.BufferedImage;
 
@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 public class MushroomBrown extends Tile {
 
     public MushroomBrown(int id) {
-        super(Assets.mushroomBrown, id);
+        super(Resources.mushroomBrown, id);
     }
     
 }

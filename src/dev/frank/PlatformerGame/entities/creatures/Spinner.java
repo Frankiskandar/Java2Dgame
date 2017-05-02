@@ -6,12 +6,9 @@
 package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Handler;
-import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_HEIGHT;
-import static dev.frank.PlatformerGame.entities.creatures.Enemy.ENEMY_WIDTH;
 import dev.frank.PlatformerGame.gfx.Animation;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.music.Music;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -21,8 +18,8 @@ import java.awt.image.BufferedImage;
  */
 public class Spinner extends Creature {
     
-    public static final int ENEMY_WIDTH = 50;
-    public static final int ENEMY_HEIGHT = 50;
+    public static final int SPINNER_WIDTH = 50;
+    public static final int SPINNER_HEIGHT = 50;
     public boolean dead = false;
     boolean facingRight = false, attack = false, hitRight = false;
     boolean hitLeft = false;
@@ -30,15 +27,15 @@ public class Spinner extends Creature {
     boolean autoLeft = false;
     final float VERTICAL_SPEED = 4.0f;
     final float HORIZONTAL_SPEED = 3.0f;
-    int tracker = 0;
-    public boolean firstCall = true, playerInLineofSight = false;
-    int id;
+    int spinner_movement_tracker = 0;
+    public boolean playerInLineofSight = false;
+    int spinner_id;
     
     private Animation animation;
 
     public Spinner(Handler handler, float x, float y, int id) {
-        super(handler, x, y, ENEMY_WIDTH, ENEMY_HEIGHT);
-        this.id = id;
+        super(handler, x, y, SPINNER_WIDTH, SPINNER_HEIGHT);
+        this.spinner_id = id;
         health = 100;
         
         bounds.x = 14;
@@ -46,7 +43,7 @@ public class Spinner extends Creature {
         bounds.width = 35;
         bounds.height = 48;
         
-        animation = new Animation(100, Assets.spinner);
+        animation = new Animation(100, Resources.spinner);
         
     }
     
@@ -59,7 +56,6 @@ public class Spinner extends Creature {
             dead = true;
     }
         
-        //System.out.println(dead);
         //if the enemy is dead, it cant attack
         // but this will not apply to spinner
         if (dead) {
@@ -67,71 +63,71 @@ public class Spinner extends Creature {
             return;
         }
 
-       
+       //spinner behavior
         if (!playerInLineofSight) {
-            //horizontal spinner
-            if (id==1) {
-                if (autoRight) {
+            //horizontal spinner moves right and left
+            if (spinner_id==1) { //if it has id 1
+                if (autoRight) { //moving right
                     xMove = HORIZONTAL_SPEED;
-                    tracker++;
-                    if(tracker == 200) {
+                    spinner_movement_tracker++;
+                    if(spinner_movement_tracker == 200) {// when it has moved to the right this long, go the other way
                        autoRight = false;
                        autoLeft = true;
-                       tracker = 0;          
+                       spinner_movement_tracker = 0;          
                     }
                 }
 
-                if (autoLeft) {
+                if (autoLeft) {//moving left
                     xMove = -HORIZONTAL_SPEED;
-                    tracker++;
-                    if(tracker == 200) {
+                    spinner_movement_tracker++;
+                    if(spinner_movement_tracker == 200) {
                        autoLeft = false;
                        autoRight = true;
-                       tracker = 0;          
+                       spinner_movement_tracker = 0;          
                     }
                 }
                 
             }
             
-            else if (id == 2) {
+            else if (spinner_id == 2) {
                 if (autoRight) {
                     xMove = HORIZONTAL_SPEED;
-                    tracker++;
-                    if(tracker == 350) {
+                    spinner_movement_tracker++;
+                    if(spinner_movement_tracker == 350) {
                        autoRight = false;
                        autoLeft = true;
-                       tracker = 0;          
+                       spinner_movement_tracker = 0;          
                     }
                 }
 
                 if (autoLeft) {
                     xMove = -HORIZONTAL_SPEED;
-                    tracker++;
-                    if(tracker == 350) {
+                    spinner_movement_tracker++;
+                    if(spinner_movement_tracker == 350) {
                        autoLeft = false;
                        autoRight = true;
-                       tracker = 0;          
+                       spinner_movement_tracker = 0;          
                     }
                 }
             }
-            else { // vertical spinner
+            else { // vertical spinner, moves up and down
                 if (autoRight) {
                     yMove = VERTICAL_SPEED;
-                    tracker++;
-                    if(tracker == 200) {
+                    spinner_movement_tracker++;
+                    if(spinner_movement_tracker == 200) {
                        autoRight = false;
                        autoLeft = true;
-                       tracker = 0;          
+                       spinner_movement_tracker = 0;          
                     }
                 }
 
                 if (autoLeft) {
                     yMove = -VERTICAL_SPEED;
-                    tracker++;
-                    if(tracker == 200) {
+                    spinner_movement_tracker++;
+                    if(spinner_movement_tracker == 200) {
                        autoLeft = false;
                        autoRight = true;
-                       tracker = 0;          
+                       spinner_movement_tracker = 0;          
                     }
                 }
             }
@@ -140,7 +136,7 @@ public class Spinner extends Creature {
         
         if (attack) {
             //player gets hit by spinner
-            if (facingRight) {
+            if (facingRight) { //check the distance first
                 if (x > player.getX() - 55 && x < player.getX() + 15 && y > player.getY() - 60 && y < player.getY() + 60) {
                     if (!hitRight) {
                         hitRight = true;
@@ -161,8 +157,7 @@ public class Spinner extends Creature {
                 hitLeft = false;
             }
         }
-    move();
-        
+    move();        
     }
     
     public void stop() {
@@ -172,7 +167,7 @@ public class Spinner extends Creature {
     
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(),(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), null);
-//        //collision testing
+//        //collision testing, uncomment to see bounding box
 //        g.setColor(Color.red);
 //        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()), 
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),

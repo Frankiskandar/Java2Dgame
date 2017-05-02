@@ -5,7 +5,7 @@
  */
 package dev.frank.PlatformerGame.tiles;
 
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import java.awt.image.BufferedImage;
 
 /**
@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class EmptyTile extends Tile {
 
     public EmptyTile(int id) {
-        super(Assets.emptyTile, id);
+        super(Resources.emptyTile, id);
     }
     
 }

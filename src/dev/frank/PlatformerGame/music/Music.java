@@ -16,7 +16,7 @@ import javax.sound.sampled.Clip;
  * @author Frank
  */
 public class Music {
-   
+        // clip is a data structure that holds the audio
 	private static HashMap<String, Clip> clips;
 	private static int gap;
 	private static boolean mute = false;
@@ -27,13 +27,11 @@ public class Music {
 	}
 	
 	public static void load(String s, String n) {
-		if(clips.get(n) != null) return;
+		if(clips.get(n) != null) 
+                    return;
 		Clip clip;
 		try {			
-			AudioInputStream ais =
-				AudioSystem.getAudioInputStream(
-					Music.class.getResourceAsStream(s)
-				);
+			AudioInputStream ais = AudioSystem.getAudioInputStream(Music.class.getResourceAsStream(s));
 			AudioFormat baseFormat = ais.getFormat();
 			AudioFormat decodeFormat = new AudioFormat(
 				AudioFormat.Encoding.PCM_SIGNED,
@@ -44,6 +42,7 @@ public class Music {
 				baseFormat.getSampleRate(),
 				false
 			);
+                        //convert it
 			AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
 			clip = AudioSystem.getClip();
 			clip.open(dais);
@@ -61,10 +60,13 @@ public class Music {
 	public static void play(String s, int i) {
 		if(mute) return;
 		Clip c = clips.get(s);
-		if(c == null) return;
-		if(c.isRunning()) c.stop();
+		if(c == null) 
+                    return;
+		if(c.isRunning()) 
+                    c.stop();
 		c.setFramePosition(i);
-		while(!c.isRunning()) c.start();
+		while(!c.isRunning()) 
+                    c.start();
 	}
 	
 	public static void stop(String s) {
@@ -102,8 +104,13 @@ public class Music {
 		clips.get(s).setFramePosition(frame);
 	}
 	
-	public static int getFrames(String s) { return clips.get(s).getFrameLength(); }
-	public static int getPosition(String s) { return clips.get(s).getFramePosition(); }
+	public static int getFrames(String s) { 
+            return clips.get(s).getFrameLength(); 
+        }
+        
+	public static int getPosition(String s) { 
+            return clips.get(s).getFramePosition(); 
+        }
 	
 	public static void close(String s) {
 		stop(s);

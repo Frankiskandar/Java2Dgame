@@ -26,10 +26,6 @@ public class Tile {
     // static stuff
     
     public static Tile[] tiles = new Tile[256];
-    public static Tile grassTile = new GrassTile(10);
-    public static Tile dirtTile = new DirtTile(97);
-    public static Tile rockTile = new RockTile(98);
-    //public static Tile sandMid = new SandMid(5);
     
     //decoration
     public static Tile rightSign = new signRight(11);
@@ -82,7 +78,6 @@ public class Tile {
         this.id = id;
         
         tiles[id] = this;
-        
     }
     
     public void tick() {

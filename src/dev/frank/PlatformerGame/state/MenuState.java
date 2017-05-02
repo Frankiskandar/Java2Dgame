@@ -7,12 +7,12 @@ package dev.frank.PlatformerGame.state;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import dev.frank.PlatformerGame.gfx.ImageLoader;
 import dev.frank.PlatformerGame.music.Music;
-import dev.frank.PlatformerGame.ui.ClickListener;
-import dev.frank.PlatformerGame.ui.UIImageButton;
-import dev.frank.PlatformerGame.ui.UIManager;
+import dev.frank.PlatformerGame.uinterface.ClickListener;
+import dev.frank.PlatformerGame.uinterface.UIImageButton;
+import dev.frank.PlatformerGame.uinterface.UIManager;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -30,28 +30,28 @@ public class MenuState extends State {
     public MenuState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
-        handler.getMouseManager().setUIManager(uiManager);
+        handler.getMouseInputManager().setUIManager(uiManager);
         
         //background image
         bg = ImageLoader.loadImage("/textures/bg_level1.png");
         title = ImageLoader.loadImage("/textures/title.png");
         
-        uiManager.addObject(new UIImageButton(445, 298, 150, 50, Assets.btn_start, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 298, 150, 50, Resources.btn_start, new ClickListener(){
 
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 State.setState(new GameModeState(handler));
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
         
-        uiManager.addObject(new UIImageButton(445, 363, 150, 50, Assets.btn_quit, new ClickListener(){
+        uiManager.addObject(new UIImageButton(445, 363, 150, 50, Resources.btn_quit, new ClickListener(){
 
             @Override
             public void onClick() {
-                handler.getMouseManager().setUIManager(null);
+                handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 System.exit(0);
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -66,11 +66,7 @@ public class MenuState extends State {
         //temporarilty just go directly to the gameState,skip the menu state!
 //        handler.getMouseManager().setUIManager(null);
 //        State.setState(handler.getGame().gameState);
-        
-        //test if both right and left click pressed, set the state to game state
-        if(handler.getMouseManager().isLeftPressed() && handler.getMouseManager().isRightPressed())
-            State.setState(handler.getGame().gameState);
-        System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
+        //System.out.println(handler.getMouseManager().getMouseX() + "   " + handler.getMouseManager().getMouseY());
         //System.out.println("State we are in: "+State.getState());
         
     }

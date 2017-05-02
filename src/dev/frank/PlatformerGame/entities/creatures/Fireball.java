@@ -6,6 +6,8 @@
 package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Handler;
+import dev.frank.PlatformerGame.gfx.Resources;
+import java.awt.Graphics;
 
 /**
  *
@@ -13,17 +15,26 @@ import dev.frank.PlatformerGame.Handler;
  */
 //fireball projectile class
 public class Fireball extends Projectile {
-    //player attack using fireballs
+    //player attacks using fireballs
     
-    public static final int DEFAULT_FIREBALL_WIDTH = 40;
-    public static final int DEFAULT_FIREBALL_HEIGHT = 40;
-    public static final int DEFAULT_FIREBALL_SPEED = 6;
+    public static final int FIREBALL_WIDTH = 40;
+    public static final int FIREBALL_HEIGHT = 40;
+    public static final int FIREBALL_SPEED = 6;
 
     public Fireball(Handler handler, float x, float y, boolean facingRight) {
-        super(handler, x, y, DEFAULT_FIREBALL_WIDTH, DEFAULT_FIREBALL_HEIGHT);
+        super(handler, x, y, FIREBALL_WIDTH, FIREBALL_HEIGHT);
         this.facingRight = facingRight;
         bounds.x = 10;
-        this.projectileSpeed = DEFAULT_FIREBALL_SPEED;
+        this.projectileSpeed = FIREBALL_SPEED;
+    }
+    
+    @Override
+    public void render(Graphics g) {
+        if (facingRight) {
+                g.drawImage(Resources.fireball, (int) (x - handler.getGameCamera().getxOffset() + 30), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
+        } else {
+                g.drawImage(Resources.fireball, (int) (x - handler.getGameCamera().getxOffset() + 10), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
+        }     
     }
      
 }

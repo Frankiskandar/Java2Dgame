@@ -6,7 +6,6 @@
  */
 package dev.frank.PlatformerGame.entities.creatures;
 
-import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import dev.frank.PlatformerGame.entities.Entity;
 import dev.frank.PlatformerGame.tiles.Tile;
@@ -22,7 +21,6 @@ public abstract class Creature extends Entity {
     public static final int DEFAULT_CREATURE_WIDTH = 64,
                             DEFAULT_CREATURE_HEIGTH = 64;
     final int FIREBALL_DAMAGE = 25;
-    //protected int health;
     protected float speed;
     protected float xMove, yMove;
     public int health;
@@ -108,7 +106,7 @@ public abstract class Creature extends Entity {
     //if its solid return true
     //if its not solid return false
     protected boolean collisionWithTile(int x, int y) {
-        return handler.getWorld().getTile(x, y).isSolid();
+        return handler.getMap().getTile(x, y).isSolid();
     }
     
  //getters and setters

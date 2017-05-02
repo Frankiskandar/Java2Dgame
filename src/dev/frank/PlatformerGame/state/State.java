@@ -5,7 +5,6 @@
  */
 package dev.frank.PlatformerGame.state;
 
-import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import java.awt.Graphics;
 
@@ -15,7 +14,6 @@ import java.awt.Graphics;
  */
 public abstract class State {
     
-    //game state manager
     private static State currentState = null;
     
     public static void setState(State state) {

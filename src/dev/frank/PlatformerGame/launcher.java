@@ -5,7 +5,6 @@
  */
 package dev.frank.PlatformerGame;
 
-import dev.frank.PlatformerGame.display.Display;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -21,7 +20,7 @@ public class launcher {
      */
     public static void main(String[] args) {
         
-        Game game = new Game("Platformer Game", 1000, 500);
+        Game game = new Game(1000, 500);
         game.start();
         
         //run Junit Test

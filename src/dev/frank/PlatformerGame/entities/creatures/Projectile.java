@@ -6,7 +6,7 @@
 package dev.frank.PlatformerGame.entities.creatures;
 
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.gfx.Assets;
+import dev.frank.PlatformerGame.gfx.Resources;
 import java.awt.Graphics;
 
 /**
@@ -18,21 +18,14 @@ public class Projectile extends Creature {
     
     public int projectileSpeed = 8, distance = 0;
 
-    boolean remove = false, facingRight = false, first = false;
-    boolean restart = false, hitEnemy = false;
-    
-    public static final int PLAYER1 = 0, PLAYER2 = 1, ENEMY = 2;
+    boolean remove = false, facingRight = false;
+    boolean hitEnemy = false;
 
     public Projectile(Handler handler, float x, float y, int width, int heigth) {
         super(handler, x, y, width, heigth);
     }
     
-    public void render(Graphics g, int type) {
-        if (facingRight) {
-                g.drawImage(Assets.fireball, (int) (x - handler.getGameCamera().getxOffset() + 30), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
-        } else {
-                g.drawImage(Assets.fireball, (int) (x - handler.getGameCamera().getxOffset() + 10), (int) (y - handler.getGameCamera().getyOffset() + 10), width, height, null);
-        }     
+    public void render(Graphics g) {   
     }
     
     public void tick() {

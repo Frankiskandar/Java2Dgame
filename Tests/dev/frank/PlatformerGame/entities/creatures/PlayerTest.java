@@ -35,7 +35,7 @@ public class PlayerTest extends TestCase {
     @Test
     public void PlayerXSpawnTest() {
         System.out.println("PlayerXSpawnTest");
-        Game game = new Game("Platformer Game", 1000, 500);
+        Game game = new Game(1000, 500);
         Handler handler = new Handler(game);
         Player player = new Player(handler, 100,100);
         float expected = player.getX();
