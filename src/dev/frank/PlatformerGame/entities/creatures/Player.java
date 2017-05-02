@@ -60,7 +60,7 @@ public class Player extends Creature{
 
     public void tick(ArrayList<Spider> enemies, Player player) {
         //Animations
-        animDown.tick(); //to update index var
+        animDown.tick();
         animUp.tick();
         animLeft.tick();
         animRight.tick();

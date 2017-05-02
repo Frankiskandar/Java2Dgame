@@ -5,7 +5,6 @@
  */
 package dev.frank.PlatformerGame.state;
 
-import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
 import java.awt.Graphics;
 

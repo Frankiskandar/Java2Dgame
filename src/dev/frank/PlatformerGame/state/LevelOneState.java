@@ -98,15 +98,6 @@ public class LevelOneState extends State {
             player.dead = true;                     
         }
         
-//        
-//        for (Enemy e : enemy) {
-//            if (e.dead)
-//            {
-//                enemies.remove(e);
-//            }
-//        }
-         //has getinpu and move() in player
-        
         //move forward automatically
         //game.getGameCamera().move(1, 0); // add 1 to x and y offset every tick 
     }
@@ -122,7 +113,6 @@ public class LevelOneState extends State {
         }
  
         //System.out.println(player.getX()+ " " + player.getY());
-        //System.out.println("player's health= "+player.health);
         
         // draw heart (player's health) on the top left corner
         for (int i = 0; i < player.health; i++) {

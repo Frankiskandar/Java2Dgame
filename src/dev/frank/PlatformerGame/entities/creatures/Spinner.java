@@ -56,7 +56,6 @@ public class Spinner extends Creature {
             dead = true;
     }
         
-        //System.out.println(dead);
         //if the enemy is dead, it cant attack
         // but this will not apply to spinner
         if (dead) {

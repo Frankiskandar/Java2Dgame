@@ -25,8 +25,6 @@ public class UIImageButton extends UIObject {
 
     @Override
     public void tick() {
-        
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -35,14 +33,11 @@ public class UIImageButton extends UIObject {
             g.drawImage(images[1], (int) x, (int) y, width, height, null);
         else
             g.drawImage(images[0], (int) x, (int) y, width, height, null);
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void onClick() {
         clickListener.onClick();
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

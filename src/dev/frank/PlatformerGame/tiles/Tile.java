@@ -78,7 +78,6 @@ public class Tile {
         this.id = id;
         
         tiles[id] = this;
-        
     }
     
     public void tick() {

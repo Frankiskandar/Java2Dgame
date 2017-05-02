@@ -7,7 +7,6 @@ package dev.frank.PlatformerGame.test;
 
 import dev.frank.PlatformerGame.Game;
 import dev.frank.PlatformerGame.Handler;
-import dev.frank.PlatformerGame.entities.creatures.Creature;
 import dev.frank.PlatformerGame.entities.creatures.Spider;
 import dev.frank.PlatformerGame.entities.creatures.Player;
 import static junit.framework.Assert.assertEquals;
@@ -35,8 +34,6 @@ public class TestClass {
         int expResult = 1000;
         int result = instance.getWidth();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -49,8 +46,6 @@ public class TestClass {
         int expResult = 500;
         int result = instance.getHeight();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
     
     @Test

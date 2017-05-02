@@ -43,7 +43,6 @@ public class GameOverState extends State {
                 handler.getMouseInputManager().setUIManager(null);
                 Music.play("click");
                 State.setState(new MenuState(handler));
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }));
     }
@@ -53,7 +52,6 @@ public class GameOverState extends State {
     @Override
     public void tick() {
         uiManager.tick();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -63,7 +61,6 @@ public class GameOverState extends State {
         g.setColor(Color.BLACK);
         g.drawString("YOU ARE DEAD", 400, 200);
         uiManager.render(g);
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
