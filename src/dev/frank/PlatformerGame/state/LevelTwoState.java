@@ -43,7 +43,7 @@ public class LevelTwoState extends State {
     public LevelTwoState(Handler handler) {
         super(handler);
         //load map from text file
-        map = new Map(handler, "res/worlds/world3.txt");
+        map = new Map(handler, "res/worlds/world2.txt");
         handler.setMap(map);
         
         background = ImageLoader.loadImage("/textures/bg_level2.png");
